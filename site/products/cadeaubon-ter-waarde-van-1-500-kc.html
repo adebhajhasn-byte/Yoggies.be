@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadeaubon ter waarde van 1 500 Kč | Yoggies.be</title>
+  <link rel="stylesheet" href="../home.css">
+  <link rel="stylesheet" href="../hoofdpageproduct.css">
+  <link rel="stylesheet" href="../product.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    .ph-product-title {
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--brown, #3c1e00);
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+    .ph-badge-icon {
+      width: 48px !important;
+      height: 48px !important;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .badge-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .footer {
+      background: var(--brown, #3c1e00);
+      color: rgba(255,255,255,0.8);
+      font-family: 'Nunito', sans-serif;
+      margin-top: 0;
+    }
+    .footer-top {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 52px 40px 44px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-logo-svg { height: 36px; width: auto; display: block; margin-bottom: 14px; }
+    .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; max-width: 200px; }
+    .footer-contact h4, .footer-links h4, .footer-shop h4 {
+      font-size: 11px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--green, #A1E647); margin-bottom: 16px;
+    }
+    .footer-contact ul, .footer-links ul, .footer-shop ul {
+      list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;
+    }
+    .footer-contact li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.5; }
+    .footer-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+    .footer-contact a, .footer-links a, .footer-shop a {
+      color: rgba(255,255,255,0.75); text-decoration: none; font-size: 13px; font-weight: 600; transition: color 0.18s;
+    }
+    .footer-contact a:hover, .footer-links a:hover, .footer-shop a:hover { color: var(--green, #A1E647); }
+    .footer-contact span, .footer-links li, .footer-shop li { font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 600; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1); padding: 18px 40px; max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; font-size: 11px;
+      color: rgba(255,255,255,0.35); flex-wrap: wrap; gap: 8px;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--green, #A1E647); }
+    @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; padding: 36px 24px 28px; } }
+    @media (max-width: 560px) {
+      .footer-top { grid-template-columns: 1fr; padding: 28px 18px 24px; }
+      .footer-bottom { flex-direction: column; padding: 14px 18px; text-align: center; }
+    }
+  
+    .calc-wrap{padding:4px 0 8px}
+    .calc-intro{font-size:14px;color:var(--text-muted);margin-bottom:20px;line-height:1.55}
+    .calc-pct-note{display:inline-block;margin-top:4px;color:var(--brown-mid);font-size:13px}
+    .calc-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .calc-label{font-size:14px;font-weight:700;color:var(--brown);min-width:180px}
+    .calc-input-group{display:flex;align-items:center;border:2px solid var(--cream-deep);border-radius:var(--radius-sm);overflow:hidden;transition:border-color .2s}
+    .calc-input-group:focus-within{border-color:var(--green-dark);box-shadow:0 0 0 3px rgba(125,196,0,.13)}
+    .calc-input{border:none;outline:none;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:700;width:110px;background:var(--white);color:var(--brown)}
+    .calc-unit{padding:10px 14px;background:var(--cream-deep);font-size:13px;font-weight:800;color:var(--brown-mid)}
+    .calc-result{margin-top:20px;background:var(--cream);border:2px solid var(--green);border-radius:var(--radius);padding:18px 22px}
+    .calc-result-label{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--green-dark)}
+    .calc-result-value{font-size:32px;font-weight:900;color:var(--brown);font-family:'Playfair Display',serif}
+    .calc-result-note{font-size:12px;color:var(--text-muted);margin-top:4px;line-height:1.5}
+    @media(max-width:560px){.calc-row{flex-direction:column}.calc-result-value{font-size:26px}}
+
+    /* Variant size selector (above order button) */
+    .ph-variant-row{display:flex;align-items:center;gap:12px;margin:14px 0 12px;flex-wrap:wrap}
+    .ph-variant-label{font-weight:800;font-size:14px;color:var(--brown);letter-spacing:.2px}
+    .ph-variant-select{padding:10px 36px 10px 14px;border:2px solid var(--cream-deep);border-radius:10px;font-family:inherit;font-size:15px;font-weight:700;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%233c1e00' stroke-width='2' fill='none' stroke-linecap='round'/></svg>") no-repeat right 12px center;color:var(--brown);cursor:pointer;appearance:none;-webkit-appearance:none;min-width:120px}
+    .ph-variant-select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(125,196,0,.18)}
+
+    /* Contact fallback when product not available on DogLife */
+    .ph-contact-fallback{background:var(--cream,#f5f1e6);border:1px solid var(--cream-deep,#e8dcc0);border-radius:12px;padding:18px 20px;margin-top:12px}
+    .ph-contact-note{margin:0 0 14px;font-size:14px;line-height:1.55;color:var(--brown,#3c1e00);font-weight:600}
+    .ph-contact-links{display:flex;flex-wrap:wrap;gap:8px}
+    .ph-contact-link{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:var(--brown,#3c1e00);color:#fff !important;text-decoration:none;border-radius:10px;font-weight:700;font-size:13px;transition:background .15s}
+    .ph-contact-link:hover{background:#5c2e10}
+    @media(max-width:560px){.ph-contact-link{flex:1 1 100%;justify-content:center}}
+  /* YGS_NAV_CSS_START */
+/* ── Dropdown improvements ── */
+  nav.main-nav .nav-item { position: relative; }
+  .nav-chevron {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+    transition: transform .2s ease;
+    vertical-align: middle;
+    opacity: .75;
+  }
+  .nav-chevron svg { display: block; }
+  .nav-item:hover > a .nav-chevron,
+  .nav-item--open > a .nav-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  /* Nav stacking context — isolates dropdown from page content */
+  nav.main-nav { position: relative; z-index: 1000; isolation: isolate; }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(72vw, 1100px);
+    min-width: 480px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 12px 48px rgba(0,0,0,.18);
+    z-index: 9999;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    max-height: 380px;
+    overflow-y: auto;
+  }
+  .nav-item:hover > .dropdown,
+  .nav-item--open > .dropdown {
+    display: block;
+  }
+  /* Hover bridge — prevents flicker on gap between link and dropdown */
+  .nav-item::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    height: 8px;
+    z-index: 1002;
+  }
+
+  .dd-thumb-placeholder {
+    display: inline-block;
+    width: 38px; height: 38px;
+    background: var(--cream-deep);
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  /* ── Mobile nav ── */
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: auto;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--brown);
+    border-radius: 2px;
+    transition: all .25s;
+  }
+  .nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 900px) {
+    .nav-hamburger { display: flex; }
+    .nav-list {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,.1);
+      flex-direction: column;
+      align-items: stretch;
+      padding: 8px 0 16px;
+      z-index: 800;
+      overflow-y: auto;
+      max-height: calc(100vh - 120px);
+    }
+    .nav-list.is-open { display: flex; }
+    .nav-item { border-bottom: 1px solid var(--cream-deep); }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      width: 100%;
+    }
+    nav.main-nav .dropdown {
+      position: static !important;
+      transform: none !important;
+      left: auto !important;
+      right: auto !important;
+      top: auto !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: none !important;
+      max-height: 240px;
+      box-shadow: none;
+      border: none;
+      border-top: 1px solid var(--cream-deep);
+      border-radius: 0;
+      padding: 12px 16px;
+      opacity: 1;
+      pointer-events: auto;
+      display: none;
+      animation: none !important;
+      overflow-x: hidden;
+    }
+    nav.main-nav .nav-item--open > .dropdown { display: block; }
+    nav.main-nav .dropdown-inner {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 8px;
+    }
+    nav.main-nav .dd-item {
+      min-width: 0 !important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  @media (max-width: 480px) {
+    nav.main-nav .dropdown-inner { grid-template-columns: 1fr !important; }
+  }
+/* YGS_NAV_CSS_END */
+  /* YGS_SEARCH_CSS_START */
+.search-bar { position: relative; }
+  .search-results {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px); left: 0; right: 0;
+    background: #fff;
+    border: 1px solid var(--border, #e5e5e5);
+    border-radius: 14px;
+    box-shadow: 0 12px 36px rgba(0,0,0,.18);
+    max-height: 480px;
+    overflow-y: auto;
+    z-index: 9999;
+    min-width: 280px;
+  }
+  .search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    color: var(--brown, #3c1e00);
+    font-size: 14px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--cream-deep, #f0e9d8);
+    transition: background .12s;
+  }
+  .search-result-item:last-child { border-bottom: none; }
+  .search-result-item:hover { background: var(--cream, #f5f1e6); }
+  .search-result-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .search-result-name {
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--brown, #3c1e00);
+  }
+  .search-result-cat {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--brown-mid, #7a3b1e);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .search-empty {
+    padding: 16px;
+    color: #888;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+  }
+  @media (max-width: 700px) {
+    .search-results {
+      position: fixed;
+      top: 130px; left: 12px; right: 12px;
+      max-height: 60vh;
+    }
+  }
+/* YGS_SEARCH_CSS_END */
+  </style>
+</head>
+<body>
+
+<div class="top-dark"></div>
+<div class="top-green"></div>
+
+<header>
+  <a class="logo" href="../index.html">
+    <svg class="logo-svg" viewBox="0 0 861.327 243.626" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(0 0.01)" id="yoggies_logo_on_light_bg_RGB">
+        <path fill="#3c1e00" transform="translate(-545.842 -23.366)" d="M1396.575,67.443h1.768a2.809,2.809,0,0,0,1.725-.377,1.213,1.213,0,0,0,.462-1,1.166,1.166,0,0,0-.225-.711,1.3,1.3,0,0,0-.613-.474,4.635,4.635,0,0,0-1.464-.152h-1.652v2.7Zm-1.452,5.066v-9h3.1a7.671,7.671,0,0,1,2.3.249,2.249,2.249,0,0,1,1.136.869,2.308,2.308,0,0,1,.419,1.318,2.388,2.388,0,0,1-.711,1.719,2.8,2.8,0,0,1-1.877.82,2.329,2.329,0,0,1,.765.48,10.131,10.131,0,0,1,1.336,1.786l1.1,1.762h-1.768l-.8-1.415A7.3,7.3,0,0,0,1398.6,69a1.861,1.861,0,0,0-1.16-.3h-.856v3.821h-1.458Zm3.675-11.614a7.149,7.149,0,0,0-3.438.905,6.453,6.453,0,0,0-2.612,2.588,6.955,6.955,0,0,0-.012,6.967,6.6,6.6,0,0,0,2.594,2.588,6.971,6.971,0,0,0,6.955,0,6.546,6.546,0,0,0,2.588-2.588,6.993,6.993,0,0,0-.024-6.967,6.415,6.415,0,0,0-2.612-2.588,7.157,7.157,0,0,0-3.426-.905Zm0-1.385a8.588,8.588,0,0,1,4.118,1.081,7.682,7.682,0,0,1,3.128,3.1,8.536,8.536,0,0,1,1.124,4.2,8.437,8.437,0,0,1-1.105,4.161,7.734,7.734,0,0,1-3.1,3.1,8.444,8.444,0,0,1-4.167,1.106,8.531,8.531,0,0,1-4.173-1.106,7.787,7.787,0,0,1-3.1-3.1,8.447,8.447,0,0,1-1.112-4.161,8.6,8.6,0,0,1,1.124-4.2,7.769,7.769,0,0,1,3.134-3.1,8.593,8.593,0,0,1,4.125-1.081Z" data-name="Path 7" id="Path_7"></path>
+        <path fill="#3c1e00" transform="translate(0 -35.509)" d="M39.956,219.463H58.823l-1.664,5.552c-4.72,15.258-5.825,18.593-8.6,22.475a12.7,12.7,0,0,1-7.216,5.272,35.046,35.046,0,0,1-10.265,1.112,36.851,36.851,0,0,1-12.489-1.664l-5.825,22.754c10.545,3.329,14.985,4.161,23.307,4.161,28.027,0,40.236-13.321,51.054-54.662L122.086,90.446H89.625L67.151,186.729l-.832,7.216V199.5H62.71v-5.552L61.6,186.729,34.963,90.44H0Z" data-name="Path 8" id="Path_8"></path>
+        <path fill="#3c1e00" transform="translate(-83.301 -33.538)" d="M246.048,155.341c0-28.579,9.986-44.949,28.3-44.949s28.859,16.091,28.859,45.5-9.986,45.229-28.027,45.229-29.132-16.091-29.132-45.782M212.2,157c0,42.173,24.418,69.088,61.872,69.088s62.984-27.468,62.984-70.473-23.586-70.2-61.319-70.2S212.19,112.888,212.19,157Z" data-name="Path 9" id="Path_9"></path>
+        <path fill="#3c1e00" transform="translate(-171.619 -34.256)" d="M499.858,109.445c14.426,0,23.586,9.713,23.586,25.251s-9.713,25.251-24.692,25.251-24.418-9.713-24.418-25.251,9.986-25.251,25.524-25.251m71.305-19.978c-3.049-.279-5.825-.553-8.322-.553-9.433,0-15.258,3.049-22.754,12.209-8.322-7.49-12.489-9.713-22.2-11.656a81.9,81.9,0,0,0-18.867-2.217c-34.4,0-57.438,19.419-57.438,48,0,12.209,4.72,23.86,12.762,31.355a65.039,65.039,0,0,0,8.048,6.1l-9.433,7.49c-7.216,5.825-11.656,11.377-11.656,15.258,0,2.217,1.944,7.769,4.72,13.321s5.825,9.713,8.881,11.65c2.5,1.944,6.657,2.5,16.37,2.5h2.776c6.1,0,11.1-.279,14.706-.279h15.817c13.874,0,18.034.832,22.754,3.329,3.888,2.217,5.552,5.272,5.552,11.1,0,12.209-11.656,18.314-34.4,18.314-20.531,0-32.187-6.937-32.187-18.867,0-4.993,1.112-7.216,4.44-8.881v-1.112H440.489c-2.776,6.384-3.329,9.433-3.329,14.153,0,23.586,21.643,37.18,58.823,37.18,45.229,0,68.536-15.538,68.536-45.5,0-24.971-14.153-34.963-49.669-34.963h-3.888l-24.971.553h-1.112c-8.881,0-13.041-1.944-13.041-6.657q0-4.164,4.993-8.322l3.608-3.049a90.607,90.607,0,0,0,18.034,1.664c34.963,0,56.879-17.482,56.879-45.782,0-8.322-1.112-11.93-4.993-20.258,4.44-1.944,5.825-2.5,9.433-2.5a30.943,30.943,0,0,1,8.6,1.385l2.776,1.112V89.461Z" data-name="Path 10" id="Path_10"></path>
+        <path fill="#3c1e00" transform="translate(-265.016 -34.256)" d="M737.762,109.445c14.426,0,23.586,9.713,23.586,25.251s-9.713,25.251-24.692,25.251-24.418-9.713-24.418-25.251,9.986-25.251,25.524-25.251m71.312-19.978c-3.049-.279-5.825-.553-8.322-.553-9.433,0-15.258,3.049-22.754,12.209-8.322-7.49-12.489-9.713-22.2-11.656a81.905,81.905,0,0,0-18.867-2.217c-34.4,0-57.438,19.419-57.438,48,0,12.209,4.72,23.86,12.762,31.355a65.04,65.04,0,0,0,8.048,6.1l-9.433,7.49c-7.216,5.825-11.656,11.377-11.656,15.258,0,2.217,1.944,7.769,4.72,13.321s5.825,9.713,8.881,11.65c2.5,1.944,6.657,2.5,16.37,2.5h2.776c6.1,0,11.1-.279,14.706-.279h15.817c13.874,0,18.034.832,22.754,3.329,3.881,2.217,5.552,5.272,5.552,11.1,0,12.209-11.656,18.314-34.4,18.314-20.531,0-32.187-6.937-32.187-18.867,0-4.993,1.112-7.216,4.44-8.881v-1.112H678.4c-2.776,6.384-3.329,9.433-3.329,14.153,0,23.586,21.643,37.18,58.823,37.18,45.229,0,68.536-15.538,68.536-45.5,0-24.971-14.153-34.963-49.669-34.963h-3.888l-24.971.553h-1.112c-8.881,0-13.041-1.944-13.041-6.657q0-4.164,4.993-8.322l3.608-3.049a90.607,90.607,0,0,0,18.034,1.664c34.963,0,56.879-17.482,56.879-45.782,0-8.322-1.112-11.93-4.993-20.258,4.44-1.944,5.825-2.5,9.433-2.5a30.943,30.943,0,0,1,8.6,1.385l2.776,1.112V89.461Z" data-name="Path 11" id="Path_11"></path>
+        <path fill="#9ecc00" transform="translate(-361.437)" d="M920.68,17.751c0,10.265,8.322,17.2,20.258,17.2S961.2,28.017,961.2,17.472,953.147-.01,940.664-.01s-19.978,7.216-19.978,17.755" data-name="Path 12" id="Path_12"></path>
+        <path fill="#3c1e00" transform="translate(-364.126 -34.256)" d="M927.53,223.762h32.187V87.25L927.53,92.243Z" data-name="Path 13" id="Path_13"></path>
+        <path fill="#3c1e00" transform="translate(-397.962 -33.542)" d="M1100.843,141.192h-53.83c1.664-20.531,11.656-31.076,28.859-31.076s24.692,9.986,24.971,31.076M1050.621,164.5h82.962c.279-3.888.279-6.657.279-8.6,0-47.166-18.593-70.473-56.326-70.473s-63.816,27.468-63.816,71.032,23.586,69.368,63.263,69.368c14.153,0,29.132-3.329,40.23-8.6,2.5-1.385,6.1-3.329,10.818-6.384l-8.048-22.2c-10.824,5.552-15.538,7.49-23.027,8.881a64.258,64.258,0,0,1-12.762,1.112c-22.2,0-34.963-10.545-36.9-30.523l-.371-3.608h3.7Z" data-name="Path 14" id="Path_14"></path>
+        <path fill="#3c1e00" transform="translate(-483.893 -33.891)" d="M1232.61,211.741c11.93,7.769,17.2,9.986,28.859,12.489a85.242,85.242,0,0,0,18.593,2.217c32.461,0,52.718-17.482,52.718-44.949,0-21.363-11.93-33.3-40.788-40.789-14.985-3.888-19.146-5.552-22.2-8.048a11.241,11.241,0,0,1-3.888-8.322c0-8.048,7.216-12.209,21.922-12.209s24.139,3.049,34.963,10.265l6.657-23.586c-10.266-6.657-14.985-8.6-23.586-10.545a96.691,96.691,0,0,0-20.258-1.944c-32.461,0-51.886,15.538-51.886,41.9,0,10.545,3.881,19.978,10.545,25.524,6.1,4.993,15.817,9.433,30.523,13.594,20.258,5.825,25.251,9.433,25.251,18.314s-7.769,14.153-22.475,14.153a70.848,70.848,0,0,1-15.817-1.664c-9.154-1.944-13.594-3.881-23.307-10.824l-5.825,24.418Z" data-name="Path 15" id="Path_15"></path>
+      </g>
+    </svg>
+  </a>
+  <div class="search-bar">
+    <input type="text" placeholder="Zoeken">
+    <button class="search-btn">🔍</button>
+  </div>
+</header>
+
+<!-- ===== NAV ===== -->
+<nav class="main-nav">
+  <ul class="nav-list" role="menubar">
+<li class="nav-item"><a href="../index.html" class="nav-link nav-home">HOME</a></li><li class="nav-item" data-cat="barf"><a href="../barf.html" class="nav-link" aria-haspopup="true" aria-expanded="false">BARF<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="BARF"><div class="dropdown-inner"><a href="../products/yoggies-barf-100-kalkoen-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/1800-g-12x150g-yoggies-b-a-r-f-100-kruta-s-probiotiky_8088e51b-9850-4343-b402-97abe37d8986.jpg?crop=center&amp;height=1200&amp;v=1745757693&amp;width=1200" alt="" loading="lazy"><span>Yoggies B.A.R.F. 100% kalkoen met probio</span></a><a href="../products/yoggies-barf-100-rund-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/1800-g-12x150g-yoggies-b-a-r-f-100-hovezi-s-probiotiky_de155a6b-8cea-4a1e-a27f-a04b11a4f418.jpg?crop=center&amp;height=1200&amp;v=1745757718&amp;width=1200" alt="" loading="lazy"><span>Yoggies B.A.R.F. 100% rund met probiotic</span></a><a href="../products/yoggies-barf-rund-en-kalkoen-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/1800-g-12x150g-yoggies-b-a-r-f-hovezi-a-kruta-s-probiotiky_c670ee96-d8c1-4934-b8c9-96973d86bcc5.jpg?crop=center&amp;height=1200&amp;v=1741945352&amp;width=1200" alt="" loading="lazy"><span>Yoggies B.A.R.F. Rund en kalkoen met pro</span></a><a href="../products/yoggies-barf-100-kip-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/1800-g-12x150g-yoggies-b-a-r-f-100-kure-s-probiotiky_fd2da3be-d9e0-4317-be85-e357af03e51d.jpg?crop=center&amp;height=1200&amp;v=1741945352&amp;width=1200" alt="" loading="lazy"><span>Yoggies B.A.R.F. 100% kip met probiotica</span></a><a href="../products/yoggies-barf-zalm-en-konijn-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/poduktovka_barf_burtiky_losos_kralik.jpg?crop=center&amp;height=1200&amp;v=1743669734&amp;width=1200" alt="" loading="lazy"><span>Yoggies B.A.R.F. Zalm en konijn met prob</span></a><a href="../products/yoggies-barf-zalm-paard-kalkoen-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/1800-g-12x150g-yoggies-b-a-r-f-losos-kun-kruta-s-probiotiky_7aa77bfb-63d2-41f1-9250-262759571276.jpg?crop=center&amp;height=1200&amp;v=1743673114&amp;width=1200" alt="" loading="lazy"><span>Yoggies B.A.R.F. Zalm, paard, kalkoen me</span></a><a href="../products/yoggies-barf-100-konijn-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3366-1-800-g-12x150g-yoggies-b-a-r-f-100-kralik-s-probiotiky-a-kloubni-vyzivou_a5e8d360-56a8-49fe-8473-b04808a45693.jpg?crop=center&amp;height=1200&amp;v=1741945351&amp;width=1200" alt="" loading="lazy"><span>Yoggies B.A.R.F. 100% konijn met probiot</span></a><a href="../products/500-g-yoggies-barf-sprot.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/1-5-kg-b-a-r-f-sproty_d9c63180-421e-47a9-bfea-33f42032185f.jpg?crop=center&amp;height=1200&amp;v=1741007309&amp;width=1200" alt="" loading="lazy"><span>500 g Yoggies BARF Sprot</span></a><a href="../products/1-kg-yoggies-barf-kalkoenlever.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/1-kg-b-a-r-f-kruti-jatra_f07d9887-dcd1-4688-b466-ee283be5735b.jpg?crop=center&amp;height=1200&amp;v=1741007345&amp;width=1200" alt="" loading="lazy"><span>1 kg Yoggies B.A.R.F. Kalkoenlever</span></a><a href="../products/1-kg-yoggies-barf-kippenhartjes.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/1-kg-b-a-r-f-kureci-srdicka_56b3d3a2-5b2e-488d-be72-a60342745b5f.jpg?crop=center&amp;height=1200&amp;v=1741007327&amp;width=1200" alt="" loading="lazy"><span>1 kg Yoggies BARF Kippenhartjes</span></a></div></div></li><li class="nav-item" data-cat="blikvoer"><a href="../blikvoer.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Blikvoer<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Blikvoer"><div class="dropdown-inner"><a href="../products/yoggies-blik-kangoeroe-met-pompoen-en-aardpeer.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Yoggies_konzerva_klokan_dyne_400g_1_web.jpg?crop=center&amp;height=1200&amp;v=1763542307&amp;width=1200" alt="" loading="lazy"><span>Yoggies blik Kangoeroe met pompoen en aa</span></a><a href="../products/800-g-yoggies-kalkoenblik-met-zoete-aardappel-en-distelolie.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3189-800g-yoggies-kruti-konzerva-s-bataty-a-bodlakovym-olejem_df7f2346-4ba8-4102-bd5a-9369e621b570.jpg?crop=center&amp;height=1200&amp;v=1749810678&amp;width=1200" alt="" loading="lazy"><span>800 g Yoggies kalkoenblik met zoete aard</span></a><a href="../products/yoggies-blik-lam-met-aardappel.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/200g-yoggies-jehneci-konzerva-s-bramborem-a-karotkou_7bf5f7a1-434c-4bb4-a11a-05fd14ac917b.jpg?crop=center&amp;height=1200&amp;v=1741269797&amp;width=1200" alt="" loading="lazy"><span>Yoggies blik Lam met aardappel</span></a><a href="../products/yoggies-blik-gevogelte-met-groente-en-havervlokken.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3178-200g-yoggies-drubezi-konzerva-se-zeleninou-a-ovesnymi-vlockami_d5de9e71-1f89-4851-a1eb-8f283982beaa.jpg?crop=center&amp;height=1200&amp;v=1741007574&amp;width=1200" alt="" loading="lazy"><span>Yoggies blik Gevogelte met groente en ha</span></a><a href="../products/yoggies-blik-eend-met-peer-en-gierst.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3180-400g-yoggies-kachni-konzerva-s-hruskou-a-jahlami_2fda8e67-71b1-4da3-abba-acd4dc4f95bd.jpg?crop=center&amp;height=1200&amp;v=1741007358&amp;width=1200" alt="" loading="lazy"><span>Yoggies blik Eend met peer en gierst</span></a><a href="../products/yoggies-blik-geit-met-aardappel-en-wortel.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3179-400g-yoggies-kozi-konzerva-s-bramborem-a-mrkvi_f09f644a-92a5-4f77-8e6c-12042d9989f8.jpg?crop=center&amp;height=1200&amp;v=1741007316&amp;width=1200" alt="" loading="lazy"><span>Yoggies blik Geit met aardappel en worte</span></a><a href="../products/yoggies-blik-rund-met-mariadistel.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3640-400g-yoggies-hovezi-konzerva-s-karotkou-a-lnenym-olejem_5148a091-73a0-4fae-9aa4-e693100293cf.jpg?crop=center&amp;height=1200&amp;v=1741007234&amp;width=1200" alt="" loading="lazy"><span>Yoggies blik Rund met mariadistel</span></a><a href="../products/yoggies-blik-kalkoen--en-kalfsvlees-met-appel.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/produktovka_konzerva_kruti_a_teleci_400g_1000x1000_7d7a2869-c313-48f2-a534-73b33cdae20a.jpg?crop=center&amp;height=1200&amp;v=1745856102&amp;width=1200" alt="" loading="lazy"><span>Yoggies blik Kalkoen- en kalfsvlees met </span></a><a href="../products/yoggies-blik-hert-met-boekweit-en-veenbessen.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/produktovka_konzerva_jeleni_400g_1000x1000_376c2daf-ab13-4bae-992c-eccdb2a9815f.jpg?crop=center&amp;height=1200&amp;v=1745756702&amp;width=1200" alt="" loading="lazy"><span>Yoggies blik Hert met boekweit en veenbe</span></a><a href="../products/185-g-yoggies-ragout-voor-katten-zalm-en-eend.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Yoggies_ragu_losos_kachna_185g_1_web.png?crop=center&amp;height=1200&amp;v=1775570529&amp;width=1200" alt="" loading="lazy"><span>185 g Yoggies RAGOUT voor katten Zalm en</span></a></div></div></li><li class="nav-item" data-cat="brokken"><a href="../brokken-met-probiotica.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Brokken met probiotica<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Brokken met probiotica"><div class="dropdown-inner"><a href="../products/yoggies-brokken-active-eend-wild.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/15kg-yoggies-active-kachni-masozverina-granule-lisovane-za-studena-s-probiotiky_753158dc-4098-4645-8a34-8681704a2902.jpg?crop=center&amp;height=1200&amp;v=1741007579&amp;width=1200" alt="" loading="lazy"><span>Yoggies brokken Active Eend &amp; Wild</span></a><a href="../products/yoggies-brokken-lam-witvis.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3128-10kg-yoggies-jehneci-masobila-ryba-granule-lisovane-za-studena-s-probiotiky_343fbd6d-92af-4280-ba16-654e6431a7f2.jpg?crop=center&amp;height=1200&amp;v=1741007210&amp;width=1200" alt="" loading="lazy"><span>Yoggies brokken Lam &amp; Witvis</span></a><a href="../products/yoggies-brokken-geit-monoproteine.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/15kg-yoggies-kozi-masozelenina-hypoalergenni-granule-lisovane-za-studena-s-probiotiky_59cc3929-f7b5-418b-aef3-68a64ddda3e8.jpg?crop=center&amp;height=1200&amp;v=1741007573&amp;width=1200" alt="" loading="lazy"><span>Yoggies brokken Geit monoproteïne</span></a><a href="../products/yoggies-brokken-kalkoen-monoproteine.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/15kg-yoggies-kruti-masojahly-granule-lisovane-za-studena-s-probiotiky_cf1283d5-c6eb-4d98-9cac-3e5bdee167fe.jpg?crop=center&amp;height=1200&amp;v=1741007485&amp;width=1200" alt="" loading="lazy"><span>Yoggies brokken Kalkoen monoproteïne</span></a><a href="../products/yoggies-brokken-kip-rund.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/15kg-yoggies-kurecihovezi-maso-granule-lisovane-za-studena-s-probiotiky_8df03015-ddb2-43b3-ad27-3e9937959adf.jpg?crop=center&amp;height=1200&amp;v=1741007579&amp;width=1200" alt="" loading="lazy"><span>Yoggies brokken Kip &amp; Rund</span></a><a href="../products/yoggies-brokken-varkensvlees-iberico-monoproteine.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/10kg-yoggies-minigranule-iberico-veprove-maso-s-jablky-lisovane-za-studena-s-probiotiky_568f9dcd-cfea-4aa6-bdce-74e79a1b140c.jpg?crop=center&amp;height=1200&amp;v=1741007311&amp;width=1200" alt="" loading="lazy"><span>Yoggies brokken Varkensvlees Ibérico mon</span></a><a href="../products/yoggies-brokken-vet-gastro-sensitive.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/10kg-yoggies-vet-gastro-sensitive-s-krutim-masem-granule-lisovane-za-studena-s-probiotiky_7c667d36-e2ab-4c62-a8ad-48f54f014d44.jpg?crop=center&amp;height=1200&amp;v=1741007228&amp;width=1200" alt="" loading="lazy"><span>Yoggies brokken VET Gastro Sensitive</span></a><a href="../products/yoggies-brokken-vet-insect-derma.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3355-10kg-yoggies-vet-insect-derma-s-hmyzim-proteinem-granule-lisovane-za-studena-s-probiotiky_667e28a0-1d07-487e-a2ae-fc04b775c362.jpg?crop=center&amp;height=1200&amp;v=1741007210&amp;width=1200" alt="" loading="lazy"><span>Yoggies brokken VET Insect Derma</span></a><a href="../products/yoggies-brokken-vet-veggie-vleesvrij.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/5kg-yoggies-vet-veggie-bez-masa-granule-lisovane-za-studena-s-probiotiky_eb76a92e-af44-40c1-9889-0ea36579ccc6.jpg?crop=center&amp;height=1200&amp;v=1745698774&amp;width=1200" alt="" loading="lazy"><span>Yoggies brokken VET Veggie vleesvrij</span></a><a href="../products/proefmonster-yoggies-brokken-voor-honden-maat-normal.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3022-vzorek-granuli-yoggies-pro-psy-velikost-normal_405c85d4-dc25-4a3f-9017-6cd34f1b73de.jpg?crop=center&amp;height=1200&amp;v=1741007447&amp;width=1200" alt="" loading="lazy"><span>Proefmonster Yoggies brokken voor honden</span></a></div></div></li><li class="nav-item" data-cat="snacks"><a href="../snacks.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Snacks<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Snacks"><div class="dropdown-inner"><a href="../products/yoggies-paas-mix-van-gebakken-snacks-650-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Velionocni_mix_pamlsku_1000x1000_fb1f23da-f0b8-4711-b64f-9fb040713417.jpg?crop=center&amp;height=1200&amp;v=1773411396&amp;width=1200" alt="" loading="lazy"><span>Yoggies paas-MIX van gebakken snacks 650</span></a><a href="../products/yoggies-vriesgedroogd-rundvleeshart-gelyofiliseerd-85-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/hovezi_srdce_lyofilizivane_pamlsky_1000x1000._1.jpg?crop=center&amp;height=1200&amp;v=1769593193&amp;width=1200" alt="" loading="lazy"><span>Yoggies Vriesgedroogd rundvleeshart (gel</span></a><a href="../products/yoggies-vriesgedroogde-rundvleeslever-gelyofiliseerd-85-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/hovezi_jatra_lyofilizivane_pamlsky_1000x1000_1.jpg?crop=center&amp;height=1200&amp;v=1769593131&amp;width=1200" alt="" loading="lazy"><span>Yoggies Vriesgedroogde rundvleeslever (g</span></a><a href="../products/yoggies-vriesgedroogd-varkensvlees-gelyofiliseerd-85-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/veprove_maso_lyofilizivane_pamlsky_1000x1000._1.jpg?crop=center&amp;height=1200&amp;v=1769592871&amp;width=1200" alt="" loading="lazy"><span>Yoggies Vriesgedroogd varkensvlees (gely</span></a><a href="../products/yoggies-gedroogde-kauwsnacks-konijnenoren-met-haar-4-st.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/kraliciusiweb.jpg?crop=center&amp;height=1200&amp;v=1768224580&amp;width=1200" alt="" loading="lazy"><span>Yoggies Gedroogde kauwsnacks – Konijneno</span></a><a href="../products/yoggies-gedroogde-kauwsnacks-stierenpenis-5-st.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/bycipenisweb_ffaf6fcc-0477-450b-8676-ef8948ff9652.jpg?crop=center&amp;height=1200&amp;v=1768226883&amp;width=1200" alt="" loading="lazy"><span>Yoggies Gedroogde kauwsnacks – Stierenpe</span></a><a href="../products/250-g-yoggies-gedroogde-rundvleeslong-blokjes.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/hovezipliceobalweb.jpg?crop=center&amp;height=1200&amp;v=1768573455&amp;width=1200" alt="" loading="lazy"><span>250 g Yoggies Gedroogde rundvleeslong bl</span></a><a href="../products/yoggies-beschuit-met-zalm-en-wortel-150-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Yoggies_lososi_suchary_1_web.jpg?crop=center&amp;height=1200&amp;v=1762874737&amp;width=1200" alt="" loading="lazy"><span>Yoggies beschuit met zalm en wortel 150 </span></a><a href="../products/250-g-yoggies-gedroogde-snacks-lamslong-blokjes.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/jehnecipliceobalweb.jpg?crop=center&amp;height=1200&amp;v=1768811428&amp;width=1200" alt="" loading="lazy"><span>250 g Yoggies Gedroogde snacks lamslong </span></a><a href="../products/yoggies-rundvlees-trainingssnacks-45-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3627-yoggies-hovezi-vycvikove-pamlsky-45g_1783d750-9031-4ac2-90aa-5ff9471bfae9.jpg?crop=center&amp;height=1200&amp;v=1741007576&amp;width=1200" alt="" loading="lazy"><span>Yoggies Rundvlees trainingssnacks 45 g</span></a></div></div></li><li class="nav-item" data-cat="gekookt"><a href="../vers-gekookt-voer.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Vers gekookt voer<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Vers gekookt voer"><div class="dropdown-inner"><a href="../products/120-g-yoggies-pate-met-liefde-everzwijn-met-veenbessen.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Pastikazlasky-divocaksbrusinkamiweb.jpg?crop=center&amp;height=1200&amp;v=1769436707&amp;width=1200" alt="" loading="lazy"><span>120 g Yoggies Paté met liefde – Everzwij</span></a><a href="../products/yoggies-gekookt-voer-voor-honden-kip-met-rijst.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/varena_kureci_150_web.jpg?crop=center&amp;height=1200&amp;v=1772111389&amp;width=1200" alt="" loading="lazy"><span>Yoggies gekookt voer voor honden – Kip m</span></a><a href="../products/yoggies-gekookt-voer-voor-honden-zalm-en-witvis-met-chiazaad.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/varena_losos_150_web.jpg?crop=center&amp;height=1200&amp;v=1772100293&amp;width=1200" alt="" loading="lazy"><span>Yoggies gekookt voer voor honden – Zalm </span></a><a href="../products/yoggies-gekookt-voer-voor-honden-kalkoen-met-boekweit.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/varena_kruti_150_web.jpg?crop=center&amp;height=1200&amp;v=1772112037&amp;width=1200" alt="" loading="lazy"><span>Yoggies gekookt voer voor honden – Kalko</span></a><a href="../products/yoggies-gekookt-voer-voor-honden-kalkoen-en-konijn-met-pompoenzaad.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/varena_kruta_a_kralik_150_web.jpg?crop=center&amp;height=1200&amp;v=1772112400&amp;width=1200" alt="" loading="lazy"><span>Yoggies gekookt voer voor honden – Kalko</span></a><a href="../products/yoggies-gekookt-voer-voor-honden-rund-met-quinoa.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/varena_hovezi_150_web.jpg?crop=center&amp;height=1200&amp;v=1772112645&amp;width=1200" alt="" loading="lazy"><span>Yoggies gekookt voer voor honden – Rund </span></a><a href="../products/yoggies-gekookt-voer-voor-honden-varkensvlees-met-rijst.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/varenaveprova150web.jpg?crop=center&amp;height=1200&amp;v=1771927118&amp;width=1200" alt="" loading="lazy"><span>Yoggies gekookt voer voor honden – Varke</span></a><a href="../products/150-ml-yoggies-rundvleessaus-met-rode-biet.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Omacka_pro_psy_hovezi_150ml.jpg?crop=center&amp;height=1200&amp;v=1743763905&amp;width=1200" alt="" loading="lazy"><span>150 ml Yoggies rundvleessaus met rode bi</span></a><a href="../products/120-g-yoggies-pate-zalm-en-witvis.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/120g-yoggies-pastika-losos-a-bila-ryba_a98a65d2-f8a6-42c5-b7de-0414e5c22353.jpg?crop=center&amp;height=1200&amp;v=1741949275&amp;width=1200" alt="" loading="lazy"><span>120 g Yoggies paté – zalm en witvis</span></a><a href="../products/120-g-yoggies-pate-varkensvlees.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/120g-yoggies-pastika-veprove-maso_6ab9a111-21e1-4a41-a0e5-070e8d7720c4.jpg?crop=center&amp;height=1200&amp;v=1741007254&amp;width=1200" alt="" loading="lazy"><span>120 g Yoggies paté – varkensvlees</span></a></div></div></li><li class="nav-item" data-cat="supplementen"><a href="../supplementen.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Supplementen<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Supplementen"><div class="dropdown-inner"><a href="../products/yoggies-zalmolie-voor-honden-en-katten.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Lososovyolej250ml1_831da765-5bcd-43d9-8c25-5468876cc33d.jpg?crop=center&amp;height=1200&amp;v=1778490755&amp;width=1200" alt="" loading="lazy"><span>Yoggies Zalmolie voor honden en katten</span></a><a href="../products/yoggies-bescherming-tegen-teken-500-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/yoggies-ochrana-proti-klistatum-500g_06f71129-9f93-4e36-8358-72ce998641b1.jpg?crop=center&amp;height=1200&amp;v=1741007523&amp;width=1200" alt="" loading="lazy"><span>Yoggies Bescherming tegen teken 500 g</span></a><a href="../products/yoggies-biergist-voor-honden-500-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/2925-yoggies-pivovarske-kvasnice-pro-psy-600g_910c9303-e582-42d3-a811-7be567a2b32f.jpg?crop=center&amp;height=1200&amp;v=1742813191&amp;width=1200" alt="" loading="lazy"><span>Yoggies Biergist voor honden 500 g</span></a><a href="../products/yoggies-chlorella-voor-honden.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/yoggies-sladkovodni-rasa-chlorella-pro-psy-100g_0d056431-a9fe-4c3a-9490-7684cc564dad.jpg?crop=center&amp;height=1200&amp;v=1741007395&amp;width=1200" alt="" loading="lazy"><span>Yoggies Chlorella voor honden</span></a><a href="../products/yoggies-gedroogde-geitenmelk-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Kozi_mleko_500g.jpg?crop=center&amp;height=1200&amp;v=1742457917&amp;width=1200" alt="" loading="lazy"><span>Yoggies Gedroogde geitenmelk met probiot</span></a><a href="../products/yoggies-voor-gezonde-gewrichten-500-g-pellets.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/2924-yoggies-extrakt-z-musli-pro-zdrave-psi-klouby-s-probiotiky-600g_d77ea854-60da-4c52-845c-acf4342884e8.jpg?crop=center&amp;height=1200&amp;v=1741968022&amp;width=1200" alt="" loading="lazy"><span>Yoggies Voor gezonde gewrichten 500 g (p</span></a><a href="../products/yoggies-olie-van-wilde-witvis-voor-honden-en-katten.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/yoggies-olej-z-divoke-bile-ryby-pro-psy-a-kocky-250-ml_bf3b56ec-5988-47a4-af02-405f1a4bee74.jpg?crop=center&amp;height=1200&amp;v=1742813187&amp;width=1200" alt="" loading="lazy"><span>Yoggies Olie van wilde witvis voor honde</span></a><a href="../products/yoggies-mariadistelolie-voor-honden-en-katten.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3631-yoggies-olej-z-ostropestrce-pro-psy-a-kocky-250ml_f42f4a11-ba36-4398-bb2d-4f3d006b4ad3.jpg?crop=center&amp;height=1200&amp;v=1741007549&amp;width=1200" alt="" loading="lazy"><span>Yoggies Mariadistelolie voor honden en k</span></a><a href="../products/yoggies-lijnzaadolie-voor-honden-en-katten.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3630-yoggies-lneny-olej-pro-psy-a-kocky-250ml_a7bd772a-7491-4530-ade3-bc780a52c2dd.jpg?crop=center&amp;height=1200&amp;v=1741007507&amp;width=1200" alt="" loading="lazy"><span>Yoggies Lijnzaadolie voor honden en katt</span></a><a href="../products/yoggies-mineralen-voor-honden-pellets.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/yoggies-mineraly-pro-psy-peletky-180g_566b1e57-7b8a-425e-8f73-0a100b5753b2.jpg?crop=center&amp;height=1200&amp;v=1741007354&amp;width=1200" alt="" loading="lazy"><span>Yoggies Mineralen voor honden (pellets)</span></a></div></div></li><li class="nav-item" data-cat="voor_katten"><a href="../voor-katten.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Voor katten<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Voor katten"><div class="dropdown-inner"><a href="../products/185-g-yoggies-ragout-voor-katten-zalm-en-eend.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Yoggies_ragu_losos_kachna_185g_1_web.png?crop=center&amp;height=1200&amp;v=1775570529&amp;width=1200" alt="" loading="lazy"><span>185 g Yoggies RAGOUT voor katten Zalm en</span></a><a href="../products/yoggies-ragout-voor-katten-kalkoen-en-zalm-185-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Yoggies_ragu_kruta_losos_185g_1_tisk.jpg?crop=center&amp;height=1200&amp;v=1774961992&amp;width=1200" alt="" loading="lazy"><span>Yoggies RAGOUT voor katten, kalkoen en z</span></a><a href="../products/yoggies-ragout-voor-katten-kip-en-pompoen-185-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Yoggies_ragu_kure_dyne_185g_1_web.png?crop=center&amp;height=1200&amp;v=1775573098&amp;width=1200" alt="" loading="lazy"><span>Yoggies RAGOUT voor katten – Kip en pomp</span></a><a href="../products/yoggies-zalmolie-voor-honden-en-katten.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/Lososovyolej250ml1_831da765-5bcd-43d9-8c25-5468876cc33d.jpg?crop=center&amp;height=1200&amp;v=1778490755&amp;width=1200" alt="" loading="lazy"><span>Yoggies Zalmolie voor honden en katten</span></a><a href="../products/yoggies-olie-van-wilde-witvis-voor-honden-en-katten.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/yoggies-olej-z-divoke-bile-ryby-pro-psy-a-kocky-250-ml_bf3b56ec-5988-47a4-af02-405f1a4bee74.jpg?crop=center&amp;height=1200&amp;v=1742813187&amp;width=1200" alt="" loading="lazy"><span>Yoggies Olie van wilde witvis voor honde</span></a><a href="../products/yoggies-mariadistelolie-voor-honden-en-katten.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3631-yoggies-olej-z-ostropestrce-pro-psy-a-kocky-250ml_f42f4a11-ba36-4398-bb2d-4f3d006b4ad3.jpg?crop=center&amp;height=1200&amp;v=1741007549&amp;width=1200" alt="" loading="lazy"><span>Yoggies Mariadistelolie voor honden en k</span></a><a href="../products/yoggies-lijnzaadolie-voor-honden-en-katten.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3630-yoggies-lneny-olej-pro-psy-a-kocky-250ml_a7bd772a-7491-4530-ade3-bc780a52c2dd.jpg?crop=center&amp;height=1200&amp;v=1741007507&amp;width=1200" alt="" loading="lazy"><span>Yoggies Lijnzaadolie voor honden en katt</span></a><a href="../products/yoggies-hennepolie-voor-honden-en-katten-250-ml.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3629-yoggies-konopny-olej-pro-psy-a-kocky-250ml_0ae39770-b3b0-4769-bb86-80b52fb2ab28.jpg?crop=center&amp;height=1200&amp;v=1741007476&amp;width=1200" alt="" loading="lazy"><span>Yoggies Hennepolie voor honden en katten</span></a><a href="../products/yoggies-kelp-voor-honden-en-katten-180-g.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3094-yoggies-kelpa-pro-psy-a-kocky-180g_0139659f-5fbb-48da-af12-30d752410fa3.jpg?crop=center&amp;height=1200&amp;v=1741007225&amp;width=1200" alt="" loading="lazy"><span>Yoggies Kelp voor honden en katten 180 g</span></a><a href="../products/yoggies-cbd-olie-druppels-32-voor-honden-en-katten.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/yoggies-cbd-olej-kapky-3-2-pro-psy-a-kocky-10ml_bccf8a17-bae6-4937-a193-46d6bddcbc70.jpg?crop=center&amp;height=1200&amp;v=1741007357&amp;width=1200" alt="" loading="lazy"><span>Yoggies CBD-olie (druppels) 3,2 % voor h</span></a></div></div></li><li class="nav-item"><a href="../products/6x150g-yoggies-yoghurt-voor-honden-en-katten.html" class="nav-link">Yoghurt</a></li><li class="nav-item" data-cat="speelgoed"><a href="../speelgoed-accessoires.html" class="nav-link nav-link--active" aria-haspopup="true" aria-expanded="false">Speelgoed &amp; Accessoires<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Speelgoed &amp; Accessoires"><div class="dropdown-inner"><a href="../products/petbuddy-gerecyclede-zakjes-voor-hondenpoep-4-rollen-15-zakjes-per-rol-groen-met.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/petbuddy-recyklovane-sacky-na-psi-exkrementy-4-role-a-15-sacku-zelena-s-potiskem_7da2b91a-34ec-43a8-bbc2-9dd2edb9d32e.jpg?crop=center&amp;height=1200&amp;v=1742813186&amp;width=1200" alt="" loading="lazy"><span>PetBuddy gerecyclede zakjes voor hondenp</span></a><a href="../products/pootbalsem-fauna-pads-50-ml.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/balzam_na_tlapky.jpg?crop=center&amp;height=1200&amp;v=1754562368&amp;width=1200" alt="" loading="lazy"><span>Pootbalsem FAUNA PADS 50 ml</span></a><a href="../products/yoggies-tekenpincet-plastic.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/pinzeta-na-klistata-yoggies-plastova_c11641e0-9ec1-44a6-99db-9958ba73a8aa.jpg?crop=center&amp;height=1200&amp;v=1741007336&amp;width=1200" alt="" loading="lazy"><span>Yoggies Tekenpincet, plastic</span></a><a href="../products/yoggies-lanyard-sleutelhanger.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/1990-yoggies-lanyard_f77ae5c9-a7d0-4908-8800-1b4cf384ab12.jpg?crop=center&amp;height=1200&amp;v=1741007337&amp;width=1200" alt="" loading="lazy"><span>Yoggies lanyard (sleutelhanger)</span></a><a href="../products/tandolie-fauna-dentol-voor-het-reinigen-van-tanden-100-ml.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/zubni_olej.jpg?crop=center&amp;height=1200&amp;v=1754644205&amp;width=1200" alt="" loading="lazy"><span>Tandolie FAUNA DENTOL voor het reinigen </span></a><a href="../products/yoggies-luxe-snackbuidel-voor-aan-de-riem.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/3100-yoggies-luxusni-pamlskovnik-na-opasek_87e09c00-af2a-47b2-92a0-f548be532a38.jpg?crop=center&amp;height=1200&amp;v=1741007576&amp;width=1200" alt="" loading="lazy"><span>Yoggies luxe snackbuidel voor aan de rie</span></a><a href="../products/petbuddy-gerecyclede-zakjes-voor-hondenpoep-8-rollen-15-zakjes-per-rol-groen-met.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/petbuddy-recyklovane-sacky-na-psi-exkrementy-8-roli-a-15-sacku-zelena-s-potiskem_21533229-621b-49dd-99bd-e690b140e280.jpg?crop=center&amp;height=1200&amp;v=1742813189&amp;width=1200" alt="" loading="lazy"><span>PetBuddy gerecyclede zakjes voor hondenp</span></a><a href="../products/oorreiniger-senzi-auris-voor-honden-en-katten-100-ml.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/lecitinova_usni_voda.jpg?crop=center&amp;height=1200&amp;v=1754896149&amp;width=1200" alt="" loading="lazy"><span>Oorreiniger SENZI-AURIS voor honden en k</span></a><a href="../products/insi-spray-bij-verhoogd-voorkomen-van-parasieten-100-ml.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/INSI_spray_paraziti.jpg?crop=center&amp;height=1200&amp;v=1754898058&amp;width=1200" alt="" loading="lazy"><span>INSI SPRAY bij verhoogd voorkomen van pa</span></a><a href="../products/sodapup-honeypot-pup-x-geel.html" class="dd-item"><img class="dd-thumb" src="https://yoggies.cz/cdn/shop/files/soda-pup-honeypot-pup-x-zluty_a3227358-75fc-47b5-a0a5-10d03a2a3c25.jpg?crop=center&amp;height=1200&amp;v=1742813190&amp;width=1200" alt="" loading="lazy"><span>SodaPup Honeypot PUP-X – geel</span></a></div></div></li>
+  </ul>
+</nav>
+
+<!-- PRODUCT PAGE START -->
+<main class="product-page">
+
+  <section class="product-hero">
+
+    <!-- LEFT: product image + thumbnails -->
+    <div class="ph-images">
+
+      <div class="ph-main-img" id="phMainImg"><img src="https://yoggies.cz/cdn/shop/files/Darkovypoukaz1500Kce-shop.jpg?crop=center&amp;height=1200&amp;v=1766408720&amp;width=1200" alt="Cadeaubon ter waarde van 1 500 Kč" loading="lazy"></div>
+
+      <div class="ph-thumbs"><div class="ph-thumb  active" onclick="phSwap(this)"><img src="https://yoggies.cz/cdn/shop/files/Darkovypoukaz1500Kce-shop.jpg?crop=center&amp;height=1200&amp;v=1766408720&amp;width=1200" alt="" loading="lazy"></div><div class="ph-thumb" onclick="phSwap(this)"><img src="https://yoggies.cz/cdn/shop/files/Darkovypoukaz1500Kce-shop.jpg?v=1766408720&amp;width=1214" alt="" loading="lazy"></div></div>
+
+    </div>
+
+    <!-- RIGHT: info box -->
+    <div class="ph-info">
+
+      <!-- PRODUCT TITLE -->
+      <h1 class="ph-product-title">Cadeaubon ter waarde van 1 500 Kč</h1>
+
+      <!-- BADGES -->
+      <div class="ph-badges"></div>
+
+      <!-- ORDER BUTTON -->
+      <div class="ph-contact-fallback"><p class="ph-contact-note">Dit product is niet beschikbaar bij DogLife.be.<br>Neem rechtstreeks contact op om dit product te bestellen:</p><div class="ph-contact-links"><a href="tel:+32475344868" class="ph-contact-link">📞 +32 (0)475 34 48 68</a><a href="mailto:sales@doglife.be" class="ph-contact-link">✉️ sales@doglife.be</a></div></div>
+
+    </div>
+  </section>
+
+  <!-- Accordion details -->
+  <section class="product-accordions">
+
+    <details class="accordion">
+      <summary class="accordion-summary">Beschrijving</summary>
+      <div class="accordion-body">
+        <p>Schenk gezondheid die begint in de kom 💚</p>
+<p>Weet je niet zeker of je hond meer blij wordt van brokken, snacks of iets voor de spijsvertering?</p>
+<p>Met een Yoggies cadeaubon schenk je het meest waardevolle - de mogelijkheid om precies te kiezen wat goed voor je vriende is.</p>
+<p>Omdat gezondheid begint in de kom en gezamenlijke ervaringen rusten op een tevreden buikje.</p>
+<p>Waarom een Yoggies cadeaubon geven?</p>
+<p>🎁 Universeel cadeau voor elke hondenliefhebber.</p>
+<p>🐶 Geldig voor het hele Yoggies assortiment – koudgeperste brokken, snacks, gekookt voer en supplementen.</p>
+<p>💚 Ondersteuning van gezonde spijsvertering en een lang leven samen.</p>
+<p>📧 Online vorm – de bon komt snel per e-mail.</p>
+<p>⏱️ Ideaal als laatste moment cadeau.</p>
+<p>Kies de waarde van de bon (200 / 500 / 1000 / 2000 / 5000 Kč)</p>
+<p>Voeg toe aan winkelwagen (LET OP! De cadeaubon kan alleen met creditcard of bankoverschrijving worden betaald).</p>
+<p>Na betaling ontvangt u de cadeaubon met een unieke code per e-mail, die u bij aankoop in het winkelwagen in het veld Kortingscode invoert.</p>
+<p>U hoeft het bedrag niet in één keer te gebruiken, u kunt het verdelen over meerdere aankopen.</p>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary class="accordion-summary">Ingrediënten &amp; Samenstelling</summary>
+      <div class="accordion-body">
+        <p>Zie de verpakking voor ingrediënteninformatie.</p>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary class="accordion-summary">Voedingsadvies &amp; Dosering</summary>
+      <div class="accordion-body">
+        <p>Raadpleeg de verpakking voor voedingsadvies.</p>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary class="accordion-summary">Verzending &amp; Levering</summary>
+      <div class="accordion-body">
+        <p>Gratis verzending bij bestellingen boven €49. Levertijd: 1–3 werkdagen.</p>
+      </div>
+    </details>
+
+  </section>
+
+</main>
+<!-- PRODUCT PAGE END -->
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <svg class="footer-logo-svg" viewBox="0 0 861.327 243.626" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(0 0.01)" id="yoggies_logo_on_light_bg_RGB">
+        <path fill="#ffffff" transform="translate(-545.842 -23.366)" d="M1396.575,67.443h1.768a2.809,2.809,0,0,0,1.725-.377,1.213,1.213,0,0,0,.462-1,1.166,1.166,0,0,0-.225-.711,1.3,1.3,0,0,0-.613-.474,4.635,4.635,0,0,0-1.464-.152h-1.652v2.7Zm-1.452,5.066v-9h3.1a7.671,7.671,0,0,1,2.3.249,2.249,2.249,0,0,1,1.136.869,2.308,2.308,0,0,1,.419,1.318,2.388,2.388,0,0,1-.711,1.719,2.8,2.8,0,0,1-1.877.82,2.329,2.329,0,0,1,.765.48,10.131,10.131,0,0,1,1.336,1.786l1.1,1.762h-1.768l-.8-1.415A7.3,7.3,0,0,0,1398.6,69a1.861,1.861,0,0,0-1.16-.3h-.856v3.821h-1.458Zm3.675-11.614a7.149,7.149,0,0,0-3.438.905,6.453,6.453,0,0,0-2.612,2.588,6.955,6.955,0,0,0-.012,6.967,6.6,6.6,0,0,0,2.594,2.588,6.971,6.971,0,0,0,6.955,0,6.546,6.546,0,0,0,2.588-2.588,6.993,6.993,0,0,0-.024-6.967,6.415,6.415,0,0,0-2.612-2.588,7.157,7.157,0,0,0-3.426-.905Zm0-1.385a8.588,8.588,0,0,1,4.118,1.081,7.682,7.682,0,0,1,3.128,3.1,8.536,8.536,0,0,1,1.124,4.2,8.437,8.437,0,0,1-1.105,4.161,7.734,7.734,0,0,1-3.1,3.1,8.444,8.444,0,0,1-4.167,1.106,8.531,8.531,0,0,1-4.173-1.106,7.787,7.787,0,0,1-3.1-3.1,8.447,8.447,0,0,1-1.112-4.161,8.6,8.6,0,0,1,1.124-4.2,7.769,7.769,0,0,1,3.134-3.1,8.593,8.593,0,0,1,4.125-1.081Z" data-name="Path 7" id="Path_7"></path>
+        <path fill="#ffffff" transform="translate(0 -35.509)" d="M39.956,219.463H58.823l-1.664,5.552c-4.72,15.258-5.825,18.593-8.6,22.475a12.7,12.7,0,0,1-7.216,5.272,35.046,35.046,0,0,1-10.265,1.112,36.851,36.851,0,0,1-12.489-1.664l-5.825,22.754c10.545,3.329,14.985,4.161,23.307,4.161,28.027,0,40.236-13.321,51.054-54.662L122.086,90.446H89.625L67.151,186.729l-.832,7.216V199.5H62.71v-5.552L61.6,186.729,34.963,90.44H0Z" data-name="Path 8" id="Path_8"></path>
+        <path fill="#ffffff" transform="translate(-83.301 -33.538)" d="M246.048,155.341c0-28.579,9.986-44.949,28.3-44.949s28.859,16.091,28.859,45.5-9.986,45.229-28.027,45.229-29.132-16.091-29.132-45.782M212.2,157c0,42.173,24.418,69.088,61.872,69.088s62.984-27.468,62.984-70.473-23.586-70.2-61.319-70.2S212.19,112.888,212.19,157Z" data-name="Path 9" id="Path_9"></path>
+        <path fill="#ffffff" transform="translate(-171.619 -34.256)" d="M499.858,109.445c14.426,0,23.586,9.713,23.586,25.251s-9.713,25.251-24.692,25.251-24.418-9.713-24.418-25.251,9.986-25.251,25.524-25.251m71.305-19.978c-3.049-.279-5.825-.553-8.322-.553-9.433,0-15.258,3.049-22.754,12.209-8.322-7.49-12.489-9.713-22.2-11.656a81.9,81.9,0,0,0-18.867-2.217c-34.4,0-57.438,19.419-57.438,48,0,12.209,4.72,23.86,12.762,31.355a65.039,65.039,0,0,0,8.048,6.1l-9.433,7.49c-7.216,5.825-11.656,11.377-11.656,15.258,0,2.217,1.944,7.769,4.72,13.321s5.825,9.713,8.881,11.65c2.5,1.944,6.657,2.5,16.37,2.5h2.776c6.1,0,11.1-.279,14.706-.279h15.817c13.874,0,18.034.832,22.754,3.329,3.888,2.217,5.552,5.272,5.552,11.1,0,12.209-11.656,18.314-34.4,18.314-20.531,0-32.187-6.937-32.187-18.867,0-4.993,1.112-7.216,4.44-8.881v-1.112H440.489c-2.776,6.384-3.329,9.433-3.329,14.153,0,23.586,21.643,37.18,58.823,37.18,45.229,0,68.536-15.538,68.536-45.5,0-24.971-14.153-34.963-49.669-34.963h-3.888l-24.971.553h-1.112c-8.881,0-13.041-1.944-13.041-6.657q0-4.164,4.993-8.322l3.608-3.049a90.607,90.607,0,0,0,18.034,1.664c34.963,0,56.879-17.482,56.879-45.782,0-8.322-1.112-11.93-4.993-20.258,4.44-1.944,5.825-2.5,9.433-2.5a30.943,30.943,0,0,1,8.6,1.385l2.776,1.112V89.461Z" data-name="Path 10" id="Path_10"></path>
+        <path fill="#ffffff" transform="translate(-265.016 -34.256)" d="M737.762,109.445c14.426,0,23.586,9.713,23.586,25.251s-9.713,25.251-24.692,25.251-24.418-9.713-24.418-25.251,9.986-25.251,25.524-25.251m71.312-19.978c-3.049-.279-5.825-.553-8.322-.553-9.433,0-15.258,3.049-22.754,12.209-8.322-7.49-12.489-9.713-22.2-11.656a81.905,81.905,0,0,0-18.867-2.217c-34.4,0-57.438,19.419-57.438,48,0,12.209,4.72,23.86,12.762,31.355a65.04,65.04,0,0,0,8.048,6.1l-9.433,7.49c-7.216,5.825-11.656,11.377-11.656,15.258,0,2.217,1.944,7.769,4.72,13.321s5.825,9.713,8.881,11.65c2.5,1.944,6.657,2.5,16.37,2.5h2.776c6.1,0,11.1-.279,14.706-.279h15.817c13.874,0,18.034.832,22.754,3.329,3.881,2.217,5.552,5.272,5.552,11.1,0,12.209-11.656,18.314-34.4,18.314-20.531,0-32.187-6.937-32.187-18.867,0-4.993,1.112-7.216,4.44-8.881v-1.112H678.4c-2.776,6.384-3.329,9.433-3.329,14.153,0,23.586,21.643,37.18,58.823,37.18,45.229,0,68.536-15.538,68.536-45.5,0-24.971-14.153-34.963-49.669-34.963h-3.888l-24.971.553h-1.112c-8.881,0-13.041-1.944-13.041-6.657q0-4.164,4.993-8.322l3.608-3.049a90.607,90.607,0,0,0,18.034,1.664c34.963,0,56.879-17.482,56.879-45.782,0-8.322-1.112-11.93-4.993-20.258,4.44-1.944,5.825-2.5,9.433-2.5a30.943,30.943,0,0,1,8.6,1.385l2.776,1.112V89.461Z" data-name="Path 11" id="Path_11"></path>
+        <path fill="#9ecc00" transform="translate(-361.437)" d="M920.68,17.751c0,10.265,8.322,17.2,20.258,17.2S961.2,28.017,961.2,17.472,953.147-.01,940.664-.01s-19.978,7.216-19.978,17.755" data-name="Path 12" id="Path_12"></path>
+        <path fill="#ffffff" transform="translate(-364.126 -34.256)" d="M927.53,223.762h32.187V87.25L927.53,92.243Z" data-name="Path 13" id="Path_13"></path>
+        <path fill="#ffffff" transform="translate(-397.962 -33.542)" d="M1100.843,141.192h-53.83c1.664-20.531,11.656-31.076,28.859-31.076s24.692,9.986,24.971,31.076M1050.621,164.5h82.962c.279-3.888.279-6.657.279-8.6,0-47.166-18.593-70.473-56.326-70.473s-63.816,27.468-63.816,71.032,23.586,69.368,63.263,69.368c14.153,0,29.132-3.329,40.23-8.6,2.5-1.385,6.1-3.329,10.818-6.384l-8.048-22.2c-10.824,5.552-15.538,7.49-23.027,8.881a64.258,64.258,0,0,1-12.762,1.112c-22.2,0-34.963-10.545-36.9-30.523l-.371-3.608h3.7Z" data-name="Path 14" id="Path_14"></path>
+        <path fill="#ffffff" transform="translate(-483.893 -33.891)" d="M1232.61,211.741c11.93,7.769,17.2,9.986,28.859,12.489a85.242,85.242,0,0,0,18.593,2.217c32.461,0,52.718-17.482,52.718-44.949,0-21.363-11.93-33.3-40.788-40.789-14.985-3.888-19.146-5.552-22.2-8.048a11.241,11.241,0,0,1-3.888-8.322c0-8.048,7.216-12.209,21.922-12.209s24.139,3.049,34.963,10.265l6.657-23.586c-10.266-6.657-14.985-8.6-23.586-10.545a96.691,96.691,0,0,0-20.258-1.944c-32.461,0-51.886,15.538-51.886,41.9,0,10.545,3.881,19.978,10.545,25.524,6.1,4.993,15.817,9.433,30.523,13.594,20.258,5.825,25.251,9.433,25.251,18.314s-7.769,14.153-22.475,14.153a70.848,70.848,0,0,1-15.817-1.664c-9.154-1.944-13.594-3.881-23.307-10.824l-5.825,24.418Z" data-name="Path 15" id="Path_15"></path>
+      </g>
+    </svg>
+      <p class="footer-tagline">Natuurlijk voer voor jouw trouwe viervoeter</p>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li><span class="footer-icon">📞</span><a href="tel:+32475344868">+32 (0)475 34 48 68</a></li>
+        <li><span class="footer-icon">✉️</span><a href="mailto:sales@doglife.be">sales@doglife.be</a></li>
+        <li><span class="footer-icon">📍</span><span>Leuvensesteenweg 277/a<br>3390 Tielt-Winge, België</span></li>
+        <li><span class="footer-icon">🕐</span><span>Ma – Vr: 10:00 – 19:00</span></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>Informatie</h4>
+      <ul>
+        <li><a href="https://doglife.be/over-ons/" target="_blank">Over ons</a></li>
+        <li><a href="https://doglife.be/faq/" target="_blank">Veelgestelde vragen</a></li>
+        <li><a href="https://doglife.be/blog/" target="_blank">Blog</a></li>
+        <li><a href="https://doglife.be/contact/" target="_blank">Contact</a></li>
+        <li><a href="https://doglife.be/privacy/" target="_blank">Privacybeleid</a></li>
+        <li><a href="https://doglife.be/privacy/" target="_blank">Algemene voorwaarden</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-shop">
+      <h4>Winkel</h4>
+      <ul>
+        <li><a href="https://doglife.be/product-categorie/honden_24/korrels-honden_30/" target="_blank">Droogvoer honden</a></li>
+        <li><a href="https://doglife.be/product-categorie/honden_24/natvoer-honden-_145/" target="_blank">Natvoer honden</a></li>
+        <li><a href="https://doglife.be/product-categorie/honden_24/vers-vlees-honden_60/" target="_blank">BARF honden</a></li>
+        <li><a href="https://doglife.be/product-categorie/honden_24/snacks-honden-_138/" target="_blank">Snacks honden</a></li>
+        <li><a href="https://doglife.be/product-categorie/katten_27/" target="_blank">Alles voor katten</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Yoggies · Verkoop via <a href="https://doglife.be" target="_blank">DogLife.be</a></span>
+    <span>BE0806.558.562</span>
+  </div>
+</footer>
+  <script src="../hoofdpageproduct.js"></script>
+  <script src="../product.js"></script>
+<!-- YGS_NAV_JS_START --><script>
+(function yoggiesNavInit() {
+  var nav = document.querySelector('nav.main-nav');
+  if (!nav) return;
+
+  // ── Hamburger ────────────────────────────────────────────────
+  var list = nav.querySelector('.nav-list');
+  if (list && !nav.querySelector('.nav-hamburger')) {
+    var btn = document.createElement('button');
+    btn.className = 'nav-hamburger';
+    btn.setAttribute('aria-label', 'Menu openen');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = '<span></span><span></span><span></span>';
+    btn.addEventListener('click', function () {
+      var open = list.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    nav.insertBefore(btn, list);
+  }
+
+  // ── Mobile: click nav-link to toggle dropdown ────────────────
+  var isMobile = function () { return window.innerWidth <= 900; };
+  nav.querySelectorAll('.nav-item').forEach(function (item) {
+    var link = item.querySelector(':scope > a');
+    var dd   = item.querySelector(':scope > .dropdown');
+    if (!link || !dd) return;
+    link.addEventListener('click', function (e) {
+      if (!isMobile()) return;       // desktop: CSS hover handles it
+      e.preventDefault();
+      var wasOpen = item.classList.contains('nav-item--open');
+      // Close all others
+      nav.querySelectorAll('.nav-item--open').forEach(function (o) {
+        o.classList.remove('nav-item--open');
+        var a = o.querySelector(':scope > a');
+        if (a) a.setAttribute('aria-expanded', 'false');
+      });
+      item.classList.toggle('nav-item--open', !wasOpen);
+      link.setAttribute('aria-expanded', String(!wasOpen));
+    });
+  });
+
+  // ── Keyboard: Escape closes open dropdown ────────────────────
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      nav.querySelectorAll('.nav-item--open').forEach(function (o) {
+        o.classList.remove('nav-item--open');
+      });
+      if (list) list.classList.remove('is-open');
+    }
+  });
+
+  // ── Click outside closes menu ────────────────────────────────
+  document.addEventListener('click', function (e) {
+    if (!nav.contains(e.target)) {
+      nav.querySelectorAll('.nav-item--open').forEach(function (o) {
+        o.classList.remove('nav-item--open');
+      });
+      if (list) { list.classList.remove('is-open'); }
+      var btn2 = nav.querySelector('.nav-hamburger');
+      if (btn2) { btn2.classList.remove('is-open'); btn2.setAttribute('aria-expanded','false'); }
+    }
+  });
+})();
+</script><!-- YGS_NAV_JS_END -->
+<!-- YGS_SEARCH_JS_START --><script>
+(function yoggiesSearchInit() {
+  var bar = document.querySelector('.search-bar');
+  if (!bar) return;
+  var input = bar.querySelector('input');
+  var btn = bar.querySelector('button, .search-btn');
+  if (!input) return;
+
+  var atProduct = location.pathname.indexOf('/products/') >= 0;
+  var depth = atProduct ? '../' : '';
+
+  var results = document.createElement('div');
+  results.className = 'search-results';
+  bar.appendChild(results);
+
+  var index = null, loading = null;
+  function loadIndex() {
+    if (index) return Promise.resolve(index);
+    if (loading) return loading;
+    loading = fetch(depth + 'search-index.json')
+      .then(function(r) { return r.json(); })
+      .then(function(data) { index = data; return data; })
+      .catch(function() { index = []; return index; });
+    return loading;
+  }
+
+  function norm(s) {
+    return (s || '').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9 ]/g, ' ');
+  }
+
+  function search(q) {
+    if (!index) return [];
+    q = norm(q).trim();
+    if (!q) return [];
+    var words = q.split(/\s+/).filter(Boolean);
+    var scored = [];
+    for (var i = 0; i < index.length; i++) {
+      var it = index[i];
+      var n = it._n || (it._n = norm(it.name));
+      var c = it._c || (it._c = norm(it.cat || ''));
+      var score = 0;
+      var allMatch = true;
+      for (var w = 0; w < words.length; w++) {
+        var word = words[w];
+        var idx = n.indexOf(word);
+        if (idx >= 0) {
+          // Higher score if it's at start of name OR at a word boundary
+          score += idx === 0 ? 10 : (n.charAt(idx - 1) === ' ' ? 7 : 3);
+        } else if (c.indexOf(word) >= 0) {
+          score += 2;  // matches category
+        } else {
+          allMatch = false; break;
+        }
+      }
+      if (allMatch) scored.push({item: it, score: score});
+    }
+    scored.sort(function(a, b) { return b.score - a.score; });
+    var out = [];
+    for (var k = 0; k < scored.length && k < 10; k++) out.push(scored[k].item);
+    return out;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function(c) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function render(matches) {
+    if (!matches.length) {
+      results.innerHTML = '<div class="search-empty">Geen producten gevonden</div>';
+      results.style.display = 'block';
+      return;
+    }
+    var html = '';
+    for (var i = 0; i < matches.length; i++) {
+      var m = matches[i];
+      var catHtml = m.cat ? '<span class="search-result-cat">' + escapeHtml(m.cat) + '</span>' : '';
+      html += '<a class="search-result-item" href="' + depth + 'products/' + escapeHtml(m.slug) + '.html">'
+           +    '<div class="search-result-info">'
+           +      '<span class="search-result-name">' + escapeHtml(m.name) + '</span>'
+           +      catHtml
+           +    '</div>'
+           + '</a>';
+    }
+    results.innerHTML = html;
+    results.style.display = 'block';
+  }
+
+  function hide() { results.style.display = 'none'; }
+
+  function doSearch() {
+    var q = input.value.trim();
+    if (!q) { hide(); return; }
+    loadIndex().then(function() { render(search(q)); });
+  }
+
+  input.addEventListener('input', doSearch);
+  input.addEventListener('focus', function() { if (input.value.trim()) doSearch(); });
+
+  function submit() {
+    var matches = search(input.value);
+    if (matches.length) {
+      location.href = depth + 'products/' + matches[0].slug + '.html';
+    }
+  }
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); submit(); }
+    if (e.key === 'Escape') { hide(); input.blur(); }
+  });
+  if (btn) btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (input.value.trim()) submit();
+    else input.focus();
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!bar.contains(e.target)) hide();
+  });
+})();
+</script><!-- YGS_SEARCH_JS_END -->
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd \"C:\\\\Users\\\\AdibHAJHASAN\\\\IdeaProjects\\\\yoggies.be\"; $env:PYTHONIOENCODING = \"utf-8\"; .venv\\\\Scripts\\\\python build_site.py)",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\AdibHAJHASAN\\\\IdeaProjects\\\\yoggies.be\\\\site\\\\index.html\")",
+      "PowerShell(if \\($env:ANTHROPIC_API_KEY\\) { Write-Host \"API key is set \\($\\($env:ANTHROPIC_API_KEY.Length\\) chars\\)\" } else { Write-Host \"ANTHROPIC_API_KEY is NOT set\" })",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(python --version)"
+    ]
+  }
+}
