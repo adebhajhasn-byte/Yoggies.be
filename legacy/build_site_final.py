@@ -15,13 +15,18 @@ import os, re, html, unicodedata, json, shutil, time
 import openpyxl
 
 # ── Configuratie ───────────────────────────────────────────────────────────────
-DATA_FILE   = "READY_FOR_BUILD_FINAL.xlsx"
-PROD_TMPL   = "site/product.html"
-CAT_TMPL    = "site/hoofdpageproduct.html"
-HOME_TMPL   = "site/home.html"
-OUT_DIR     = "site"
+# Resolved from this file's location so the script runs from any working
+# directory (it used to hardcode an absolute path on one developer's machine).
+from pathlib import Path
+ROOT = Path(__file__).resolve().parent.parent
+
+DATA_FILE   = str(ROOT / "READY_FOR_BUILD_FINAL.xlsx")
+PROD_TMPL   = str(ROOT / "templates" / "product.html")
+CAT_TMPL    = str(ROOT / "templates" / "hoofdpageproduct.html")
+HOME_TMPL   = str(ROOT / "templates" / "home.html")
+OUT_DIR     = str(ROOT / "site")
 PROD_DIR    = os.path.join(OUT_DIR, "products")
-CACHE_FILE  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "translation_cache_v2.json")
+CACHE_FILE  = str(ROOT / "translation_cache_v2.json")
 
 os.makedirs(PROD_DIR, exist_ok=True)
 

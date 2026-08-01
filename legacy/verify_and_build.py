@@ -10,11 +10,16 @@ from collections import defaultdict
 from datetime import datetime
 
 # ── Config ─────────────────────────────────────────────────────────────────────
-INPUT_FILE  = "/home/claude/READY_FOR_BUILD_FINAL.xlsx"
-OUTPUT_FILE = "/home/claude/READY_FOR_BUILD_NL.xlsx"
-CACHE_FILE  = "/home/claude/translation_cache_v2.json"
-REPORT_FILE = "/home/claude/build_report.txt"
-QUARANTINE  = "/home/claude/quarantine_rows.xlsx"
+# Resolved from this file's location so the script runs from any working
+# directory (it used to hardcode /home/claude/... from a Linux sandbox).
+from pathlib import Path
+ROOT = Path(__file__).resolve().parent.parent
+
+INPUT_FILE  = str(ROOT / "READY_FOR_BUILD_FINAL.xlsx")
+OUTPUT_FILE = str(ROOT / "READY_FOR_BUILD_NL.xlsx")
+CACHE_FILE  = str(ROOT / "translation_cache_v2.json")
+REPORT_FILE = str(ROOT / "build_report.txt")
+QUARANTINE  = str(ROOT / "quarantine_rows.xlsx")
 
 COLS_TO_TRANSLATE = ["description_nl", "dosage_cz", "ingredients_cz"]
 

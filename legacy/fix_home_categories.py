@@ -16,7 +16,8 @@ import re
 import sys
 from pathlib import Path
 
-INDEX = Path(r'C:\Users\AdibHAJHASAN\IdeaProjects\yoggies.be\site\index.html')
+ROOT  = Path(__file__).resolve().parent.parent
+INDEX = ROOT / 'site' / 'index.html'
 
 if not INDEX.exists():
     sys.exit(f"FOUT: {INDEX} niet gevonden")

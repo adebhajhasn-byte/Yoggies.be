@@ -14,7 +14,8 @@ import re
 import sys
 from pathlib import Path
 
-SITE         = Path(r'C:\Users\AdibHAJHASAN\IdeaProjects\yoggies.be\site')
+ROOT         = Path(__file__).resolve().parent.parent
+SITE         = ROOT / 'site'
 PRODUCTS_DIR = SITE / 'products'
 PRODUCT_CSS  = SITE / 'product.css'
 

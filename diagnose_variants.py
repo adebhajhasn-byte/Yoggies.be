@@ -1,12 +1,52 @@
 """
 Diagnose variant detection: shows what's in the Excel and what would/wouldn't merge.
 
-Run this from the project folder (where READY_FOR_BUILD_FINAL.xlsx is).
+Writes the same report to diagnose_output.txt (UTF-8).
+
+Do NOT capture this with a shell redirect (`python diagnose_variants.py > out.txt`)
+— PowerShell writes UTF-16 and mangles the Czech characters. The script writes
+its own report file so the console codepage never matters.
 """
+import atexit
 import re
+import sys
 from pathlib import Path
 from collections import defaultdict
 import openpyxl
+
+ROOT = Path(__file__).resolve().parent
+OUT_FILE = ROOT / "diagnose_output.txt"
+
+
+class _Tee:
+    """Fan stdout out to the console and to the report file simultaneously."""
+
+    def __init__(self, *streams):
+        self._streams = streams
+
+    def write(self, data):
+        for s in self._streams:
+            if not s.closed:
+                s.write(data)
+        return len(data)
+
+    def flush(self):
+        # The interpreter flushes sys.stdout during shutdown, after atexit has
+        # already closed the report file — skip whatever is gone by then.
+        for s in self._streams:
+            if not s.closed:
+                s.flush()
+
+
+# Czech characters must survive on a cp850/cp1252 console too.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, ValueError):  # pragma: no cover - old/oddly wrapped stdout
+    pass
+
+_report = OUT_FILE.open("w", encoding="utf-8", newline="\n")
+atexit.register(_report.close)
+sys.stdout = _Tee(sys.stdout, _report)
 
 SIZE_PATTERNS = [
     re.compile(r'^(\d+(?:[.,]\d+)?)\s*(kg|g|ml|l)\s+', re.IGNORECASE),
@@ -24,9 +64,9 @@ def extract_size(name):
             return stripped, f"{qty} {unit}"
     return name, None
 
-xlsx_path = Path("READY_FOR_BUILD_FINAL.xlsx")
+xlsx_path = ROOT / "READY_FOR_BUILD_FINAL.xlsx"
 if not xlsx_path.exists():
-    raise SystemExit(f"X {xlsx_path} not found. Run from the project folder.")
+    raise SystemExit(f"X {xlsx_path} not found.")
 
 wb = openpyxl.load_workbook(xlsx_path, data_only=True)
 ws = wb.active

@@ -13,7 +13,8 @@ import sys
 from pathlib import Path
 
 # === PATHS ===
-SITE  = Path(r'C:\Users\AdibHAJHASAN\IdeaProjects\yoggies.be\site')
+ROOT  = Path(__file__).resolve().parent.parent
+SITE  = ROOT / 'site'
 INDEX = SITE / 'index.html'
 CALC  = SITE / 'calculator.html'
 

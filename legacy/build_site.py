@@ -93,11 +93,16 @@ def clean_ingredients(text):
     return text
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-DATA_FILE = "YOGGIES_FINAL_NL.xlsx"
-PROD_TMPL    = "site/product.html"
-CAT_TMPL     = "site/hoofdpageproduct.html"
-HOME_TMPL    = "site/home.html"
-OUT_DIR      = "site"
+# Resolved from this file's location so the script runs from any working
+# directory (it used to hardcode an absolute path on one developer's machine).
+from pathlib import Path
+ROOT = Path(__file__).resolve().parent.parent
+
+DATA_FILE = str(ROOT / "YOGGIES_FINAL_NL.xlsx")
+PROD_TMPL    = str(ROOT / "templates" / "product.html")
+CAT_TMPL     = str(ROOT / "templates" / "hoofdpageproduct.html")
+HOME_TMPL    = str(ROOT / "templates" / "home.html")
+OUT_DIR      = str(ROOT / "site")
 PROD_DIR     = os.path.join(OUT_DIR, "products")
 
 os.makedirs(PROD_DIR, exist_ok=True)

@@ -92,6 +92,23 @@ OUTPUT_XLSX = "READY_FOR_BUILD_NL.xlsx"
 MISSING_RPT = "missing_report.txt"
 SITE_DIR    = Path("site")
 PROD_DIR    = SITE_DIR / "products"
+# Source templates live outside the output folder: everything under site/ is
+# build output and is overwritten on every run.
+TPL_DIR     = Path("templates")
+
+# Static assets that ship with the templates and must be copied into the build.
+TPL_ASSETS  = ["home.css", "product.css", "product.js",
+               "hoofdpageproduct.css", "hoofdpageproduct.js"]
+
+
+def _copy_template_assets():
+    """Copy the templates' CSS/JS into site/ so the generated pages resolve."""
+    import shutil
+    SITE_DIR.mkdir(parents=True, exist_ok=True)
+    for name in TPL_ASSETS:
+        src = TPL_DIR / name
+        if src.exists():
+            shutil.copyfile(src, SITE_DIR / name)
 
 COLS_TRANSLATE = ["description_nl", "dosage_cz", "ingredients_cz"]
 
@@ -901,8 +918,10 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
                 for row in ws.iter_rows(min_row=2, values_only=True)]
     wb.close()
 
-    tmpl = (SITE_DIR / "product.html").read_text(encoding="utf-8") \
-        if (SITE_DIR / "product.html").exists() else _minimal_tmpl()
+    _copy_template_assets()
+
+    tmpl = (TPL_DIR / "product.html").read_text(encoding="utf-8") \
+        if (TPL_DIR / "product.html").exists() else _minimal_tmpl()
 
     # Inject calculator CSS + nav improvements (idempotent across rebuilds)
     if "calc-wrap" not in tmpl:
@@ -988,7 +1007,7 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
     print(f"search-index.json: {len(search_idx)} products indexed.")
 
     # Category pages
-    cat_tmpl_path = SITE_DIR / "hoofdpageproduct.html"
+    cat_tmpl_path = TPL_DIR / "hoofdpageproduct.html"
     if cat_tmpl_path.exists():
         ct = cat_tmpl_path.read_text(encoding="utf-8")
         # Inject nav CSS + JS (idempotent: refreshes on every rebuild)
@@ -1061,7 +1080,7 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         print(f"Filter pages written: {len(_PET_FILTERS)} pages.")
 
     # Homepage — inject nav + CSS + JS
-    home_path = SITE_DIR / "home.html"
+    home_path = TPL_DIR / "home.html"
     if home_path.exists():
         home_content = home_path.read_text(encoding="utf-8")
         # Inject nav CSS + JS (idempotent: refreshes on every rebuild)
@@ -1149,8 +1168,22 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         )
 
         (SITE_DIR / "index.html").write_text(home_content, encoding="utf-8")
-        # Also overwrite home.html so direct visits to /home.html aren't stale
-        home_path.write_text(home_content, encoding="utf-8")
+        # home.html used to be a byte-identical copy of index.html, which is
+        # duplicate content. Emit a redirect stub instead so any old inbound
+        # link still lands on the canonical homepage.
+        (SITE_DIR / "home.html").write_text(
+            '<!DOCTYPE html><html lang="nl"><head>'
+            '<meta charset="UTF-8">'
+            '<meta name="robots" content="noindex,follow">'
+            '<meta http-equiv="refresh" content="0; url=index.html">'
+            '<link rel="canonical" href="https://yoggies.be/">'
+            '<title>Yoggies.be</title>'
+            '</head><body>'
+            '<p>Deze pagina is verplaatst naar <a href="index.html">de homepage</a>.</p>'
+            '<script>window.location.replace("index.html");</script>'
+            '</body></html>',
+            encoding="utf-8"
+        )
 
         # ── Generate over-yoggies.html (Dutch translation of yoggies.cz/o-nas) ──
         over_yoggies_body = '''

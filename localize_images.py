@@ -62,8 +62,9 @@ IMAGE_COLUMNS = ["image_main", "image_2", "image_3", "doglife_image", "icons_ima
 EXTRA_SOURCES = [
     ROOT / "atlas_nl_data.py",
     ROOT / "yoggies_pipeline.py",
-    ROOT / "site" / "product.html",
-    ROOT / "site" / "hoofdpageproduct.html",
+    ROOT / "templates" / "product.html",
+    ROOT / "templates" / "hoofdpageproduct.html",
+    ROOT / "templates" / "home.html",
     ROOT / "site" / "hondenatlas.html",
     ROOT / "site" / "Dierenkliniek.html",
     ROOT / "site" / "index.html",
