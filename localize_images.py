@@ -71,7 +71,8 @@ EXTRA_SOURCES = [
 ]
 
 # Hosts we localize. Anything else (e.g. fonts.googleapis.com) is left alone.
-LOCALIZE_HOSTS = ("yoggies.cz", "doglife.be", "cdn.shopify.com", "image2url.com")
+LOCALIZE_HOSTS = ("yoggies.cz", "doglife.be", "cdn.shopify.com", "image2url.com",
+                  "img.youtube.com")
 
 IMG_URL_RE = re.compile(
     r"https?://[^\s\"'<>()\\]+?\.(?:jpg|jpeg|png|webp|avif|gif|svg)(?:\?[^\s\"'<>()\\]*)?",

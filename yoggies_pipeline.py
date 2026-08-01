@@ -110,6 +110,127 @@ def _copy_template_assets():
         if src.exists():
             shutil.copyfile(src, SITE_DIR / name)
 
+
+# ─── Localized images ──────────────────────────────────────────────────────────
+# localize_images.py downloads every external image into site/images/ and writes
+# image_map.json: {url: {thumb, md, lg, orig, w, h}}. Everything the build emits
+# resolves through img_src() so no page hotlinks yoggies.cz or doglife.be.
+_IMG_MAP_FILE = Path("image_map.json")
+_IMG_MAP = json.loads(_IMG_MAP_FILE.read_text(encoding="utf-8")) \
+    if _IMG_MAP_FILE.exists() else {}
+
+
+def _img_canon(url: str) -> str:
+    """Canonical identity of an image URL: scheme + host + path, no query.
+
+    Mirrors canonical_url() in localize_images.py so the keys line up — the CDN
+    serves the same file under many ?width=/&v= query strings.
+    """
+    from urllib.parse import urlsplit, urlunsplit
+    parts = urlsplit(url.strip())
+    scheme = "https" if parts.scheme in ("http", "https", "") else parts.scheme
+    netloc = parts.netloc.lower()
+    if netloc.startswith("www."):
+        netloc = netloc[4:]
+    return urlunsplit((scheme, netloc, parts.path, "", ""))
+
+
+def _img_entry(url):
+    """Look up an image_map entry by any spelling of the URL."""
+    if not url or not str(url).startswith("http"):
+        return None
+    clean = str(url).replace("&amp;", "&").strip()
+    return (_IMG_MAP.get(url)
+            or _IMG_MAP.get(clean)
+            or _IMG_MAP.get(_img_canon(clean)))
+
+
+def img_src(url, size="md", depth=""):
+    """Return a local path for an external image URL, falling back to the URL.
+
+    size: "thumb" (200px) | "md" (600px) | "lg" (1200px) | "orig".
+    depth: path prefix for pages below site/ (e.g. "../" for products/).
+    SVGs have no raster variants, so every size resolves to the original.
+    """
+    entry = _img_entry(url)
+    if not entry:
+        return url
+    return depth + entry.get(size, entry.get("orig", url))
+
+
+_IMG_TAG_RE = re.compile(r'<img\b[^>]*>', re.IGNORECASE)
+_IMG_SRC_RE = re.compile(r'(\bsrc=")(https?://[^"]+)(")', re.IGNORECASE)
+_HAS_ALT_RE = re.compile(r'\balt\s*=', re.IGNORECASE)
+_HAS_LOAD_RE = re.compile(r'\bloading\s*=', re.IGNORECASE)
+_HAS_DEC_RE = re.compile(r'\bdecoding\s*=', re.IGNORECASE)
+_EAGER_RE = re.compile(r'\b(fetchpriority\s*=\s*"high"|class="[^"]*\bhero\b)', re.IGNORECASE)
+
+
+def _append_attr(tag: str, attr: str) -> str:
+    """Add an attribute to an <img> tag, preserving XHTML self-closing form."""
+    body = tag[:-1].rstrip()          # drop '>'
+    if body.endswith("/"):
+        return f"{body[:-1].rstrip()} {attr} />"
+    return f"{body} {attr}>"
+
+
+def _localize_img_tags(content: str, depth: str = "", unmapped=None):
+    """Point leftover external <img> tags at site/images/ and tidy them up.
+
+    Only rewrites tags whose URL is in image_map.json; anything unmapped is
+    counted (so the build reports it) and left exactly as it was.
+    """
+    count = [0]
+
+    def fix_tag(m):
+        tag = m.group(0)
+        src = _IMG_SRC_RE.search(tag)
+        if src:
+            url = src.group(2)
+            local = img_src(url.replace("&amp;", "&"), "md", depth)
+            if local != url and not local.startswith("http"):
+                tag = tag[:src.start()] + f'src="{local}"' + tag[src.end():]
+                count[0] += 1
+            elif unmapped is not None:
+                unmapped[url] += 1
+        # Backfill accessibility/perf attributes the templates omit. These are
+        # decorative template images, so an empty alt is the correct choice —
+        # content images get a real alt at their call site.
+        if not _HAS_ALT_RE.search(tag):
+            tag = _append_attr(tag, 'alt=""')
+        if not _HAS_DEC_RE.search(tag):
+            tag = _append_attr(tag, 'decoding="async"')
+        if not _HAS_LOAD_RE.search(tag) and not _EAGER_RE.search(tag):
+            tag = _append_attr(tag, 'loading="lazy"')
+        return tag
+
+    return _IMG_TAG_RE.sub(fix_tag, content), count[0]
+
+
+def _truncate_words(text: str, limit: int) -> str:
+    """Cut to `limit` chars on a word boundary, appending an ellipsis.
+
+    Plain slicing produced card descriptions ending mid-word ("milieu",
+    "sint-janskrui"), so back off to the last space before the limit.
+    """
+    text = " ".join(str(text or "").split())
+    if len(text) <= limit:
+        return text
+    cut = text[:limit]
+    space = cut.rfind(" ")
+    if space > limit * 0.5:      # only back off if it doesn't gut the string
+        cut = cut[:space]
+    return cut.rstrip(" ,.;:-") + "…"
+
+
+def img_srcset(url, depth=""):
+    """Responsive srcset+sizes for a hero image. Empty string if unmapped."""
+    entry = _img_entry(url)
+    if not entry or "md" not in entry or "lg" not in entry:
+        return ""
+    return (f' srcset="{depth}{entry["md"]} 600w, {depth}{entry["lg"]} 1200w"'
+            f' sizes="(max-width: 700px) 100vw, 600px"')
+
 COLS_TRANSLATE = ["description_nl", "dosage_cz", "ingredients_cz"]
 
 # API keys — used ONLY in --fill-cache mode
@@ -790,7 +911,7 @@ def _build_atlas_pages(per_page=12):
             local = f"ras-{slug}.html"
             cards += f'''        <div class="dog-card">
           <a href="{local}" style="display:block;text-decoration:none;color:inherit;">
-            <div class="dog-card-img"><img src="{html.escape(img)}" alt="{n}" loading="lazy"></div>
+            <div class="dog-card-img"><img src="{html.escape(img_src(img, "thumb"))}" alt="{n}" loading="lazy" decoding="async"></div>
             <div class="dog-card-label"><span class="card-name">{n}</span><span class="card-sub">Details</span></div>
           </a>
         </div>\n'''
@@ -853,7 +974,8 @@ def _build_breed_body(breed, img_url):
 
     hero_img = ""
     if img_url:
-        hero_img = f'''      <img src="{html.escape(img_url)}" alt="{name}"
+        hero_img = f'''      <img src="{html.escape(img_src(img_url, "md"))}"{img_srcset(img_url)} alt="{name}"
+           decoding="async" fetchpriority="high"
            style="width:100%;max-width:560px;border-radius:22px;display:block;margin:26px auto 0;box-shadow:0 12px 40px rgba(60,30,0,.18);"
            onerror="this.style.display='none'">'''
 
@@ -1408,29 +1530,61 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
             ha_path.write_text(ha_new, encoding="utf-8")
             print(f"hondenatlas.html: breed grid updated ({len(_ATLAS_BREEDS)} breeds, {n_pages} pages).")
 
-    # ── Post-build sweep: HTTPS hygiene (fix mixed-content for production) ──
-    # External images from yoggies.cz CDN must use https on a https-hosted site.
+    # ── Post-build sweep: HTTPS hygiene + image localization ──
+    # The builders above route their own <img> tags through img_src(), but the
+    # static templates (home.html, hondenatlas.html, Dierenkliniek.html) carry
+    # markup we never touch. This sweep catches whatever is left so no page
+    # ships a hotlink, and backfills alt/loading on those template images.
     fixed_files = 0
     fixed_refs  = 0
+    local_files = 0
+    local_refs  = 0
+    unmapped    = defaultdict(int)
+
     for html_file in SITE_DIR.rglob("*.html"):
         try:
             t = html_file.read_text(encoding="utf-8")
         except Exception:
             continue
-        new_t = t.replace("http://yoggies.cz", "https://yoggies.cz")
-        if new_t != t:
-            fixed_refs += t.count("http://yoggies.cz")
-            html_file.write_text(new_t, encoding="utf-8")
-            fixed_files += 1
+        orig = t
+
+        n_https = t.count("http://yoggies.cz")
+        t = t.replace("http://yoggies.cz", "https://yoggies.cz")
+
+        # Pages under site/products/ need to climb one level to reach images/.
+        depth = "../" * len(html_file.relative_to(SITE_DIR).parent.parts)
+        t, n_local = _localize_img_tags(t, depth, unmapped)
+
+        if t != orig:
+            html_file.write_text(t, encoding="utf-8")
+            if n_https:
+                fixed_refs += n_https
+                fixed_files += 1
+            if n_local:
+                local_refs += n_local
+                local_files += 1
+
     if fixed_files:
         print(f"HTTPS sweep: fixed {fixed_refs} http://yoggies.cz refs in {fixed_files} files.")
+    if local_refs:
+        print(f"Image sweep: localized {local_refs} leftover refs in {local_files} files.")
+    if unmapped:
+        top = sorted(unmapped.items(), key=lambda kv: -kv[1])[:5]
+        total = sum(unmapped.values())
+        print(f"Image sweep: {total} refs still external ({len(unmapped)} unique) — "
+              f"not in image_map.json. Re-run localize_images.py.")
+        for u, n in top:
+            print(f"    {n:>5}x {u[:90]}")
 
-def _cat_card(p, slugs):
+def _cat_card(p, slugs, depth=""):
     name = str(p.get("name_nl") or "Product").strip()
     slug = slugs.get(name, _slugify(name))
     img  = str(p.get("image_main") or p.get("doglife_image") or "").strip()
-    desc = str(p.get("description_nl") or "").strip()[:120]
-    img_tag = f'<img src="{html.escape(img)}" alt="{html.escape(name)}" loading="lazy">' if img else "<div>📦</div>"
+    desc = _truncate_words(str(p.get("description_nl") or "").strip(), 120)
+    # Category grids render at card size — 200px is plenty.
+    img_tag = (f'<img src="{html.escape(img_src(img, "thumb", depth))}" '
+               f'alt="{html.escape(name)}" loading="lazy" decoding="async">'
+               if img else "<div>📦</div>")
     return f'''  <div class="pg-card" onclick="window.location='products/{slug}.html'">
     <div class="pg-img-wrap">{img_tag}</div>
     <div class="pg-body"><h2 class="pg-name">{html.escape(name)}</h2>
@@ -1468,7 +1622,11 @@ def _build_nav(current_cat="", depth="", by_cat=None, slugs=None):
             nm   = str(p.get("name_nl") or "").strip()
             img  = str(p.get("image_main") or p.get("doglife_image") or "").strip()
             slug = slugs.get(nm, _slugify(nm))
-            img_tag = (f'<img class="dd-thumb" src="{html.escape(img)}" alt="" loading="lazy">'
+            # 200px thumbs: this dropdown repeats on all ~400 pages, so it is
+            # where serving 1200px originals cost the most bandwidth.
+            img_tag = (f'<img class="dd-thumb" src="{html.escape(img_src(img, "thumb", depth))}" '
+                       f'alt="{html.escape(nm)}" loading="lazy" decoding="async" '
+                       f'width="40" height="40">'
                        if img else '<span class="dd-thumb dd-thumb-placeholder"></span>')
             items_html.append(
                 f'<a href="{depth}products/{slug}.html" class="dd-item">'
@@ -1552,15 +1710,23 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
                   page, count=1)
 
     main = img1 or dl_img or ""
-    mi = f'<img src="{html.escape(main)}" alt="{name}" loading="lazy">' if main else '<div style="font-size:48px;text-align:center">📦</div>'
+    # Hero: the LCP element, so it is eager + high priority and gets a srcset.
+    mi = (f'<img src="{html.escape(img_src(main, "md", "../"))}"'
+          f'{img_srcset(main, "../")} alt="{name}" '
+          f'decoding="async" fetchpriority="high">'
+          if main else '<div style="font-size:48px;text-align:center">📦</div>')
     page = re.sub(r'<div class="ph-main-img"[^>]*>.*?</div>',
                   f'<div class="ph-main-img" id="phMainImg">{mi}</div>',
                   page, count=1, flags=re.DOTALL)
 
     thumb_srcs = [s for s in [img1, img2, img3, dl_img] if s and s.startswith("http")][:4]
+    # data-full carries the 600px rendition so phSwap() can promote a thumb
+    # into the hero slot without re-fetching a 1200px original.
     thumbs = "".join(
         f'<div class="ph-thumb{"  active" if i == 0 else ""}" onclick="phSwap(this)">'
-        f'<img src="{html.escape(s)}" alt="" loading="lazy"></div>'
+        f'<img src="{html.escape(img_src(s, "thumb", "../"))}" '
+        f'data-full="{html.escape(img_src(s, "md", "../"))}" '
+        f'alt="{name} — afbeelding {i + 1}" loading="lazy" decoding="async"></div>'
         for i, s in enumerate(thumb_srcs)
     ) or '<div class="ph-thumb active" onclick="phSwap(this)"><span style="width:60px;height:60px;background:var(--cream-deep);display:block;border-radius:5px"></span></div>'
     page = re.sub(r'<div class="ph-thumbs">.*?</div>',
@@ -1571,7 +1737,9 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
     ii = [l.strip() for l in icons_i.split("|") if l.strip()][:3]
     badges = "".join(
         f'<div class="ph-badge"><div class="ph-badge-icon">'
-        + (f'<img src="{html.escape(ii[i])}" alt="{html.escape(l)}" style="width:24px;height:24px">' if i < len(ii) else "🌿")
+        + (f'<img src="{html.escape(img_src(ii[i], "thumb", "../"))}" alt="{html.escape(l)}" '
+           f'loading="lazy" decoding="async" width="24" height="24" '
+           f'style="width:24px;height:24px">' if i < len(ii) else "🌿")
         + f'</div><span class="ph-badge-label badge-label-{i+1}">{html.escape(l)}</span></div>\n'
         for i, l in enumerate(il)
     )

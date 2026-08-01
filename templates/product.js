@@ -7,7 +7,12 @@
     var thumbImg = thumb.querySelector('img');
     var mainImg  = document.querySelector('#phMainImg img');
     if (thumbImg && mainImg) {
-      mainImg.src = thumbImg.src;
+      // Thumbs are 200px; data-full is the 600px rendition. Drop the hero's
+      // srcset first, or the browser keeps picking from the old candidate list
+      // and ignores the new src entirely.
+      mainImg.removeAttribute('srcset');
+      mainImg.removeAttribute('sizes');
+      mainImg.src = thumbImg.dataset.full || thumbImg.src;
       mainImg.alt = thumbImg.alt;
     }
   }
