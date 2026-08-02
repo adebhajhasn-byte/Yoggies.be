@@ -32,6 +32,7 @@ REMOVED LOGIC (was: fallback paths):
 
 import os, sys, re, json, hashlib, html, unicodedata
 import urllib.request, time
+from urllib.parse import quote
 from pathlib import Path
 from datetime import datetime
 from collections import defaultdict
@@ -96,6 +97,12 @@ PROD_DIR    = SITE_DIR / "products"
 # build output and is overwritten on every run.
 TPL_DIR     = Path("templates")
 
+# Footer legal links. Both used to point at the privacy policy.
+# NOTE: verify TERMS_URL with DogLife — this is the conventional Dutch slug,
+# not a URL that has been confirmed to exist.
+PRIVACY_URL = "https://doglife.be/privacy/"
+TERMS_URL   = "https://doglife.be/algemene-voorwaarden/"
+
 # Static assets that ship with the templates and must be copied into the build.
 TPL_ASSETS  = ["home.css", "product.css", "product.js",
                "hoofdpageproduct.css", "hoofdpageproduct.js"]
@@ -109,6 +116,11 @@ def _copy_template_assets():
         src = TPL_DIR / name
         if src.exists():
             shutil.copyfile(src, SITE_DIR / name)
+    # favicon lives under images/ because that is what every page links to
+    fav = TPL_DIR / "favicon.svg"
+    if fav.exists():
+        (SITE_DIR / "images").mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(fav, SITE_DIR / "images" / "favicon.svg")
 
 
 # ─── Localized images ──────────────────────────────────────────────────────────
@@ -156,6 +168,165 @@ def img_src(url, size="md", depth=""):
     if not entry:
         return url
     return depth + entry.get(size, entry.get("orig", url))
+
+
+# ─── <head> metadata ───────────────────────────────────────────────────────────
+BASE_URL = "https://yoggies.be"
+
+_META_MARK_S = "<!-- YGS_META_START -->"
+_META_MARK_E = "<!-- YGS_META_END -->"
+_META_BLOCK_RE = re.compile(
+    re.escape(_META_MARK_S) + r'.*?' + re.escape(_META_MARK_E), re.DOTALL)
+_TAG_STRIP_RE = re.compile(r'<(script|style)\b.*?</\1>|<[^>]+>', re.DOTALL | re.IGNORECASE)
+
+
+def _plain_text(markup: str) -> str:
+    """Collapse HTML to a single line of readable text."""
+    t = _TAG_STRIP_RE.sub(" ", str(markup or ""))
+    return " ".join(html.unescape(t).split())
+
+
+def _meta_desc(text: str, limit: int = 155) -> str:
+    """First `limit` characters of text, cut on a word boundary, escaped."""
+    return html.escape(_truncate_words(_plain_text(text), limit), quote=True)
+
+
+def _abs_url(path: str) -> str:
+    """Site-root-relative path -> absolute URL (og: tags require absolute)."""
+    return f"{BASE_URL}/{str(path or '').lstrip('/')}"
+
+
+def _head_block(title, description, url_path, image=None,
+                depth="", og_type="website", robots=None) -> str:
+    """Build the meta/canonical/OG/Twitter block for one page.
+
+    url_path and image are site-root-relative ("products/x.html",
+    "images/y-1200.webp"); depth only prefixes the local favicon link.
+    """
+    t = html.escape(_plain_text(title), quote=True)
+    d = description if description else t
+    canonical = _abs_url(url_path)
+    # An unmapped image_src() falls back to the original URL, which is already
+    # absolute — don't prefix it a second time.
+    image = image or "images/favicon.svg"
+    og_img = image if str(image).startswith("http") else _abs_url(image)
+    parts = [
+        _META_MARK_S,
+        f'<meta name="description" content="{d}">',
+        f'<link rel="canonical" href="{canonical}">',
+        f'<link rel="icon" type="image/svg+xml" href="{depth}images/favicon.svg">',
+        f'<meta property="og:type" content="{og_type}">',
+        f'<meta property="og:site_name" content="Yoggies.be">',
+        f'<meta property="og:locale" content="nl_BE">',
+        f'<meta property="og:title" content="{t}">',
+        f'<meta property="og:description" content="{d}">',
+        f'<meta property="og:url" content="{canonical}">',
+        f'<meta property="og:image" content="{og_img}">',
+        f'<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:title" content="{t}">',
+        f'<meta name="twitter:description" content="{d}">',
+        f'<meta name="twitter:image" content="{og_img}">',
+    ]
+    if robots:
+        parts.insert(1, f'<meta name="robots" content="{robots}">')
+    parts.append(_META_MARK_E)
+    return "\n  ".join(parts)
+
+
+def _redirect_stub(target: str, title: str, canonical_path: str,
+                   note: str = "Deze pagina is verplaatst.") -> str:
+    """A noindex meta-refresh stub that keeps an old URL working.
+
+    canonical_path points at the *destination* so link equity consolidates
+    there rather than on the retired URL.
+    """
+    t = html.escape(title, quote=True)
+    return (
+        '<!DOCTYPE html><html lang="nl"><head>'
+        '<meta charset="UTF-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<meta name="robots" content="noindex,follow">'
+        f'<meta http-equiv="refresh" content="0; url={target}">'
+        f'<meta name="description" content="{t}">'
+        f'<link rel="canonical" href="{_abs_url(canonical_path)}">'
+        f'<title>{t}</title>'
+        '</head><body>'
+        f'<p>{html.escape(note)} <a href="{target}">Ga verder</a>.</p>'
+        f'<script>window.location.replace("{target}");</script>'
+        '</body></html>'
+    )
+
+
+def _inject_head(page: str, **kw) -> str:
+    """Idempotently place the meta block just before </head>."""
+    page = _META_BLOCK_RE.sub("", page)
+    block = _head_block(**kw)
+    if "</head>" in page:
+        return page.replace("</head>", f"  {block}\n</head>", 1)
+    return page
+
+
+# ─── Post-build content fixups ─────────────────────────────────────────────────
+_TERMS_LINK_RE = re.compile(
+    r'<a\s+href="' + re.escape(PRIVACY_URL) + r'"([^>]*)>(\s*Algemene\s+voorwaarden\s*)</a>',
+    re.IGNORECASE)
+# "€49." -> "€ 49,00." (Dutch/Belgian uses a comma decimal separator).
+# The lookahead skips amounts that already carry decimals — "€ 49,00" and
+# "€ 49.50" are left alone — but a trailing sentence period is not decimals,
+# so "€49. Levertijd" still matches.
+_PRICE_RE = re.compile(r'€\s?(\d{1,4})(?![\d,]|\.\d)')
+
+_SVG_BLOCK_RE = re.compile(r'<svg\b.*?</svg>', re.DOTALL | re.IGNORECASE)
+_ID_ATTR_RE = re.compile(r'\s+id="([^"]+)"')
+_ID_REF_RE = re.compile(
+    r'url\(#([^)\s]+)\)|(?:xlink:)?href="#([^"]+)"'
+    r'|aria-(?:labelledby|describedby)="([^"]+)"|for="([^"]+)"')
+
+
+def _dedupe_svg_ids(content: str):
+    """Strip duplicate ids from inline SVGs.
+
+    The logo SVG is emitted twice per page (header + footer), duplicating
+    yoggies_logo_on_light_bg_RGB and Path_7..Path_15. The ids are Illustrator
+    export artifacts that nothing references, so the later copies just lose
+    them; anything actually referenced is left alone.
+    """
+    referenced = set()
+    for m in _ID_REF_RE.finditer(content):
+        for g in m.groups():
+            if g:
+                referenced.update(g.split())
+
+    # ids living outside any <svg> still claim the namespace
+    seen = set(_ID_ATTR_RE.findall(_SVG_BLOCK_RE.sub(" ", content)))
+    removed = [0]
+
+    def fix_block(bm):
+        def fix_id(im):
+            name = im.group(1)
+            if name in referenced:
+                return im.group(0)
+            if name in seen:
+                removed[0] += 1
+                return ""
+            seen.add(name)
+            return im.group(0)
+        return _ID_ATTR_RE.sub(fix_id, bm.group(0))
+
+    return _SVG_BLOCK_RE.sub(fix_block, content), removed[0]
+
+
+def _content_fixups(content: str):
+    """Cross-cutting text fixes applied to every generated page."""
+    n = 0
+    content, k = _TERMS_LINK_RE.subn(
+        lambda m: f'<a href="{TERMS_URL}"{m.group(1)}>{m.group(2)}</a>', content)
+    n += k
+    content, k = _PRICE_RE.subn(lambda m: f'€ {m.group(1)},00', content)
+    n += k
+    content, k = _dedupe_svg_ids(content)
+    n += k
+    return content, n
 
 
 _IMG_TAG_RE = re.compile(r'<img\b[^>]*>', re.IGNORECASE)
@@ -233,6 +404,14 @@ def img_srcset(url, depth=""):
 
 COLS_TRANSLATE = ["description_nl", "dosage_cz", "ingredients_cz"]
 
+# Products excluded from the Belgian catalogue. The Kč gift vouchers are priced
+# in Czech crowns, are not redeemable at DogLife (match_status NOT_ON_DOGLIFE,
+# pointing at an empty search), and cannot be converted to euro without a
+# business decision on face value. Their URLs redirect to the category page
+# rather than 404. Remove an entry here to bring a product back.
+EXCLUDE_PRODUCTS = re.compile(r'\bK[čc]\b', re.IGNORECASE)
+EXCLUDE_REDIRECT = "speelgoed-accessoires.html"
+
 # API keys — used ONLY in --fill-cache mode
 _API_OR = os.environ.get("OPENROUTER_API_KEY", "")
 _API_AN = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -307,7 +486,12 @@ def _size_to_grams(size_label):
 
 def _merge_size_variants(out_rows):
     """Merge products that are size variants of the same base product.
-    Returns (merged_rows, n_groups, n_removed)."""
+
+    Returns (merged_rows, n_groups, retired) where `retired` lists the
+    per-size products that no longer get their own page:
+    [{"old_name", "base_name", "size"}]. The caller turns those into redirect
+    stubs so the old URLs keep working and stay reachable from search.
+    """
     by_base = defaultdict(list)
     for p in out_rows:
         name = str(p.get("name_nl") or "").strip()
@@ -318,7 +502,7 @@ def _merge_size_variants(out_rows):
 
     real_groups = {k: v for k, v in by_base.items() if len(v) >= 2}
     if not real_groups:
-        return out_rows, 0, 0
+        return out_rows, 0, []
 
     seen = set()
     merged = []
@@ -346,8 +530,14 @@ def _merge_size_variants(out_rows):
         else:
             merged.append(p)
 
-    n_removed = sum(len(v) - 1 for v in real_groups.values())
-    return merged, len(real_groups), n_removed
+    # Every per-size name in a merged group loses its own page — including the
+    # smallest, whose page is now served under the base name.
+    retired = [
+        {"old_name": old_name, "base_name": base, "size": size}
+        for grp in real_groups.values()
+        for _gp, old_name, size, base in grp
+    ]
+    return merged, len(real_groups), retired
 
 
 def _is_real_product_url(url):
@@ -428,6 +618,26 @@ _PROPER_NOUNS = {
     "chaga", "reishi", "agaricus", "nosek",
     "kč", "mycotherapeut", "rugaas",
 }
+
+# ─── Dutch wording overrides ───────────────────────────────────────────────────
+# Applied to every translated string. "granule" is the Czech word for kibble and
+# survived into the Dutch copy in a handful of descriptions; the Dutch product
+# line is called "brokken".
+# No trailing \b: the word also shows up inside compounds
+# ("granuleassortiment" -> "brokkenassortiment").
+_NL_OVERRIDES = [
+    (re.compile(r'\bgranule[ns]?'), 'brokken'),
+    (re.compile(r'\bGranule[ns]?'), 'Brokken'),
+    (re.compile(r'\bGRANULE[NS]?'), 'BROKKEN'),
+]
+
+
+def apply_nl_overrides(text: str) -> str:
+    """Fix Czech loanwords that the translation cache left in the Dutch copy."""
+    for pat, repl in _NL_OVERRIDES:
+        text = pat.sub(repl, text)
+    return text
+
 
 # ─── Icon label translations ───────────────────────────────────────────────────
 _ICON_TRANS = {
@@ -566,12 +776,12 @@ def translate(raw) -> tuple[str, str]:
 
     # Does this text need translation?
     if not needs_translation(text):
-        return sanitize_output(text), "passthrough"
+        return apply_nl_overrides(sanitize_output(text)), "passthrough"
 
     # Cache lookup — the ONLY path
     result = cache_get(text)
     if result is not None:
-        return result, "cache"
+        return apply_nl_overrides(result), "cache"
 
     # Missing: return original text flagged as missing
     # Caller decides to fail or log
@@ -1016,14 +1226,29 @@ def _write_breed_pages(home_content):
         slug = breed.get("slug")
         if not slug:
             continue
-        body = _build_breed_body(breed, img_map.get(slug, ""))
+        breed_img = img_map.get(slug, "")
+        body = _build_breed_body(breed, breed_img)
+        nl_name = breed["nl_name"]
+        secs = breed.get("sections", {}) or {}
+        blurb = next((secs[k] for k, _ in _BREED_HEADINGS if secs.get(k)), "")
+
         page = home_content
         page = re.sub(r'<title>[^<]*</title>',
-                      f'<title>{html.escape(breed["nl_name"])} | Hondenatlas | Yoggies.be</title>',
+                      f'<title>{html.escape(nl_name)} | Hondenatlas | Yoggies.be</title>',
                       page, count=1)
         page = re.sub(r'(</nav>)(.*?)(<footer)',
                       lambda m: m.group(1) + body + '\n' + m.group(3),
                       page, count=1, flags=re.DOTALL)
+        page = _inject_head(
+            page,
+            title=f"{nl_name} | Hondenatlas | Yoggies.be",
+            description=_meta_desc(blurb) or _meta_desc(
+                f"Alles over de {nl_name}: karakter, verzorging, veelvoorkomende "
+                f"aandoeningen en de juiste voeding."),
+            url_path=f"ras-{slug}.html",
+            image=img_src(breed_img, "lg") if breed_img else None,
+            og_type="article",
+        )
         (SITE_DIR / f"ras-{slug}.html").write_text(page, encoding="utf-8")
         count += 1
     print(f"Hondenatlas: {count} rassenpagina's gegenereerd (ras-<slug>.html).")
@@ -1066,9 +1291,18 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
     }
 
     # ── Merge size variants (e.g. "1 kg Yoggies X" + "5 kg Yoggies X" → one page) ──
-    out_rows, n_var_groups, n_var_removed = _merge_size_variants(out_rows)
+    # ── Drop products that don't belong in the Belgian catalogue ──
+    excluded = [p for p in out_rows
+                if EXCLUDE_PRODUCTS.search(str(p.get("name_nl") or ""))]
+    if excluded:
+        out_rows = [p for p in out_rows if p not in excluded]
+        print(f"Excluded {len(excluded)} products priced in Czech crowns "
+              f"(redirect → {EXCLUDE_REDIRECT}).")
+
+    out_rows, n_var_groups, retired_variants = _merge_size_variants(out_rows)
     if n_var_groups:
-        print(f"Size variants: merged {n_var_groups} groups, removed {n_var_removed} duplicate pages.")
+        print(f"Size variants: merged {n_var_groups} groups, "
+              f"{len(retired_variants)} per-size pages become redirects.")
     # ── Apply manual variant overrides (e.g. Brokken sizes from manual_variants.py) ──
     n_manual = _apply_manual_variants(out_rows)
     if n_manual:
@@ -1102,13 +1336,57 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         slugs[name] = slug
 
     PROD_DIR.mkdir(parents=True, exist_ok=True)
+    written = set()
     for p in out_rows:
         name = str(p.get("name_nl") or "product").strip()
         slug = slugs.get(name, _slugify(name))
         (PROD_DIR / f"{slug}.html").write_text(
             _render_product(p, slug, tmpl, by_cat=by_cat, slugs=slugs), encoding="utf-8"
         )
+        written.add(f"{slug}.html")
     print(f"{len(out_rows)} product pages → {PROD_DIR}/")
+
+    # ── Retired size variants → redirect stubs, deep-linked to the parent ──
+    # Merging left the old per-size pages orphaned on disk: still crawlable,
+    # never regenerated, and absent from the search index. Replace each with a
+    # stub that lands on the parent page with the right size preselected.
+    variant_links = []
+    for rv in retired_variants:
+        old_slug = _slugify(rv["old_name"])
+        parent_slug = slugs.get(rv["base_name"], _slugify(rv["base_name"]))
+        if old_slug == parent_slug or f"{old_slug}.html" in written:
+            continue
+        target = f"{parent_slug}.html?maat={quote(rv['size'])}"
+        (PROD_DIR / f"{old_slug}.html").write_text(
+            _redirect_stub(target, f"{rv['old_name']} | Yoggies.be",
+                           f"products/{parent_slug}.html",
+                           note=f"{rv['old_name']} staat nu op de productpagina "
+                                f"van {rv['base_name']}."),
+            encoding="utf-8")
+        written.add(f"{old_slug}.html")
+        variant_links.append((rv["old_name"], f"{parent_slug}.html?maat={quote(rv['size'])}"))
+    if variant_links:
+        print(f"Variant redirects: {len(variant_links)} stubs → parent pages.")
+
+    # ── Excluded products → redirect to their category ──
+    for p in excluded:
+        ex_slug = _slugify(str(p.get("name_nl") or "product").strip())
+        if f"{ex_slug}.html" in written:
+            continue
+        (PROD_DIR / f"{ex_slug}.html").write_text(
+            _redirect_stub(f"../{EXCLUDE_REDIRECT}",
+                           f"{p.get('name_nl')} | Yoggies.be",
+                           EXCLUDE_REDIRECT,
+                           note="Dit product is niet beschikbaar in België."),
+            encoding="utf-8")
+        written.add(f"{ex_slug}.html")
+
+    # ── Prune anything else left over from an older build ──
+    stale = [f for f in PROD_DIR.glob("*.html") if f.name not in written]
+    for f in stale:
+        f.unlink()
+    if stale:
+        print(f"Pruned {len(stale)} stale product pages no longer generated.")
 
     # Write search index for the live site search dropdown
     import json as _json
@@ -1122,11 +1400,27 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         # Get pretty Dutch category label (e.g. "BARF" instead of "barf")
         cat_label = CAT.get(cat_key, (cat_key,))[0] if cat_key in CAT else cat_key
         search_idx.append({"name": nm, "slug": sl, "cat": cat_label})
+
+    # Index the retired size variants too, pointing at the parent page with the
+    # size preselected — searching "zalmolie 500 ml" must find something.
+    by_name = {row["name"]: row for row in search_idx}
+    for old_name, target in variant_links:
+        parent = by_name.get(_extract_size(old_name)[0])
+        search_idx.append({
+            "name": old_name,
+            "slug": parent["slug"] if parent else target.split(".html")[0],
+            # "url" wins over "slug" in the dropdown: it carries the ?maat=
+            # deep link, which slug + ".html" cannot express.
+            "url": target,
+            "cat": parent["cat"] if parent else "",
+        })
+
     (SITE_DIR / "search-index.json").write_text(
         _json.dumps(search_idx, ensure_ascii=False, separators=(',', ':')),
         encoding="utf-8"
     )
-    print(f"search-index.json: {len(search_idx)} products indexed.")
+    print(f"search-index.json: {len(search_idx)} entries "
+          f"({len(out_rows)} products + {len(variant_links)} size variants).")
 
     # Category pages
     cat_tmpl_path = TPL_DIR / "hoofdpageproduct.html"
@@ -1152,17 +1446,29 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
                 p = by_cat[cat_key][0]
                 nm = str(p.get("name_nl") or "product").strip()
                 sl = slugs.get(nm, _slugify(nm))
-                redirect_page = (
-                    '<!DOCTYPE html><html lang="nl"><head>'
-                    '<meta charset="UTF-8">'
-                    f'<meta http-equiv="refresh" content="0; url=products/{sl}.html">'
-                    f'<title>Yoghurt | Yoggies.be</title>'
-                    '</head><body>'
-                    f'<script>window.location.replace("products/{sl}.html");</script>'
-                    '</body></html>'
-                )
-                (SITE_DIR / cat_file).write_text(redirect_page, encoding="utf-8")
+                (SITE_DIR / cat_file).write_text(
+                    _redirect_stub(
+                        f"products/{sl}.html",
+                        "Yoghurt | Yoggies.be",
+                        f"products/{sl}.html",
+                        note="Yoghurt heeft één product.",
+                    ),
+                    encoding="utf-8")
                 continue
+
+            n_prod = len(by_cat[cat_key])
+            first_img = next((str(p.get("image_main") or p.get("doglife_image") or "").strip()
+                              for p in by_cat[cat_key]
+                              if p.get("image_main") or p.get("doglife_image")), "")
+            page = _inject_head(
+                page,
+                title=f"{cat_name} | Yoggies.be",
+                description=_meta_desc(
+                    f"{cat_name} van Yoggies: {n_prod} producten voor je hond. "
+                    f"Natuurlijke voeding met probiotica, te bestellen bij DogLife.be."),
+                url_path=cat_file,
+                image=img_src(first_img, "lg") if first_img else None,
+            )
 
             # Inject nav
             nav_html = _build_nav(current_cat=cat_key, depth="", by_cat=by_cat, slugs=slugs)
@@ -1189,6 +1495,15 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
                           f'class="pg-title">{html.escape(filter_name)}', page, count=1)
             page = re.sub(r'class="pg-count"[^>]*>[^<]*',
                           f'class="pg-count">({len(by_filter[filter_key])} producten)', page, count=1)
+            page = _inject_head(
+                page,
+                title=f"{filter_name} | Yoggies.be",
+                description=_meta_desc(
+                    f"Yoggies voeding en snacks voor {filter_name.lower()}: "
+                    f"{len(by_filter[filter_key])} producten, natuurlijk en met probiotica."),
+                url_path=filter_file,
+            )
+
             # Inject nav (no specific category active for filter pages)
             nav_html = _build_nav(current_cat="", depth="", by_cat=by_cat, slugs=slugs)
             page = re.sub(r'<ul class="nav-list">.*?</ul>', nav_html, page, count=1, flags=re.DOTALL)
@@ -1289,23 +1604,25 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
             home_content, count=1
         )
 
+        home_content = _inject_head(
+            home_content,
+            title="Yoggies.be — natuurlijke hondenvoeding met probiotica",
+            description=_meta_desc(
+                "Yoggies maakt natuurlijke hondenvoeding met probiotica: BARF, "
+                "koudgeperste brokken, vers gekookt voer, snacks en supplementen. "
+                "In België te bestellen bij DogLife.be."),
+            url_path="",
+            image="images/favicon.svg",
+            og_type="website",
+        )
         (SITE_DIR / "index.html").write_text(home_content, encoding="utf-8")
         # home.html used to be a byte-identical copy of index.html, which is
         # duplicate content. Emit a redirect stub instead so any old inbound
         # link still lands on the canonical homepage.
         (SITE_DIR / "home.html").write_text(
-            '<!DOCTYPE html><html lang="nl"><head>'
-            '<meta charset="UTF-8">'
-            '<meta name="robots" content="noindex,follow">'
-            '<meta http-equiv="refresh" content="0; url=index.html">'
-            '<link rel="canonical" href="https://yoggies.be/">'
-            '<title>Yoggies.be</title>'
-            '</head><body>'
-            '<p>Deze pagina is verplaatst naar <a href="index.html">de homepage</a>.</p>'
-            '<script>window.location.replace("index.html");</script>'
-            '</body></html>',
-            encoding="utf-8"
-        )
+            _redirect_stub("index.html", "Yoggies.be", "index.html",
+                           note="Deze pagina is verplaatst naar de homepage."),
+            encoding="utf-8")
 
         # ── Generate over-yoggies.html (Dutch translation of yoggies.cz/o-nas) ──
         over_yoggies_body = '''
@@ -1397,11 +1714,42 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         over_content = _re.sub(r'(</nav>)(.*?)(<footer)',
                                lambda m: m.group(1) + over_yoggies_body + '\n' + m.group(3),
                                over_content, count=1, flags=_re.DOTALL)
+        over_content = _inject_head(
+            over_content,
+            title="Over Yoggies | Yoggies.be",
+            description=_meta_desc(
+                "Gezondheid begint in de etensbak. Lees waarom Yoggies natuurlijke "
+                "hondenvoeding met probiotica maakt en hoe die wordt geproduceerd."),
+            url_path="over-yoggies.html",
+        )
         (SITE_DIR / "over-yoggies.html").write_text(over_content, encoding="utf-8")
         print("over-yoggies.html created.")
 
         # Build all Hondenatlas breed detail pages (ras-<slug>.html) from the home template
         _write_breed_pages(home_content)
+
+    # ── calculator.html: hand-written page, never regenerated ──
+    # 156 pages link to it, but no builder owned it, so it kept a nav frozen
+    # from an old build and had no <head> metadata at all.
+    calc_path = SITE_DIR / "calculator.html"
+    if calc_path.exists():
+        calc_content = calc_path.read_text(encoding="utf-8")
+        calc_content = _inject_nav_css(calc_content)
+        calc_content = _inject_search_css(calc_content)
+        calc_content = _inject_nav_js(calc_content)
+        calc_content = _inject_search_js(calc_content)
+        calc_content = _fix_logo_link(calc_content, "index.html")
+        calc_content = _refresh_nav(calc_content, by_cat=by_cat, slugs=slugs)
+        calc_content = _inject_head(
+            calc_content,
+            title="Voedingscalculator | Yoggies.be",
+            description=_meta_desc(
+                "Bereken hoeveel Yoggies voer je hond per dag nodig heeft op basis "
+                "van gewicht, leeftijd en activiteit."),
+            url_path="calculator.html",
+        )
+        calc_path.write_text(calc_content, encoding="utf-8")
+        print("calculator.html: nav + metadata refreshed.")
 
     # ── Update Dierenkliniek.html if exists — convert "Van hier om te berekenen" button to link → calculator.html ──
     dk_path = SITE_DIR / "Dierenkliniek.html"
@@ -1508,6 +1856,15 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
                 dk_content = dk_content_new
                 print("Dierenkliniek.html: Hondenatlas section added.")
 
+        dk_content = _refresh_nav(dk_content, by_cat=by_cat, slugs=slugs)
+        dk_content = _inject_head(
+            dk_content,
+            title="Dierenkliniek & voedingsadvies | Yoggies.be",
+            description=_meta_desc(
+                "Voedingsadvies voor je hond: welk Yoggies voer past bij welke "
+                "leeftijd, maat en gezondheidsklacht. Stel je vraag aan onze adviseur."),
+            url_path="Dierenkliniek.html",
+        )
         dk_path.write_text(dk_content, encoding="utf-8")
 
     # ── Update hondenatlas.html if exists — fill breed grid with real breeds ──
@@ -1526,6 +1883,15 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         ha_new = re.sub(r'var totalPages = \d+;',
                         f'var totalPages = {n_pages};', ha_new, count=1)
 
+        ha_new = _refresh_nav(ha_new, by_cat=by_cat, slugs=slugs)
+        ha_new = _inject_head(
+            ha_new,
+            title="Hondenatlas | Yoggies.be",
+            description=_meta_desc(
+                f"Hondenatlas met {len(_ATLAS_BREEDS)} rassen: karakter, verzorging, "
+                f"veelvoorkomende aandoeningen en het juiste voer per ras."),
+            url_path="hondenatlas.html",
+        )
         if ha_new != ha_content:
             ha_path.write_text(ha_new, encoding="utf-8")
             print(f"hondenatlas.html: breed grid updated ({len(_ATLAS_BREEDS)} breeds, {n_pages} pages).")
@@ -1539,6 +1905,7 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
     fixed_refs  = 0
     local_files = 0
     local_refs  = 0
+    fixups      = 0
     unmapped    = defaultdict(int)
 
     for html_file in SITE_DIR.rglob("*.html"):
@@ -1554,6 +1921,8 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         # Pages under site/products/ need to climb one level to reach images/.
         depth = "../" * len(html_file.relative_to(SITE_DIR).parent.parts)
         t, n_local = _localize_img_tags(t, depth, unmapped)
+        t, n_fix = _content_fixups(t)
+        fixups += n_fix
 
         if t != orig:
             html_file.write_text(t, encoding="utf-8")
@@ -1568,6 +1937,8 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         print(f"HTTPS sweep: fixed {fixed_refs} http://yoggies.cz refs in {fixed_files} files.")
     if local_refs:
         print(f"Image sweep: localized {local_refs} leftover refs in {local_files} files.")
+    if fixups:
+        print(f"Content fixups: {fixups} (terms link, € format, duplicate SVG ids).")
     if unmapped:
         top = sorted(unmapped.items(), key=lambda kv: -kv[1])[:5]
         total = sum(unmapped.values())
@@ -1575,6 +1946,53 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
               f"not in image_map.json. Re-run localize_images.py.")
         for u, n in top:
             print(f"    {n:>5}x {u[:90]}")
+
+    _write_sitemap_and_robots()
+
+def _write_sitemap_and_robots():
+    """Emit sitemap.xml and robots.txt from the pages actually on disk.
+
+    Redirect stubs carry <meta name="robots" content="noindex"> and are left
+    out — a sitemap listing noindex URLs is a Search Console warning.
+    """
+    today = datetime.now().strftime("%Y-%m-%d")
+    entries = []
+    skipped = 0
+    for f in sorted(SITE_DIR.rglob("*.html")):
+        try:
+            t = f.read_text(encoding="utf-8")
+        except Exception:
+            continue
+        if 'name="robots" content="noindex' in t:
+            skipped += 1
+            continue
+        rel = f.relative_to(SITE_DIR).as_posix()
+        loc = _abs_url("" if rel == "index.html" else rel)
+        # Homepage first, then product pages, then the rest.
+        prio = "1.0" if rel == "index.html" else ("0.8" if rel.startswith("products/") else "0.6")
+        entries.append((loc, prio))
+
+    body = "\n".join(
+        f'  <url>\n    <loc>{html.escape(loc)}</loc>\n'
+        f'    <lastmod>{today}</lastmod>\n'
+        f'    <priority>{prio}</priority>\n  </url>'
+        for loc, prio in entries
+    )
+    (SITE_DIR / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f'{body}\n</urlset>\n',
+        encoding="utf-8")
+
+    (SITE_DIR / "robots.txt").write_text(
+        "User-agent: *\n"
+        "Allow: /\n"
+        "\n"
+        f"Sitemap: {_abs_url('sitemap.xml')}\n",
+        encoding="utf-8")
+    print(f"sitemap.xml: {len(entries)} URLs ({skipped} redirect stubs excluded). "
+          f"robots.txt written.")
+
 
 def _cat_card(p, slugs, depth=""):
     name = str(p.get("name_nl") or "Product").strip()
@@ -1585,11 +2003,26 @@ def _cat_card(p, slugs, depth=""):
     img_tag = (f'<img src="{html.escape(img_src(img, "thumb", depth))}" '
                f'alt="{html.escape(name)}" loading="lazy" decoding="async">'
                if img else "<div>📦</div>")
-    return f'''  <div class="pg-card" onclick="window.location='products/{slug}.html'">
+    # A real anchor, not a div+onclick: this is what makes the product pages
+    # crawlable and keyboard-reachable.
+    return f'''  <a class="pg-card" href="{depth}products/{slug}.html">
     <div class="pg-img-wrap">{img_tag}</div>
     <div class="pg-body"><h2 class="pg-name">{html.escape(name)}</h2>
     <p class="pg-desc">{html.escape(desc)}</p></div>
-  </div>\n'''
+  </a>\n'''
+
+
+def _refresh_nav(content, by_cat=None, slugs=None, current_cat="", depth=""):
+    """Swap a page's <ul class="nav-list"> for a freshly generated one.
+
+    Static pages (calculator/Dierenkliniek/hondenatlas) otherwise keep whatever
+    nav was baked in when they were last hand-edited — stale product links and
+    full-size thumbnails included.
+    """
+    nav_html = _build_nav(current_cat=current_cat, depth=depth,
+                          by_cat=by_cat, slugs=slugs)
+    return re.sub(r'<ul class="nav-list"[^>]*>.*?</ul>',
+                  lambda _m: nav_html, content, count=1, flags=re.DOTALL)
 
 
 def _build_nav(current_cat="", depth="", by_cat=None, slugs=None):
@@ -1710,13 +2143,23 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
                   page, count=1)
 
     main = img1 or dl_img or ""
+    page = _inject_head(
+        page,
+        title=f"{name} | Yoggies.be",
+        description=_meta_desc(desc) or _meta_desc(f"{name} van Yoggies — natuurlijke hondenvoeding met probiotica."),
+        url_path=f"products/{slug}.html",
+        image=img_src(main, "lg") if main else None,
+        depth="../",
+        og_type="product",
+    )
+
     # Hero: the LCP element, so it is eager + high priority and gets a srcset.
     mi = (f'<img src="{html.escape(img_src(main, "md", "../"))}"'
           f'{img_srcset(main, "../")} alt="{name}" '
           f'decoding="async" fetchpriority="high">'
           if main else '<div style="font-size:48px;text-align:center">📦</div>')
     page = re.sub(r'<div class="ph-main-img"[^>]*>.*?</div>',
-                  f'<div class="ph-main-img" id="phMainImg">{mi}</div>',
+                  lambda _m: f'<div class="ph-main-img" id="phMainImg">{mi}</div>',
                   page, count=1, flags=re.DOTALL)
 
     thumb_srcs = [s for s in [img1, img2, img3, dl_img] if s and s.startswith("http")][:4]
@@ -1730,7 +2173,7 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
         for i, s in enumerate(thumb_srcs)
     ) or '<div class="ph-thumb active" onclick="phSwap(this)"><span style="width:60px;height:60px;background:var(--cream-deep);display:block;border-radius:5px"></span></div>'
     page = re.sub(r'<div class="ph-thumbs">.*?</div>',
-                  f'<div class="ph-thumbs">{thumbs}</div>',
+                  lambda _m: f'<div class="ph-thumbs">{thumbs}</div>',
                   page, count=1, flags=re.DOTALL)
 
     il = [translate_icon(l.strip()) for l in icons_t.split("|") if l.strip()][:3]
@@ -1744,7 +2187,7 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
         for i, l in enumerate(il)
     )
     page = re.sub(r'<div class="ph-badges">.*?</div>',
-                  f'<div class="ph-badges">{badges}</div>',
+                  lambda _m: f'<div class="ph-badges">{badges}</div>',
                   page, count=1, flags=re.DOTALL)
 
     # Shared contact-fallback HTML (used both as standalone and inside the variant toggle)
@@ -1786,11 +2229,26 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
             'var b=document.getElementById("ph-variant-btn");'
             'var f=document.getElementById("ph-variant-fallback");'
             'if(!s||!b||!f)return;'
-            's.addEventListener("change",function(){'
+            'function sync(){'
             '  var u=s.value;'
             '  if(u&&u.indexOf("http")===0){b.href=u;b.style.display="";f.style.display="none";}'
             '  else{b.style.display="none";f.style.display="";}'
-            '});})();</script>'
+            '}'
+            's.addEventListener("change",sync);'
+            # Deep link: the retired per-size URLs redirect here with ?maat=,
+            # so preselect that size instead of dumping the visitor on the
+            # smallest variant.
+            'try{'
+            '  var want=new URLSearchParams(location.search).get("maat");'
+            '  if(want){'
+            '    var norm=function(x){return (x||"").replace(/\\s+/g,"").toLowerCase();};'
+            '    for(var i=0;i<s.options.length;i++){'
+            '      if(norm(s.options[i].text)===norm(want)){s.selectedIndex=i;break;}'
+            '    }'
+            '    sync();'
+            '  }'
+            '}catch(e){}'
+            '})();</script>'
         )
     elif _is_real_product_url(dl_url):
         btn = (f'<a href="{html.escape(dl_url)}" class="ph-order-btn" '
@@ -1798,8 +2256,11 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
     else:
         # Product not on DogLife — show contact info from footer
         btn = contact_html
+    # lambda, not a plain string: the replacement carries generated markup that
+    # can contain backslashes (JS regexes) and \1-looking sequences, which
+    # re.sub would otherwise try to interpret as escapes/group references.
     page = re.sub(r'<button class="ph-order-btn"[^>]*>.*?</button>',
-                  btn, page, count=1, flags=re.DOTALL)
+                  lambda _m: btn, page, count=1, flags=re.DOTALL)
 
     def _paras(text, fallback):
         if text:
@@ -2247,7 +2708,8 @@ _SEARCH_JS = """<script>
     for (var i = 0; i < matches.length; i++) {
       var m = matches[i];
       var catHtml = m.cat ? '<span class="search-result-cat">' + escapeHtml(m.cat) + '</span>' : '';
-      html += '<a class="search-result-item" href="' + depth + 'products/' + escapeHtml(m.slug) + '.html">'
+      var href = depth + 'products/' + (m.url ? m.url : m.slug + '.html');
+      html += '<a class="search-result-item" href="' + escapeHtml(href) + '">'
            +    '<div class="search-result-info">'
            +      '<span class="search-result-name">' + escapeHtml(m.name) + '</span>'
            +      catHtml

@@ -240,6 +240,9 @@ nav.main-nav {
 }
 
 /* ── CARD ────────────────────────────────────────────────────── */
+/* .pg-card is an <a>: it used to be a <div> with onclick="window.location",
+   which made the product pages invisible to crawlers and unreachable by
+   keyboard. Reset the anchor styling so the card still looks like a card. */
 .pg-card {
   background: var(--white);
   border-radius: var(--radius);
@@ -251,10 +254,16 @@ nav.main-nav {
   transition: box-shadow .22s var(--ease), transform .22s var(--ease);
   cursor: pointer;
   position: relative;
+  text-decoration: none;
+  color: inherit;
 }
 .pg-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-4px);
+}
+.pg-card:focus-visible {
+  outline: 3px solid var(--green, #A1E647);
+  outline-offset: 3px;
 }
 
 /* ── Card image ──────────────────────────────────────────────── */
