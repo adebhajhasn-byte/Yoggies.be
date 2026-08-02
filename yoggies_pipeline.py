@@ -1105,12 +1105,19 @@ def _atlas_img_by_slug():
     """Map slug -> image url from _ATLAS_BREEDS."""
     return {_atlas_slug(href): img for (name, img, href) in _ATLAS_BREEDS}
 
+
+def _atlas_nl_slug_by_cz():
+    """Map the Czech atlas slug -> the Dutch slug the page is published under."""
+    return {b["slug"]: (b.get("nl_slug") or _slugify(b["nl_name"]) or b["slug"])
+            for b in _BREEDS_NL if b.get("slug")}
+
 def _build_atlas_pages(per_page=12):
     """Return HTML for the dog-grid atlas-page divs (paginated breed cards).
     Cards link to local breed pages (ras-<slug>.html)."""
     pages_html = ""
     total = len(_ATLAS_BREEDS)
     n_pages = (total + per_page - 1) // per_page
+    nl_by_cz = _atlas_nl_slug_by_cz()
     for pi in range(n_pages):
         chunk = _ATLAS_BREEDS[pi * per_page:(pi + 1) * per_page]
         hidden = "" if pi == 0 else ' style="display:none;"'
@@ -1118,7 +1125,8 @@ def _build_atlas_pages(per_page=12):
         for name, img, href in chunk:
             n = html.escape(name)
             slug = _atlas_slug(href)
-            local = f"ras-{slug}.html"
+            # Link straight to the Dutch URL, not through the redirect.
+            local = f"ras-{nl_by_cz.get(slug, slug)}.html"
             cards += f'''        <div class="dog-card">
           <a href="{local}" style="display:block;text-decoration:none;color:inherit;">
             <div class="dog-card-img"><img src="{html.escape(img_src(img, "thumb"))}" alt="{n}" loading="lazy" decoding="async"></div>
@@ -1222,10 +1230,14 @@ def _write_breed_pages(home_content):
         return 0
     img_map = _atlas_img_by_slug()
     count = 0
+    redirects = 0
     for breed in _BREEDS_NL:
         slug = breed.get("slug")
         if not slug:
             continue
+        # Published under the Dutch slug; the Czech one only survives as a
+        # redirect and as the key for the atlas image lookup.
+        nl_slug = breed.get("nl_slug") or _slugify(breed["nl_name"]) or slug
         breed_img = img_map.get(slug, "")
         body = _build_breed_body(breed, breed_img)
         nl_name = breed["nl_name"]
@@ -1245,13 +1257,25 @@ def _write_breed_pages(home_content):
             description=_meta_desc(blurb) or _meta_desc(
                 f"Alles over de {nl_name}: karakter, verzorging, veelvoorkomende "
                 f"aandoeningen en de juiste voeding."),
-            url_path=f"ras-{slug}.html",
+            url_path=f"ras-{nl_slug}.html",
             image=img_src(breed_img, "lg") if breed_img else None,
             og_type="article",
         )
-        (SITE_DIR / f"ras-{slug}.html").write_text(page, encoding="utf-8")
+        (SITE_DIR / f"ras-{nl_slug}.html").write_text(page, encoding="utf-8")
         count += 1
-    print(f"Hondenatlas: {count} rassenpagina's gegenereerd (ras-<slug>.html).")
+
+        # Keep the old Czech URL alive.
+        if slug != nl_slug:
+            (SITE_DIR / f"ras-{slug}.html").write_text(
+                _redirect_stub(f"ras-{nl_slug}.html",
+                               f"{nl_name} | Hondenatlas | Yoggies.be",
+                               f"ras-{nl_slug}.html",
+                               note=f"Deze pagina staat nu op ras-{nl_slug}.html."),
+                encoding="utf-8")
+            redirects += 1
+
+    print(f"Hondenatlas: {count} rassenpagina's gegenereerd (ras-<nl_slug>.html), "
+          f"{redirects} Tsjechische URL's redirecten.")
     return count
 
 

@@ -4,13 +4,18 @@ atlas_nl_data.py — Nederlandse vertaling van de 27 hondenrassen (yoggies.cz ->
 Handmatig vertaald (niet via API). Gebruikt door de pipeline om rassenpagina's te bouwen.
 
 Structuur per ras:
-  slug, nl_name, size{hoogte,gewicht,levensduur}, sections{intro,povaha,hodi,zaklad,vychova,nemoci,krmit}
+  slug     - original Czech slug from yoggies.cz (kept: image lookup +
+             redirect stubs at the old URLs)
+  nl_slug  - Dutch slug, derived from nl_name; the page is published here
+  nl_name, size{hoogte,gewicht,levensduur},
+  sections{intro,povaha,hodi,zaklad,vychova,nemoci,krmit}
 """
 
 BREEDS_NL = [
 
 {
 "slug": "akita-inu",
+"nl_slug": "akita-inu",
 "nl_name": "Akita Inu",
 "size": {"hoogte": "61–66 cm (teef) / 66–71 cm (reu)", "gewicht": "25–35 kg (teef) / 35–45 kg (reu)", "levensduur": "11–15 jaar"},
 "sections": {
@@ -27,6 +32,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "australsky-ovcak",
+"nl_slug": "australische-herdershond",
 "nl_name": "Australische herdershond",
 "size": {"hoogte": "46–51 cm (teef) / 51–58 cm (reu)", "gewicht": "18–23 kg (teef) / 19–25 kg (reu)", "levensduur": "11–14 jaar"},
 "sections": {
@@ -42,6 +48,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "belgicky-ovcak",
+"nl_slug": "belgische-herdershond",
 "nl_name": "Belgische herdershond",
 "size": {"hoogte": "55–60 cm (teef) / 61–65 cm (reu)", "gewicht": "20–25 kg (teef) / 25–30 kg (reu)", "levensduur": "12–15 jaar"},
 "sections": {
@@ -57,6 +64,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "bernsky-salasnicky-pes",
+"nl_slug": "berner-sennenhond",
 "nl_name": "Berner sennenhond",
 "size": {"hoogte": "57–66 cm (teef) / 64–70 cm (reu)", "gewicht": "32–40 kg (teef) / 40–49 kg (reu)", "levensduur": "7–9 jaar"},
 "sections": {
@@ -72,6 +80,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "border-kolie",
+"nl_slug": "border-collie",
 "nl_name": "Border collie",
 "size": {"hoogte": "48–51 cm (teef) / 51–56 cm (reu)", "gewicht": "13–19 kg (teef) / 15–25 kg (reu)", "levensduur": "13–15 jaar"},
 "sections": {
@@ -87,6 +96,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "civava",
+"nl_slug": "chihuahua",
 "nl_name": "Chihuahua",
 "size": {"hoogte": "15–20 cm (teef) / 18–23 cm (reu)", "gewicht": "1–3 kg", "levensduur": "12–16 jaar"},
 "sections": {
@@ -102,6 +112,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "dobrman",
+"nl_slug": "dobermann",
 "nl_name": "Dobermann",
 "size": {"hoogte": "63–68 cm (teef) / 68–72 cm (reu)", "gewicht": "32–35 kg (teef) / 40–45 kg (reu)", "levensduur": "10–13 jaar"},
 "sections": {
@@ -117,6 +128,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "francouzsky-buldocek",
+"nl_slug": "franse-bulldog",
 "nl_name": "Franse bulldog",
 "size": {"hoogte": "24–32 cm (teef) / 27–35 cm (reu)", "gewicht": "8–13 kg (teef) / 9–14 kg (reu)", "levensduur": "9–13 jaar"},
 "sections": {
@@ -132,6 +144,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "havansky-psik",
+"nl_slug": "havanezer",
 "nl_name": "Havanezer",
 "size": {"hoogte": "21–26 cm (teef) / 22–29 cm (reu)", "gewicht": "3–5 kg (teef) / 4–6 kg (reu)", "levensduur": "12–15 jaar"},
 "sections": {
@@ -147,6 +160,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "hovawart",
+"nl_slug": "hovawart",
 "nl_name": "Hovawart",
 "size": {"hoogte": "58–65 cm (teef) / 64–70 cm (reu)", "gewicht": "25–30 kg (teef) / 30–40 kg (reu)", "levensduur": "12–15 jaar"},
 "sections": {
@@ -162,6 +176,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "chodsky-pes",
+"nl_slug": "boheemse-herdershond",
 "nl_name": "Boheemse herdershond",
 "size": {"hoogte": "48–52 cm (teef) / 52–56 cm (reu)", "gewicht": "16–20 kg (teef) / 20–25 kg (reu)", "levensduur": "12–15 jaar"},
 "sections": {
@@ -177,6 +192,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "jazevcik",
+"nl_slug": "teckel",
 "nl_name": "Teckel",
 "size": {"hoogte": "laag, langgerekt lichaam", "gewicht": "tot 9 kg (Standaard); kleiner (Dwerg / Kaninchen)", "levensduur": "12–16 jaar"},
 "sections": {
@@ -192,6 +208,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "kavkazsky-pastevecky-pes",
+"nl_slug": "kaukasische-herdershond",
 "nl_name": "Kaukasische herdershond",
 "size": {"hoogte": "min. 64 cm (teef) / min. 68 cm (reu)", "gewicht": "45–70 kg", "levensduur": "10–12 jaar"},
 "sections": {
@@ -207,6 +224,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "labradorsky-retrivr",
+"nl_slug": "labrador-retriever",
 "nl_name": "Labrador retriever",
 "size": {"hoogte": "54–56 cm (teef) / 56–57 cm (reu)", "gewicht": "25–32 kg (teef) / 29–36 kg (reu)", "levensduur": "12–14 jaar"},
 "sections": {
@@ -222,6 +240,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "mops",
+"nl_slug": "mopshond",
 "nl_name": "Mopshond",
 "size": {"hoogte": "25–28 cm (teef) / 29–33 cm (reu)", "gewicht": "6–8 kg (teef) / 7–9 kg (reu)", "levensduur": "12–15 jaar"},
 "sections": {
@@ -237,6 +256,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "nemecky-boxer",
+"nl_slug": "duitse-bokser",
 "nl_name": "Duitse bokser",
 "size": {"hoogte": "53–59 cm (teef) / 57–63 cm (reu)", "gewicht": "25–29 kg (teef) / 30–32 kg (reu)", "levensduur": "10–12 jaar"},
 "sections": {
@@ -252,6 +272,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "nemecky-ovcak",
+"nl_slug": "duitse-herdershond",
 "nl_name": "Duitse herdershond",
 "size": {"hoogte": "55–60 cm (teef) / 60–65 cm (reu)", "gewicht": "22–32 kg (teef) / 30–40 kg (reu)", "levensduur": "12–15 jaar"},
 "sections": {
@@ -267,6 +288,7 @@ Na het verbod op hondengevechten in 1910 werd het ras langzaam in zuivere vorm h
 
 {
 "slug": "pitbul",
+"nl_slug": "pitbull",
 "nl_name": "Pitbull",
 "size": {"hoogte": "46–53 cm (teef) / 48–56 cm (reu)", "gewicht": "13–23 kg (teef) / 16–30 kg (reu)", "levensduur": "10–14 jaar"},
 "sections": {
@@ -283,6 +305,7 @@ Veel honden, vooral bullrassen, worden door het brede publiek tot de zogenoemde 
 
 {
 "slug": "pomeranian",
+"nl_slug": "pomeriaan",
 "nl_name": "Pomeriaan",
 "size": {"hoogte": "18–24 cm", "gewicht": "1,9–3,5 kg", "levensduur": "12–16 jaar"},
 "sections": {
@@ -298,6 +321,7 @@ Veel honden, vooral bullrassen, worden door het brede publiek tot de zogenoemde 
 
 {
 "slug": "rotvajler",
+"nl_slug": "rottweiler",
 "nl_name": "Rottweiler",
 "size": {"hoogte": "56–63 cm (teef) / 61–68 cm (reu)", "gewicht": "38–42 kg (teef) / 47–50 kg (reu)", "levensduur": "10–12 jaar"},
 "sections": {
@@ -313,6 +337,7 @@ Veel honden, vooral bullrassen, worden door het brede publiek tot de zogenoemde 
 
 {
 "slug": "samojed",
+"nl_slug": "samojeed",
 "nl_name": "Samojeed",
 "size": {"hoogte": "50–53 cm (teef) / 53–57 cm (reu)", "gewicht": "23–27 kg (teef) / 26–30 kg (reu)", "levensduur": "12–14 jaar"},
 "sections": {
@@ -328,6 +353,7 @@ Veel honden, vooral bullrassen, worden door het brede publiek tot de zogenoemde 
 
 {
 "slug": "shiba-inu",
+"nl_slug": "shiba-inu",
 "nl_name": "Shiba Inu",
 "size": {"hoogte": "ong. 37 cm (teef) / ong. 40 cm (reu)", "gewicht": "8–9 kg (teef) / 10–13 kg (reu)", "levensduur": "12–15 jaar"},
 "sections": {
@@ -343,6 +369,7 @@ Veel honden, vooral bullrassen, worden door het brede publiek tot de zogenoemde 
 
 {
 "slug": "stafordsirsky-bulterier",
+"nl_slug": "staffordshire-bull-terrier",
 "nl_name": "Staffordshire bull terriër",
 "size": {"hoogte": "35–38 cm (teef) / 37–40 cm (reu)", "gewicht": "10–15 kg (teef) / 12–17 kg (reu)", "levensduur": "12–14 jaar"},
 "sections": {
@@ -359,6 +386,7 @@ Veel honden, vooral bullrassen, worden door het brede publiek tot de zogenoemde 
 
 {
 "slug": "tibetska-doga",
+"nl_slug": "tibetaanse-mastiff",
 "nl_name": "Tibetaanse mastiff",
 "size": {"hoogte": "61–65 cm (teef) / 66–73 cm (reu)", "gewicht": "45–55 kg (teef) / 65–78 kg (reu)", "levensduur": "11–13 jaar"},
 "sections": {
@@ -374,6 +402,7 @@ Veel honden, vooral bullrassen, worden door het brede publiek tot de zogenoemde 
 
 {
 "slug": "welsh-corgi-pembroke",
+"nl_slug": "welsh-corgi-pembroke",
 "nl_name": "Welsh Corgi Pembroke",
 "size": {"hoogte": "25–30 cm (teef) / 25–31 cm (reu)", "gewicht": "10–11 kg (teef) / 10–12 kg (reu)", "levensduur": "12–15 jaar"},
 "sections": {
@@ -389,6 +418,7 @@ Veel honden, vooral bullrassen, worden door het brede publiek tot de zogenoemde 
 
 {
 "slug": "yorkshirsky-terier",
+"nl_slug": "yorkshire-terrier",
 "nl_name": "Yorkshire terriër",
 "size": {"hoogte": "20–24 cm", "gewicht": "max. 3,2 kg", "levensduur": "12–16 jaar"},
 "sections": {
@@ -404,6 +434,7 @@ Veel honden, vooral bullrassen, worden door het brede publiek tot de zogenoemde 
 
 {
 "slug": "zlaty-retrivr",
+"nl_slug": "golden-retriever",
 "nl_name": "Golden retriever",
 "size": {"hoogte": "51–56 cm (teef) / 56–61 cm (reu)", "gewicht": "26–33 kg (teef) / 30–36 kg (reu)", "levensduur": "10–12 jaar"},
 "sections": {

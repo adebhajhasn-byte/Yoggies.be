@@ -1676,47 +1676,62 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-australsky-ovcak.html</loc>
+    <loc>https://yoggies.be/ras-australische-herdershond.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-belgicky-ovcak.html</loc>
+    <loc>https://yoggies.be/ras-belgische-herdershond.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-bernsky-salasnicky-pes.html</loc>
+    <loc>https://yoggies.be/ras-berner-sennenhond.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-border-kolie.html</loc>
+    <loc>https://yoggies.be/ras-boheemse-herdershond.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-chodsky-pes.html</loc>
+    <loc>https://yoggies.be/ras-border-collie.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-civava.html</loc>
+    <loc>https://yoggies.be/ras-chihuahua.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-dobrman.html</loc>
+    <loc>https://yoggies.be/ras-dobermann.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-francouzsky-buldocek.html</loc>
+    <loc>https://yoggies.be/ras-duitse-bokser.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-havansky-psik.html</loc>
+    <loc>https://yoggies.be/ras-duitse-herdershond.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://yoggies.be/ras-franse-bulldog.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://yoggies.be/ras-golden-retriever.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://yoggies.be/ras-havanezer.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
@@ -1726,52 +1741,37 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-jazevcik.html</loc>
+    <loc>https://yoggies.be/ras-kaukasische-herdershond.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-kavkazsky-pastevecky-pes.html</loc>
+    <loc>https://yoggies.be/ras-labrador-retriever.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-labradorsky-retrivr.html</loc>
+    <loc>https://yoggies.be/ras-mopshond.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-mops.html</loc>
+    <loc>https://yoggies.be/ras-pitbull.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-nemecky-boxer.html</loc>
+    <loc>https://yoggies.be/ras-pomeriaan.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-nemecky-ovcak.html</loc>
+    <loc>https://yoggies.be/ras-rottweiler.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-pitbul.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://yoggies.be/ras-pomeranian.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://yoggies.be/ras-rotvajler.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://yoggies.be/ras-samojed.html</loc>
+    <loc>https://yoggies.be/ras-samojeed.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
@@ -1781,12 +1781,17 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-stafordsirsky-bulterier.html</loc>
+    <loc>https://yoggies.be/ras-staffordshire-bull-terrier.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-tibetska-doga.html</loc>
+    <loc>https://yoggies.be/ras-teckel.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://yoggies.be/ras-tibetaanse-mastiff.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
@@ -1796,12 +1801,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yoggies.be/ras-yorkshirsky-terier.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://yoggies.be/ras-zlaty-retrivr.html</loc>
+    <loc>https://yoggies.be/ras-yorkshire-terrier.html</loc>
     <lastmod>2026-08-02</lastmod>
     <priority>0.6</priority>
   </url>
