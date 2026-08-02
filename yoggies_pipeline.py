@@ -56,6 +56,18 @@ _NAV_MARK_E = "/* YGS_NAV_CSS_END */"
 _NAV_JS_MARK_S = "<!-- YGS_NAV_JS_START -->"
 _NAV_JS_MARK_E = "<!-- YGS_NAV_JS_END -->"
 
+def _strip_block(content, start, end):
+    """Remove a previously injected marked block.
+
+    Also eats the indentation in front of it and the newline after it. Without
+    that, every rebuild left the old whitespace behind and added a fresh blank
+    line, so pages the pipeline edits in place grew a little on each run.
+    """
+    return re.sub(
+        r'[ \t]*' + re.escape(start) + r'.*?' + re.escape(end) + r'[ \t]*\n?',
+        '', content, flags=re.DOTALL)
+
+
 def _inject_nav_css(content):
     """Idempotently inject _NAV_CSS into HTML content.
     - Strips any previously-injected nav CSS (between markers).
@@ -63,10 +75,7 @@ def _inject_nav_css(content):
       standalone <style> block before </head>.
     """
     # Strip previous injection (works inside <style> or standalone)
-    content = re.sub(
-        re.escape(_NAV_MARK_S) + r'.*?' + re.escape(_NAV_MARK_E),
-        '', content, flags=re.DOTALL
-    )
+    content = _strip_block(content, _NAV_MARK_S, _NAV_MARK_E)
     block = _NAV_MARK_S + "\n" + _NAV_CSS.strip() + "\n" + _NAV_MARK_E
     if "</style>" in content:
         content = content.replace("</style>", block + "\n  </style>", 1)
@@ -77,10 +86,7 @@ def _inject_nav_css(content):
 def _inject_nav_js(content):
     """Idempotently inject _NAV_JS (which already includes <script>...</script>)
     into HTML content before </body>. Strips any previous injection first."""
-    content = re.sub(
-        re.escape(_NAV_JS_MARK_S) + r'.*?' + re.escape(_NAV_JS_MARK_E),
-        '', content, flags=re.DOTALL
-    )
+    content = _strip_block(content, _NAV_JS_MARK_S, _NAV_JS_MARK_E)
     block = _NAV_JS_MARK_S + _NAV_JS + _NAV_JS_MARK_E
     if "</body>" in content:
         content = content.replace("</body>", block + "\n</body>", 1)
@@ -259,7 +265,7 @@ def _redirect_stub(target: str, title: str, canonical_path: str,
 
 def _inject_head(page: str, **kw) -> str:
     """Idempotently place the meta block just before </head>."""
-    page = _META_BLOCK_RE.sub("", page)
+    page = _strip_block(page, _META_MARK_S, _META_MARK_E)
     block = _head_block(**kw)
     if "</head>" in page:
         return page.replace("</head>", f"  {block}\n</head>", 1)
@@ -1898,8 +1904,10 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         atlas_pages_html, n_pages = _build_atlas_pages(per_page=12)
 
         # Replace placeholder atlas-page grids (everything from page-1 up to the pagination block)
+        # [ \t]* so the replacement's own indentation replaces the existing
+        # one instead of stacking on top of it every rebuild.
         ha_new = re.sub(
-            r'<div class="dog-grid atlas-page" id="page-1">.*?(?=<!-- ===== PAGINATION CONTROLS)',
+            r'[ \t]*<div class="dog-grid atlas-page" id="page-1">.*?(?=<!-- ===== PAGINATION CONTROLS)',
             lambda m: atlas_pages_html,
             ha_content, count=1, flags=re.DOTALL
         )
@@ -2780,10 +2788,7 @@ _SEARCH_JS = """<script>
 
 def _inject_search_css(content):
     """Idempotently inject search CSS."""
-    content = re.sub(
-        re.escape(_SEARCH_MARK_S) + r'.*?' + re.escape(_SEARCH_MARK_E),
-        '', content, flags=re.DOTALL
-    )
+    content = _strip_block(content, _SEARCH_MARK_S, _SEARCH_MARK_E)
     block = _SEARCH_MARK_S + "\n" + _SEARCH_CSS.strip() + "\n" + _SEARCH_MARK_E
     if "</style>" in content:
         content = content.replace("</style>", block + "\n  </style>", 1)
@@ -2793,10 +2798,7 @@ def _inject_search_css(content):
 
 def _inject_search_js(content):
     """Idempotently inject search JS."""
-    content = re.sub(
-        re.escape(_SEARCH_JS_MARK_S) + r'.*?' + re.escape(_SEARCH_JS_MARK_E),
-        '', content, flags=re.DOTALL
-    )
+    content = _strip_block(content, _SEARCH_JS_MARK_S, _SEARCH_JS_MARK_E)
     block = _SEARCH_JS_MARK_S + _SEARCH_JS + _SEARCH_JS_MARK_E
     if "</body>" in content:
         content = content.replace("</body>", block + "\n</body>", 1)
