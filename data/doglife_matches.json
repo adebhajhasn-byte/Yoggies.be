@@ -679,18 +679,18 @@
   "doglife_price": ""
  },
  "5-1-yoggies-kruti-a-teleci-konzerva-s-jablky-800-g": {
-  "status": "MATCH_CONFIRMED",
-  "doglife_url": "https://doglife.be/product/800g-yoggies-blik-kalkoen-met-bataten",
-  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
-  "doglife_title": "800g Yoggies blik kalkoen met bataten",
-  "doglife_price": "6,20"
+  "status": "NOT_ON_DOGLIFE",
+  "doglife_url": "",
+  "doglife_image": "",
+  "doglife_title": "",
+  "doglife_price": ""
  },
  "5-1-yoggies-kruti-a-teleci-konzerva-s-jablky-400-g": {
-  "status": "MATCH_CONFIRMED",
-  "doglife_url": "https://doglife.be/product/400g-yoggies-blik-kalkoen-met-bataten",
-  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
-  "doglife_title": "400g Yoggies blik kalkoen met bataten",
-  "doglife_price": "3,54"
+  "status": "NOT_ON_DOGLIFE",
+  "doglife_url": "",
+  "doglife_image": "",
+  "doglife_title": "",
+  "doglife_price": ""
  },
  "cerveny-psi-motylek-s-puntiky-velikost-m-9-cm": {
   "status": "NOT_ON_DOGLIFE",
@@ -1330,18 +1330,18 @@
   "doglife_price": ""
  },
  "800g-yoggies-konzerva-kruti-a-teleci-maso-s-jablky": {
-  "status": "MATCH_CONFIRMED",
-  "doglife_url": "https://doglife.be/product/800g-yoggies-blik-kalkoen-met-bataten",
-  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
-  "doglife_title": "800g Yoggies blik kalkoen met bataten",
-  "doglife_price": "6,20"
+  "status": "NOT_ON_DOGLIFE",
+  "doglife_url": "",
+  "doglife_image": "",
+  "doglife_title": "",
+  "doglife_price": ""
  },
  "400g-yoggies-konzerva-kruti-a-teleci-maso-s-jablky": {
   "status": "MATCH_CONFIRMED",
-  "doglife_url": "https://doglife.be/product/400g-yoggies-blik-kalkoen-met-bataten",
+  "doglife_url": "https://doglife.be/product/400g-yoggies-blik-kalkoen-en-kalfvlees-met-appels",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
-  "doglife_title": "400g Yoggies blik kalkoen met bataten",
-  "doglife_price": "3,54"
+  "doglife_title": "400g Yoggies blik Kalkoen en Kalfvlees met appels",
+  "doglife_price": "3,60"
  },
  "150ml-yoggies-kureci-omacka-s-bataty": {
   "status": "MATCH_CONFIRMED",

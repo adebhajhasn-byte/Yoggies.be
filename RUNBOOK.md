@@ -245,7 +245,7 @@ rebuild.
 | Images | 6,104 local files (157.8 MB), 0 missing, 0 hotlinked |
 | Site folder | 194.0 MB total, 36.2 MB without `images/` |
 | Translation | 2,566 blocks / 1,042 fields, 0 Czech left in names or descriptions |
-| DogLife | 223 linked, 303 information-only, 0 awaiting review |
+| DogLife | 220 linked, 306 information-only, 0 awaiting review |
 
 Every data and site check passes: no Czech text, no Kč, no URL collisions, no
 broken links, no missing meta descriptions or canonicals, no missing alt text,
@@ -256,8 +256,8 @@ product row has a page of its own.
 
 ### The one remaining warning
 
-**415 product pages show no call to action.** This is the old question of
-what the 303 products DogLife does not sell should display. Since yoggies.be
+**416 product pages show no call to action.** This is the old question of
+what the 306 products DogLife does not sell should display. Since yoggies.be
 is an information site and DogLife is the shop, showing no purchase block at
 all is cleaner than an apology — but that is your call, and the fix lives in
 the purchase block in `yoggies_pipeline.py` (around line 1550).
@@ -281,6 +281,19 @@ multipack, because DogLife sells those cans singly.
 Two traps worth remembering: **LUPO BIOTIN** looks like a certain match on
 title but DogLife sells 400 g/800 g while ours is 180 g, and **Yoggies ACTIVE
 vlees van wild** is a €2,70 can, not the 2–15 kg kibble whose name it echoes.
+
+**One wrong link was found outside the review and corrected the same way.**
+Four "kalkoen- en kalfsvlees met appel" rows were auto-matched — above the
+0.70 threshold, so they never reached the review file — to DogLife's *kalkoen
+met bataten*, a different recipe. The 400 g row now points at the real
+"kalkoen en kalfvlees met appels" page; the 800 g row and both 5+1 multipacks
+have no link, because DogLife does not sell those. Worth knowing that a high
+score is not proof: if you spot another, put the right URL (or `null`) in
+`data/match_decisions.json` and re-run the matcher.
+
+Six multipack products still carry an auto-match to a single-can page
+(kangoeroe, eend, rund mariadistel). The flavour is right and the pack size is
+not; left as they are, since the customer does land on the right product.
 
 Decisions always beat the scoring, so re-running the matcher never re-opens
 them. If you disagree with one, edit the `keep` column and re-apply — or edit
