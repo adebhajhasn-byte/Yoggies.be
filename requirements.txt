@@ -1,0 +1,49 @@
+# Direct dependencies for the yoggies.be pipeline.
+# Pinned to the versions installed in .venv (Python 3.13.14).
+# Transitive dependencies (numpy, httpcore, pydantic, soupsieve, ...) are
+# resolved by pip and deliberately not listed here.
+#
+#   python -m venv .venv
+#   .\.venv\Scripts\Activate.ps1
+#   python -m pip install -r requirements.txt
+
+# HTTP fetching of product pages and images.
+# Used by: pipe/1_fetch_yoggies.py, localize_images.py, scrape_atlas.py,
+#          legacy/download_images.py
+requests==2.34.2
+
+# OpenAI client for the CZ -> NL translation step (gpt-4o-mini).
+# Used by: pipe/2_translate.py
+openai==2.53.0
+
+# Claude API client. No longer imported by any script since 2_translate.py moved
+# to OpenAI; yoggies_pipeline.py --fill-cache still talks to the Anthropic REST
+# API but does so over urllib, so this package is optional. Kept pinned so the
+# translation step can be switched back without re-resolving the version.
+anthropic==0.120.2
+
+# Reads and writes the .xlsx workbooks (master sheet, DogLife, audit input).
+# Used by: pipe/3_match_doglife.py, pipe/4_build_master.py, pipe/audit.py,
+#          yoggies_pipeline.py, localize_images.py, legacy/build_site*.py
+openpyxl==3.1.5
+
+# Image resizing and format conversion when localising product images.
+# Used by: localize_images.py (imported as PIL)
+pillow==12.3.0
+
+# Tabular parsing of the scraped hondenatlas breed tables.
+# Used by: scrape_atlas.py
+pandas==3.0.5
+
+# Cloudflare-aware HTTP session for scraping the atlas source site.
+# Used by: scrape_atlas.py
+cloudscraper==1.2.71
+
+# HTML parsing of the scraped atlas pages.
+# Used by: scrape_atlas.py (imported as bs4)
+beautifulsoup4==4.15.0
+
+# HTTP client used by the archived site builder. Also arrives as an anthropic
+# dependency, but is pinned here because legacy code imports it directly.
+# Used by: legacy/build_site.py
+httpx==0.28.1

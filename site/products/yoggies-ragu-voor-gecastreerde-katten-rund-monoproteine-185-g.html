@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yoggies RAGÚ voor gecastreerde katten, rund monoproteïne 185 g | Yoggies.be</title>
+  <link rel="stylesheet" href="../home.css">
+  <link rel="stylesheet" href="../hoofdpageproduct.css">
+  <link rel="stylesheet" href="../product.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    .ph-product-title {
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--brown, #3c1e00);
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+    .ph-badge-icon {
+      width: 48px !important;
+      height: 48px !important;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .badge-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .footer {
+      background: var(--brown, #3c1e00);
+      color: rgba(255,255,255,0.8);
+      font-family: 'Nunito', sans-serif;
+      margin-top: 0;
+    }
+    .footer-top {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 52px 40px 44px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-logo-svg { height: 36px; width: auto; display: block; margin-bottom: 14px; }
+    .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; max-width: 200px; }
+    .footer-contact h4, .footer-links h4, .footer-shop h4 {
+      font-size: 11px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--green, #A1E647); margin-bottom: 16px;
+    }
+    .footer-contact ul, .footer-links ul, .footer-shop ul {
+      list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;
+    }
+    .footer-contact li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.5; }
+    .footer-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+    .footer-contact a, .footer-links a, .footer-shop a {
+      color: rgba(255,255,255,0.75); text-decoration: none; font-size: 13px; font-weight: 600; transition: color 0.18s;
+    }
+    .footer-contact a:hover, .footer-links a:hover, .footer-shop a:hover { color: var(--green, #A1E647); }
+    .footer-contact span, .footer-links li, .footer-shop li { font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 600; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1); padding: 18px 40px; max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; font-size: 11px;
+      color: rgba(255,255,255,0.35); flex-wrap: wrap; gap: 8px;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--green, #A1E647); }
+    @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; padding: 36px 24px 28px; } }
+    @media (max-width: 560px) {
+      .footer-top { grid-template-columns: 1fr; padding: 28px 18px 24px; }
+      .footer-bottom { flex-direction: column; padding: 14px 18px; text-align: center; }
+    }
+  
+    .calc-wrap{padding:4px 0 8px}
+    .calc-intro{font-size:14px;color:var(--text-muted);margin-bottom:20px;line-height:1.55}
+    .calc-pct-note{display:inline-block;margin-top:4px;color:var(--brown-mid);font-size:13px}
+    .calc-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .calc-label{font-size:14px;font-weight:700;color:var(--brown);min-width:180px}
+    .calc-input-group{display:flex;align-items:center;border:2px solid var(--cream-deep);border-radius:var(--radius-sm);overflow:hidden;transition:border-color .2s}
+    .calc-input-group:focus-within{border-color:var(--green-dark);box-shadow:0 0 0 3px rgba(125,196,0,.13)}
+    .calc-input{border:none;outline:none;padding:10px 14px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:700;width:110px;background:var(--white);color:var(--brown)}
+    .calc-unit{padding:10px 14px;background:var(--cream-deep);font-size:13px;font-weight:800;color:var(--brown-mid)}
+    .calc-result{margin-top:20px;background:var(--cream);border:2px solid var(--green);border-radius:var(--radius);padding:18px 22px}
+    .calc-result-label{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--green-dark)}
+    .calc-result-value{font-size:32px;font-weight:900;color:var(--brown);font-family:'Playfair Display',serif}
+    .calc-result-note{font-size:12px;color:var(--text-muted);margin-top:4px;line-height:1.5}
+    @media(max-width:560px){.calc-row{flex-direction:column}.calc-result-value{font-size:26px}}
+
+    /* Variant size selector (above order button) */
+    .ph-variant-row{display:flex;align-items:center;gap:12px;margin:14px 0 12px;flex-wrap:wrap}
+    .ph-variant-label{font-weight:800;font-size:14px;color:var(--brown);letter-spacing:.2px}
+    .ph-variant-select{padding:10px 36px 10px 14px;border:2px solid var(--cream-deep);border-radius:10px;font-family:inherit;font-size:15px;font-weight:700;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%233c1e00' stroke-width='2' fill='none' stroke-linecap='round'/></svg>") no-repeat right 12px center;color:var(--brown);cursor:pointer;appearance:none;-webkit-appearance:none;min-width:120px}
+    .ph-variant-select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(125,196,0,.18)}
+  /* YGS_NAV_CSS_START */
+/* ── Dropdown improvements ── */
+  nav.main-nav .nav-item { position: relative; }
+  .nav-chevron {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+    transition: transform .2s ease;
+    vertical-align: middle;
+    opacity: .75;
+  }
+  .nav-chevron svg { display: block; }
+  .nav-item:hover > a .nav-chevron,
+  .nav-item--open > a .nav-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  /* Nav stacking context — isolates dropdown from page content */
+  nav.main-nav { position: relative; z-index: 1000; isolation: isolate; }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(72vw, 1100px);
+    min-width: 480px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 12px 48px rgba(0,0,0,.18);
+    z-index: 9999;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    max-height: 380px;
+    overflow-y: auto;
+  }
+  .nav-item:hover > .dropdown,
+  .nav-item--open > .dropdown {
+    display: block;
+  }
+  /* Hover bridge — prevents flicker on gap between link and dropdown */
+  .nav-item::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    height: 8px;
+    z-index: 1002;
+  }
+
+  .dd-thumb-placeholder {
+    display: inline-block;
+    width: 38px; height: 38px;
+    background: var(--cream-deep);
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  /* ── Mobile nav ── */
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: auto;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--brown);
+    border-radius: 2px;
+    transition: all .25s;
+  }
+  .nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 900px) {
+    .nav-hamburger { display: flex; }
+    .nav-list {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,.1);
+      flex-direction: column;
+      align-items: stretch;
+      padding: 8px 0 16px;
+      z-index: 800;
+      overflow-y: auto;
+      max-height: calc(100vh - 120px);
+    }
+    .nav-list.is-open { display: flex; }
+    .nav-item { border-bottom: 1px solid var(--cream-deep); }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      width: 100%;
+    }
+    nav.main-nav .dropdown {
+      position: static !important;
+      transform: none !important;
+      left: auto !important;
+      right: auto !important;
+      top: auto !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: none !important;
+      max-height: 240px;
+      box-shadow: none;
+      border: none;
+      border-top: 1px solid var(--cream-deep);
+      border-radius: 0;
+      padding: 12px 16px;
+      opacity: 1;
+      pointer-events: auto;
+      display: none;
+      animation: none !important;
+      overflow-x: hidden;
+    }
+    nav.main-nav .nav-item--open > .dropdown { display: block; }
+    nav.main-nav .dropdown-inner {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 8px;
+    }
+    nav.main-nav .dd-item {
+      min-width: 0 !important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  @media (max-width: 480px) {
+    nav.main-nav .dropdown-inner { grid-template-columns: 1fr !important; }
+  }
+/* YGS_NAV_CSS_END */
+  /* YGS_SEARCH_CSS_START */
+.search-bar { position: relative; }
+  .search-results {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px); left: 0; right: 0;
+    background: #fff;
+    border: 1px solid var(--border, #e5e5e5);
+    border-radius: 14px;
+    box-shadow: 0 12px 36px rgba(0,0,0,.18);
+    max-height: 480px;
+    overflow-y: auto;
+    z-index: 9999;
+    min-width: 280px;
+  }
+  .search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    color: var(--brown, #3c1e00);
+    font-size: 14px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--cream-deep, #f0e9d8);
+    transition: background .12s;
+  }
+  .search-result-item:last-child { border-bottom: none; }
+  .search-result-item:hover { background: var(--cream, #f5f1e6); }
+  .search-result-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .search-result-name {
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--brown, #3c1e00);
+  }
+  .search-result-cat {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--brown-mid, #7a3b1e);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .search-empty {
+    padding: 16px;
+    color: #888;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+  }
+  @media (max-width: 700px) {
+    .search-results {
+      position: fixed;
+      top: 130px; left: 12px; right: 12px;
+      max-height: 60vh;
+    }
+  }
+/* YGS_SEARCH_CSS_END */
+  </style>
+  <!-- YGS_META_START -->
+  <meta name="description" content="Castratie betekent niet het einde van gastronomische belevenissen, maar eerder het begin van een nieuw hoofdstuk waarin lichtheid in elke beweging de…">
+  <link rel="canonical" href="https://yoggies.be/products/yoggies-ragu-voor-gecastreerde-katten-rund-monoproteine-185-g.html">
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <meta property="og:type" content="product">
+  <meta property="og:site_name" content="Yoggies.be">
+  <meta property="og:locale" content="nl_BE">
+  <meta property="og:title" content="Yoggies RAGÚ voor gecastreerde katten, rund monoproteïne 185 g | Yoggies.be">
+  <meta property="og:description" content="Castratie betekent niet het einde van gastronomische belevenissen, maar eerder het begin van een nieuw hoofdstuk waarin lichtheid in elke beweging de…">
+  <meta property="og:url" content="https://yoggies.be/products/yoggies-ragu-voor-gecastreerde-katten-rund-monoproteine-185-g.html">
+  <meta property="og:image" content="https://yoggies.be/images/yoggies-ragu-sterilised-hovezi-monoprotein-web-7919242d-1200.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Yoggies RAGÚ voor gecastreerde katten, rund monoproteïne 185 g | Yoggies.be">
+  <meta name="twitter:description" content="Castratie betekent niet het einde van gastronomische belevenissen, maar eerder het begin van een nieuw hoofdstuk waarin lichtheid in elke beweging de…">
+  <meta name="twitter:image" content="https://yoggies.be/images/yoggies-ragu-sterilised-hovezi-monoprotein-web-7919242d-1200.webp">
+  <!-- YGS_META_END -->
+</head>
+<body>
+
+<div class="top-dark"></div>
+<div class="top-green"></div>
+
+<header>
+  <a class="logo" href="../index.html">
+    <svg class="logo-svg" viewBox="0 0 861.327 243.626" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(0 0.01)" id="yoggies_logo_on_light_bg_RGB">
+        <path fill="#3c1e00" transform="translate(-545.842 -23.366)" d="M1396.575,67.443h1.768a2.809,2.809,0,0,0,1.725-.377,1.213,1.213,0,0,0,.462-1,1.166,1.166,0,0,0-.225-.711,1.3,1.3,0,0,0-.613-.474,4.635,4.635,0,0,0-1.464-.152h-1.652v2.7Zm-1.452,5.066v-9h3.1a7.671,7.671,0,0,1,2.3.249,2.249,2.249,0,0,1,1.136.869,2.308,2.308,0,0,1,.419,1.318,2.388,2.388,0,0,1-.711,1.719,2.8,2.8,0,0,1-1.877.82,2.329,2.329,0,0,1,.765.48,10.131,10.131,0,0,1,1.336,1.786l1.1,1.762h-1.768l-.8-1.415A7.3,7.3,0,0,0,1398.6,69a1.861,1.861,0,0,0-1.16-.3h-.856v3.821h-1.458Zm3.675-11.614a7.149,7.149,0,0,0-3.438.905,6.453,6.453,0,0,0-2.612,2.588,6.955,6.955,0,0,0-.012,6.967,6.6,6.6,0,0,0,2.594,2.588,6.971,6.971,0,0,0,6.955,0,6.546,6.546,0,0,0,2.588-2.588,6.993,6.993,0,0,0-.024-6.967,6.415,6.415,0,0,0-2.612-2.588,7.157,7.157,0,0,0-3.426-.905Zm0-1.385a8.588,8.588,0,0,1,4.118,1.081,7.682,7.682,0,0,1,3.128,3.1,8.536,8.536,0,0,1,1.124,4.2,8.437,8.437,0,0,1-1.105,4.161,7.734,7.734,0,0,1-3.1,3.1,8.444,8.444,0,0,1-4.167,1.106,8.531,8.531,0,0,1-4.173-1.106,7.787,7.787,0,0,1-3.1-3.1,8.447,8.447,0,0,1-1.112-4.161,8.6,8.6,0,0,1,1.124-4.2,7.769,7.769,0,0,1,3.134-3.1,8.593,8.593,0,0,1,4.125-1.081Z" data-name="Path 7" id="Path_7"></path>
+        <path fill="#3c1e00" transform="translate(0 -35.509)" d="M39.956,219.463H58.823l-1.664,5.552c-4.72,15.258-5.825,18.593-8.6,22.475a12.7,12.7,0,0,1-7.216,5.272,35.046,35.046,0,0,1-10.265,1.112,36.851,36.851,0,0,1-12.489-1.664l-5.825,22.754c10.545,3.329,14.985,4.161,23.307,4.161,28.027,0,40.236-13.321,51.054-54.662L122.086,90.446H89.625L67.151,186.729l-.832,7.216V199.5H62.71v-5.552L61.6,186.729,34.963,90.44H0Z" data-name="Path 8" id="Path_8"></path>
+        <path fill="#3c1e00" transform="translate(-83.301 -33.538)" d="M246.048,155.341c0-28.579,9.986-44.949,28.3-44.949s28.859,16.091,28.859,45.5-9.986,45.229-28.027,45.229-29.132-16.091-29.132-45.782M212.2,157c0,42.173,24.418,69.088,61.872,69.088s62.984-27.468,62.984-70.473-23.586-70.2-61.319-70.2S212.19,112.888,212.19,157Z" data-name="Path 9" id="Path_9"></path>
+        <path fill="#3c1e00" transform="translate(-171.619 -34.256)" d="M499.858,109.445c14.426,0,23.586,9.713,23.586,25.251s-9.713,25.251-24.692,25.251-24.418-9.713-24.418-25.251,9.986-25.251,25.524-25.251m71.305-19.978c-3.049-.279-5.825-.553-8.322-.553-9.433,0-15.258,3.049-22.754,12.209-8.322-7.49-12.489-9.713-22.2-11.656a81.9,81.9,0,0,0-18.867-2.217c-34.4,0-57.438,19.419-57.438,48,0,12.209,4.72,23.86,12.762,31.355a65.039,65.039,0,0,0,8.048,6.1l-9.433,7.49c-7.216,5.825-11.656,11.377-11.656,15.258,0,2.217,1.944,7.769,4.72,13.321s5.825,9.713,8.881,11.65c2.5,1.944,6.657,2.5,16.37,2.5h2.776c6.1,0,11.1-.279,14.706-.279h15.817c13.874,0,18.034.832,22.754,3.329,3.888,2.217,5.552,5.272,5.552,11.1,0,12.209-11.656,18.314-34.4,18.314-20.531,0-32.187-6.937-32.187-18.867,0-4.993,1.112-7.216,4.44-8.881v-1.112H440.489c-2.776,6.384-3.329,9.433-3.329,14.153,0,23.586,21.643,37.18,58.823,37.18,45.229,0,68.536-15.538,68.536-45.5,0-24.971-14.153-34.963-49.669-34.963h-3.888l-24.971.553h-1.112c-8.881,0-13.041-1.944-13.041-6.657q0-4.164,4.993-8.322l3.608-3.049a90.607,90.607,0,0,0,18.034,1.664c34.963,0,56.879-17.482,56.879-45.782,0-8.322-1.112-11.93-4.993-20.258,4.44-1.944,5.825-2.5,9.433-2.5a30.943,30.943,0,0,1,8.6,1.385l2.776,1.112V89.461Z" data-name="Path 10" id="Path_10"></path>
+        <path fill="#3c1e00" transform="translate(-265.016 -34.256)" d="M737.762,109.445c14.426,0,23.586,9.713,23.586,25.251s-9.713,25.251-24.692,25.251-24.418-9.713-24.418-25.251,9.986-25.251,25.524-25.251m71.312-19.978c-3.049-.279-5.825-.553-8.322-.553-9.433,0-15.258,3.049-22.754,12.209-8.322-7.49-12.489-9.713-22.2-11.656a81.905,81.905,0,0,0-18.867-2.217c-34.4,0-57.438,19.419-57.438,48,0,12.209,4.72,23.86,12.762,31.355a65.04,65.04,0,0,0,8.048,6.1l-9.433,7.49c-7.216,5.825-11.656,11.377-11.656,15.258,0,2.217,1.944,7.769,4.72,13.321s5.825,9.713,8.881,11.65c2.5,1.944,6.657,2.5,16.37,2.5h2.776c6.1,0,11.1-.279,14.706-.279h15.817c13.874,0,18.034.832,22.754,3.329,3.881,2.217,5.552,5.272,5.552,11.1,0,12.209-11.656,18.314-34.4,18.314-20.531,0-32.187-6.937-32.187-18.867,0-4.993,1.112-7.216,4.44-8.881v-1.112H678.4c-2.776,6.384-3.329,9.433-3.329,14.153,0,23.586,21.643,37.18,58.823,37.18,45.229,0,68.536-15.538,68.536-45.5,0-24.971-14.153-34.963-49.669-34.963h-3.888l-24.971.553h-1.112c-8.881,0-13.041-1.944-13.041-6.657q0-4.164,4.993-8.322l3.608-3.049a90.607,90.607,0,0,0,18.034,1.664c34.963,0,56.879-17.482,56.879-45.782,0-8.322-1.112-11.93-4.993-20.258,4.44-1.944,5.825-2.5,9.433-2.5a30.943,30.943,0,0,1,8.6,1.385l2.776,1.112V89.461Z" data-name="Path 11" id="Path_11"></path>
+        <path fill="#9ecc00" transform="translate(-361.437)" d="M920.68,17.751c0,10.265,8.322,17.2,20.258,17.2S961.2,28.017,961.2,17.472,953.147-.01,940.664-.01s-19.978,7.216-19.978,17.755" data-name="Path 12" id="Path_12"></path>
+        <path fill="#3c1e00" transform="translate(-364.126 -34.256)" d="M927.53,223.762h32.187V87.25L927.53,92.243Z" data-name="Path 13" id="Path_13"></path>
+        <path fill="#3c1e00" transform="translate(-397.962 -33.542)" d="M1100.843,141.192h-53.83c1.664-20.531,11.656-31.076,28.859-31.076s24.692,9.986,24.971,31.076M1050.621,164.5h82.962c.279-3.888.279-6.657.279-8.6,0-47.166-18.593-70.473-56.326-70.473s-63.816,27.468-63.816,71.032,23.586,69.368,63.263,69.368c14.153,0,29.132-3.329,40.23-8.6,2.5-1.385,6.1-3.329,10.818-6.384l-8.048-22.2c-10.824,5.552-15.538,7.49-23.027,8.881a64.258,64.258,0,0,1-12.762,1.112c-22.2,0-34.963-10.545-36.9-30.523l-.371-3.608h3.7Z" data-name="Path 14" id="Path_14"></path>
+        <path fill="#3c1e00" transform="translate(-483.893 -33.891)" d="M1232.61,211.741c11.93,7.769,17.2,9.986,28.859,12.489a85.242,85.242,0,0,0,18.593,2.217c32.461,0,52.718-17.482,52.718-44.949,0-21.363-11.93-33.3-40.788-40.789-14.985-3.888-19.146-5.552-22.2-8.048a11.241,11.241,0,0,1-3.888-8.322c0-8.048,7.216-12.209,21.922-12.209s24.139,3.049,34.963,10.265l6.657-23.586c-10.266-6.657-14.985-8.6-23.586-10.545a96.691,96.691,0,0,0-20.258-1.944c-32.461,0-51.886,15.538-51.886,41.9,0,10.545,3.881,19.978,10.545,25.524,6.1,4.993,15.817,9.433,30.523,13.594,20.258,5.825,25.251,9.433,25.251,18.314s-7.769,14.153-22.475,14.153a70.848,70.848,0,0,1-15.817-1.664c-9.154-1.944-13.594-3.881-23.307-10.824l-5.825,24.418Z" data-name="Path 15" id="Path_15"></path>
+      </g>
+    </svg>
+  </a>
+  <div class="search-bar">
+    <input type="text" placeholder="Zoeken">
+    <button class="search-btn">🔍</button>
+  </div>
+</header>
+
+<!-- ===== NAV ===== -->
+<nav class="main-nav">
+  <ul class="nav-list" role="menubar">
+<li class="nav-item"><a href="../index.html" class="nav-link nav-home">HOME</a></li><li class="nav-item" data-cat="barf"><a href="../barf.html" class="nav-link" aria-haspopup="true" aria-expanded="false">BARF<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="BARF"><div class="dropdown-inner"><a href="../products/yoggies-barf-zalm-paard-kalkoen-met-probiotica-1.html" class="dd-item"><img class="dd-thumb" src="../images/1800-g-12x150g-yoggies-b-a-r-f-losos-kun-kruta-s-probiotiky--628e1c8d-200.webp" alt="Yoggies B.A.R.F. Zalm, paard, kalkoen met probiotica" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies B.A.R.F. Zalm, paard, kalkoen me</span></a><a href="../products/yoggies-barf-rund-en-kalkoen-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="../images/1800-g-12x150g-yoggies-b-a-r-f-hovezi-a-kruta-s-probiotiky-c-8b5bb2fc-200.webp" alt="Yoggies B.A.R.F. Rund en kalkoen met probiotica" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies B.A.R.F. Rund en kalkoen met pro</span></a><a href="../products/yoggies-barf-100-kip-met-probiotica-1.html" class="dd-item"><img class="dd-thumb" src="../images/1800-g-12x150g-yoggies-b-a-r-f-100-kure-s-probiotiky-fd2da3b-e2e6ee28-200.webp" alt="Yoggies B.A.R.F. 100% kip met probiotica" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies B.A.R.F. 100% kip met probiotica</span></a><a href="../products/yoggies-barf-100-kalkoen-met-probiotica-1.html" class="dd-item"><img class="dd-thumb" src="../images/1800-g-12x150g-yoggies-b-a-r-f-100-kruta-s-probiotiky-8088e5-b71fe515-200.webp" alt="Yoggies B.A.R.F. 100% kalkoen met probiotica" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies B.A.R.F. 100% kalkoen met probio</span></a><a href="../products/yoggies-barf-100-konijn-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="../images/3366-1-800-g-12x150g-yoggies-b-a-r-f-100-kralik-s-probiotiky-64193b35-200.webp" alt="Yoggies B.A.R.F. 100% konijn met probiotica" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies B.A.R.F. 100% konijn met probiot</span></a><a href="../products/yoggies-barf-100-rund-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="../images/1800-g-12x150g-yoggies-b-a-r-f-100-hovezi-s-probiotiky-de155-7a819ca6-200.webp" alt="Yoggies B.A.R.F. 100% rund met probiotica" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies B.A.R.F. 100% rund met probiotic</span></a><a href="../products/yoggies-barf-zalm-en-konijn-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="../images/poduktovka-barf-burtiky-losos-kralik-ac3a9527-200.webp" alt="Yoggies B.A.R.F. Zalm en konijn met probiotica" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies B.A.R.F. Zalm en konijn met prob</span></a><a href="../products/yoggies-barf-koudgeperst-bijgerecht-bij-rauw-vlees-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="../images/2kg-barf-priloha-k-syrovemu-masu-lisovana-za-studena-s-probi-3c00438a-200.webp" alt="Yoggies BARF+ koudgeperst bijgerecht bij rauw vlees met probiotica" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies BARF+ koudgeperst bijgerecht bij</span></a><a href="../products/700-g-barf-zalm-en-konijn-met-probiotica.html" class="dd-item"><img class="dd-thumb" src="../images/barf-losos-kralik-700g-web-e711c553-200.webp" alt="700 g B.A.R.F. Zalm en konijn met probiotica" loading="lazy" decoding="async" width="40" height="40"><span>700 g B.A.R.F. Zalm en konijn met probio</span></a><a href="../products/yoggies-barf-zalm-paard-kalkoen-met-probiotica-1.html" class="dd-item"><img class="dd-thumb" src="../images/barf-losos-kun-kruta-700g-web-c76cfb06-200.webp" alt="Yoggies B.A.R.F. Zalm, paard, kalkoen met probiotica" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies B.A.R.F. Zalm, paard, kalkoen me</span></a></div></div></li><li class="nav-item" data-cat="blikvoer"><a href="../blikvoer.html" class="nav-link nav-link--active" aria-haspopup="true" aria-expanded="false">Blikvoer<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Blikvoer"><div class="dropdown-inner"><a href="../products/yoggies-kangoeroe-blikvoer-met-pompoen-en-aardpeer.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-konzerva-klokan-dyne-200g-1-web-2c4a0628-200.webp" alt="Yoggies kangoeroe blikvoer met pompoen en aardpeer" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies kangoeroe blikvoer met pompoen e</span></a><a href="../products/yoggies-blikvoer-hert-met-boekweit-en-veenbessen.html" class="dd-item"><img class="dd-thumb" src="../images/produktovka-konzerva-jeleni-400g-1000x1000-376c2daf-ab13-4ba-990b701d-200.webp" alt="Yoggies blikvoer hert met boekweit en veenbessen" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies blikvoer hert met boekweit en ve</span></a><a href="../products/yoggies-blikvoer-kalkoen--en-kalfsvlees-met-appel-1.html" class="dd-item"><img class="dd-thumb" src="../images/produktovka-konzerva-kruti-a-teleci-400g-1000x1000-7d7a2869--ce8aa159-200.webp" alt="Yoggies blikvoer kalkoen- en kalfsvlees met appel" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies blikvoer kalkoen- en kalfsvlees </span></a><a href="../products/yoggies-blikvoer-rund-met-mariadistel.html" class="dd-item"><img class="dd-thumb" src="../images/3640-400g-yoggies-hovezi-konzerva-s-karotkou-a-lnenym-olejem-6f40edf4-200.webp" alt="Yoggies blikvoer rund met mariadistel" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies blikvoer rund met mariadistel</span></a><a href="../products/yoggies-blikvoer-geit-met-aardappel-en-wortel.html" class="dd-item"><img class="dd-thumb" src="../images/3179-400g-yoggies-kozi-konzerva-s-bramborem-a-mrkvi-f09f644a-8fa55766-200.webp" alt="Yoggies blikvoer geit met aardappel en wortel" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies blikvoer geit met aardappel en w</span></a><a href="../products/yoggies-blikvoer-eend-met-peer-en-gierst.html" class="dd-item"><img class="dd-thumb" src="../images/3180-400g-yoggies-kachni-konzerva-s-hruskou-a-jahlami-2fda8e-00c1655f-200.webp" alt="Yoggies blikvoer eend met peer en gierst" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies blikvoer eend met peer en gierst</span></a><a href="../products/yoggies-blikvoer-kangoeroe-met-pompoen-en-aardpeer.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-konzerva-klokan-dyne-400g-1-web-f0dc9e22-200.webp" alt="Yoggies blikvoer kangoeroe met pompoen en aardpeer" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies blikvoer kangoeroe met pompoen e</span></a><a href="../products/yoggies-blikvoer-lam-met-aardappel.html" class="dd-item"><img class="dd-thumb" src="../images/200g-yoggies-jehneci-konzerva-s-bramborem-a-karotkou-7bf5f7a-53dc6b7e-200.webp" alt="Yoggies blikvoer lam met aardappel" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies blikvoer lam met aardappel</span></a><a href="../products/yoggies-blikvoer-gevogelte-met-groenten-en-havervlokken.html" class="dd-item"><img class="dd-thumb" src="../images/3178-200g-yoggies-drubezi-konzerva-se-zeleninou-a-ovesnymi-v-e7cbddb1-200.webp" alt="Yoggies blikvoer gevogelte met groenten en havervlokken" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies blikvoer gevogelte met groenten </span></a><a href="../products/51-yoggies-kangoeroe-blikvoer-met-pompoen-en-aardpeer.html" class="dd-item"><img class="dd-thumb" src="../images/klokanikonzervy400gx6-d779137c-200.webp" alt="5+1 Yoggies kangoeroe blikvoer met pompoen en aardpeer" loading="lazy" decoding="async" width="40" height="40"><span>5+1 Yoggies kangoeroe blikvoer met pompo</span></a></div></div></li><li class="nav-item" data-cat="brokken"><a href="../brokken-met-probiotica.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Brokken met probiotica<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Brokken met probiotica"><div class="dropdown-inner"><a href="../products/proefbox-mini---brokken-in-miniformaat.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-degustacni-box-normal-1-web-1000x1000-384832e0-ca3c--1136f7cd-200.webp" alt="Proefbox MINI - brokken in miniformaat" loading="lazy" decoding="async" width="40" height="40"><span>Proefbox MINI - brokken in miniformaat</span></a><a href="../products/proefbox-normal---brokken-in-standaardformaat.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-degustacni-box-normal-1-web-1000x1000-3cf84865-b6bc--ed66fe01-200.webp" alt="Proefbox NORMAL - brokken in standaardformaat" loading="lazy" decoding="async" width="40" height="40"><span>Proefbox NORMAL - brokken in standaardfo</span></a><a href="../products/yoggies-brokken-vet-insect-derma.html" class="dd-item"><img class="dd-thumb" src="../images/3355-10kg-yoggies-vet-insect-derma-s-hmyzim-proteinem-granul-16601ce5-200.webp" alt="Yoggies brokken VET Insect Derma" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies brokken VET Insect Derma</span></a><a href="../products/yoggies-brokken-vet-gastro-sensitive.html" class="dd-item"><img class="dd-thumb" src="../images/10kg-yoggies-vet-gastro-sensitive-s-krutim-masem-granule-lis-9853f17f-200.webp" alt="Yoggies brokken VET Gastro Sensitive" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies brokken VET Gastro Sensitive</span></a><a href="../products/yoggies-brokken-vet-veggie-vleesvrij.html" class="dd-item"><img class="dd-thumb" src="../images/2kg-yoggies-vet-veggie-bez-masa-granule-lisovane-za-studena--3c1f0319-200.webp" alt="Yoggies brokken VET Veggie vleesvrij" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies brokken VET Veggie vleesvrij</span></a><a href="../products/yoggies-brokken-varken-iberico-monoproteine.html" class="dd-item"><img class="dd-thumb" src="../images/10kg-yoggies-iberico-veprove-maso-s-jablky-granule-lisovane--44949a74-200.webp" alt="Yoggies brokken Varken Ibérico monoproteïne" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies brokken Varken Ibérico monoprote</span></a><a href="../products/yoggies-brokken-kip-rund.html" class="dd-item"><img class="dd-thumb" src="../images/15kg-yoggies-kurecihovezi-maso-granule-lisovane-za-studena-s-29b4c5a4-200.webp" alt="Yoggies brokken Kip &amp; Rund" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies brokken Kip &amp; Rund</span></a><a href="../products/yoggies-brokken-lam-witvis.html" class="dd-item"><img class="dd-thumb" src="../images/15kg-yoggies-jehneci-masobila-ryba-granule-lisovane-za-stude-167bfade-200.webp" alt="Yoggies brokken Lam &amp; Witvis" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies brokken Lam &amp; Witvis</span></a><a href="../products/yoggies-brokken-geit-monoproteine.html" class="dd-item"><img class="dd-thumb" src="../images/15kg-yoggies-kozi-masozelenina-hypoalergenni-granule-lisovan-9ae5b437-200.webp" alt="Yoggies brokken Geit monoproteïne" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies brokken Geit monoproteïne</span></a><a href="../products/yoggies-brokken-active-eend-wild.html" class="dd-item"><img class="dd-thumb" src="../images/15kg-yoggies-active-kachni-masozverina-granule-lisovane-za-s-6199df49-200.webp" alt="Yoggies brokken Active Eend &amp; wild" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies brokken Active Eend &amp; wild</span></a></div></div></li><li class="nav-item" data-cat="snacks"><a href="../snacks.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Snacks<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Snacks"><div class="dropdown-inner"><a href="../products/250-g-yoggies-gedroogde-snacks---lamslongblokjes.html" class="dd-item"><img class="dd-thumb" src="../images/jehnecipliceobalweb-0a9b39b7-200.webp" alt="250 g Yoggies gedroogde snacks - lamslongblokjes" loading="lazy" decoding="async" width="40" height="40"><span>250 g Yoggies gedroogde snacks - lamslon</span></a><a href="../products/250-g-yoggies-gedroogde-rundslongblokjes.html" class="dd-item"><img class="dd-thumb" src="../images/hovezipliceobalweb-3838b4c5-200.webp" alt="250 g Yoggies gedroogde rundslongblokjes" loading="lazy" decoding="async" width="40" height="40"><span>250 g Yoggies gedroogde rundslongblokjes</span></a><a href="../products/yoggies-koekjes-met-zalm-en-wortel-150-g.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-lososi-suchary-1-web-49c62529-200.webp" alt="Yoggies koekjes met zalm en wortel 150 g" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies koekjes met zalm en wortel 150 g</span></a><a href="../products/yoggies-gedroogde-kauwsnacks---konijnenoren-met-vacht-4-st.html" class="dd-item"><img class="dd-thumb" src="../images/kraliciusiweb-05c90773-200.webp" alt="Yoggies gedroogde kauwsnacks - Konijnenoren met vacht 4 st." loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gedroogde kauwsnacks - Konijneno</span></a><a href="../products/yoggies-gedroogde-kauwsnacks-bullenpees-5-st.html" class="dd-item"><img class="dd-thumb" src="../images/bycipenisweb-ffaf6fcc-0477-450b-8676-ef8948ff9652-42caef93-200.webp" alt="Yoggies gedroogde kauwsnacks – Bullenpees 5 st." loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gedroogde kauwsnacks – Bullenpee</span></a><a href="../products/yoggies-gevriesdroogd-varkensvlees-gelyofiliseerd-85-g.html" class="dd-item"><img class="dd-thumb" src="../images/veprove-maso-lyofilizivane-pamlsky-1000x1000-1-e6226193-200.webp" alt="Yoggies gevriesdroogd varkensvlees (gelyofiliseerd) 85 g" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gevriesdroogd varkensvlees (gely</span></a><a href="../products/yoggies-gevriesdroogde-runderlever-gelyofiliseerd-85-g.html" class="dd-item"><img class="dd-thumb" src="../images/hovezi-jatra-lyofilizivane-pamlsky-1000x1000-1-044c4093-200.webp" alt="Yoggies gevriesdroogde runderlever (gelyofiliseerd) 85 g" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gevriesdroogde runderlever (gely</span></a><a href="../products/yoggies-gevriesdroogde-runderharten-gelyofiliseerd-85-g.html" class="dd-item"><img class="dd-thumb" src="../images/hovezi-srdce-lyofilizivane-pamlsky-1000x1000-1-b444fd9a-200.webp" alt="Yoggies gevriesdroogde runderharten (gelyofiliseerd) 85 g" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gevriesdroogde runderharten (gel</span></a><a href="../products/yoggies-gedroogd-kippenvlees-voor-honden-80-g.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-susene-kureci-maso-pro-psy-80g-e1c5c045-8de3-4f9e-b4-ad96ebb7-200.webp" alt="Yoggies gedroogd kippenvlees voor honden 80 g" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gedroogd kippenvlees voor honden</span></a><a href="../products/yoggies-rund-trainingssnacks-45-g.html" class="dd-item"><img class="dd-thumb" src="../images/3627-yoggies-hovezi-vycvikove-pamlsky-45g-1783d750-9031-4ac2-34f7adb5-200.webp" alt="Yoggies rund trainingssnacks 45 g" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies rund trainingssnacks 45 g</span></a></div></div></li><li class="nav-item" data-cat="gekookt"><a href="../vers-gekookt-voer.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Vers gekookt voer<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Vers gekookt voer"><div class="dropdown-inner"><a href="../products/yoggies-gekookt-hondenvoer-varken-met-rijst.html" class="dd-item"><img class="dd-thumb" src="../images/varenaveprova150web-aabec84a-200.webp" alt="Yoggies gekookt hondenvoer – Varken met rijst" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gekookt hondenvoer – Varken met </span></a><a href="../products/yoggies-gekookt-hondenvoer-zalm-en-witvis-met-chiazaad.html" class="dd-item"><img class="dd-thumb" src="../images/varena-losos-150-web-3c6605c6-200.webp" alt="Yoggies gekookt hondenvoer – Zalm en witvis met chiazaad" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gekookt hondenvoer – Zalm en wit</span></a><a href="../products/yoggies-gekookt-hondenvoer-kip-met-rijst.html" class="dd-item"><img class="dd-thumb" src="../images/varena-kureci-150-web-5b76c8a4-200.webp" alt="Yoggies gekookt hondenvoer – Kip met rijst" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gekookt hondenvoer – Kip met rij</span></a><a href="../products/yoggies-gekookt-hondenvoer-rund-met-quinoa.html" class="dd-item"><img class="dd-thumb" src="../images/varena-hovezi-150-web-964d7156-200.webp" alt="Yoggies gekookt hondenvoer – Rund met quinoa" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gekookt hondenvoer – Rund met qu</span></a><a href="../products/yoggies-gekookt-hondenvoer-kalkoen-en-konijn-met-pompoenpitten.html" class="dd-item"><img class="dd-thumb" src="../images/varena-kruta-a-kralik-150-web-3fbf84ef-200.webp" alt="Yoggies gekookt hondenvoer – Kalkoen en konijn met pompoenpitten" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gekookt hondenvoer – Kalkoen en </span></a><a href="../products/yoggies-gekookt-hondenvoer-kalkoen-met-boekweit.html" class="dd-item"><img class="dd-thumb" src="../images/varena-kruti-150-web-736b0d82-200.webp" alt="Yoggies gekookt hondenvoer – Kalkoen met boekweit" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies gekookt hondenvoer – Kalkoen met</span></a><a href="../products/120-g-yoggies-pate---rundvlees.html" class="dd-item"><img class="dd-thumb" src="../images/produktovkypastikahovezi-b27cfe76-200.webp" alt="120 g Yoggies paté - rundvlees" loading="lazy" decoding="async" width="40" height="40"><span>120 g Yoggies paté - rundvlees</span></a><a href="../products/120-g-yoggies-pate---kalkoenvlees.html" class="dd-item"><img class="dd-thumb" src="../images/produktovkypastikakruti-6f5e7c89-200.webp" alt="120 g Yoggies paté - kalkoenvlees" loading="lazy" decoding="async" width="40" height="40"><span>120 g Yoggies paté - kalkoenvlees</span></a><a href="../products/proefmenu-51-gratis-6x650-g-yoggies-gekookt-hondenvoer.html" class="dd-item"><img class="dd-thumb" src="../images/varena-potrava-mix-5-1-650g-ec1fe221-200.webp" alt="Proefmenu 5+1 gratis (6x650 g) Yoggies gekookt hondenvoer" loading="lazy" decoding="async" width="40" height="40"><span>Proefmenu 5+1 gratis (6x650 g) Yoggies g</span></a><a href="../products/proefmenu-51-gratis-6x150-g-yoggies-gekookt-hondenvoer.html" class="dd-item"><img class="dd-thumb" src="../images/varena-potrava-mix-5-1-150g-a0dd97ef-200.webp" alt="Proefmenu 5+1 gratis (6x150 g) Yoggies gekookt hondenvoer" loading="lazy" decoding="async" width="40" height="40"><span>Proefmenu 5+1 gratis (6x150 g) Yoggies g</span></a></div></div></li><li class="nav-item" data-cat="supplementen"><a href="../supplementen.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Supplementen<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Supplementen"><div class="dropdown-inner"><a href="../products/hypoallergeen-uitstappakket-voor-de-grote-hond-met-kom.html" class="dd-item"><img class="dd-thumb" src="../images/varenakruti650g-pastikaveprova-hypoalergennipiskoty-ekologic-b5566149-200.webp" alt="Hypoallergeen uitstappakket voor de grote hond – met kom" loading="lazy" decoding="async" width="40" height="40"><span>Hypoallergeen uitstappakket voor de grot</span></a><a href="../products/hypoallergeen-uitstappakket-voor-de-kleine-hond-met-kom.html" class="dd-item"><img class="dd-thumb" src="../images/varenakruti150g-pastikaveprova-hypoalergennipiskoty-ekologic-1a1e65b5-200.webp" alt="Hypoallergeen uitstappakket voor de kleine hond – met kom" loading="lazy" decoding="async" width="40" height="40"><span>Hypoallergeen uitstappakket voor de klei</span></a><a href="../products/hypoallergeen-uitstappakket-voor-de-grote-hond-zonder-kom.html" class="dd-item"><img class="dd-thumb" src="../images/varenakruti650g-pastikaveprova-hypoalergennipiskoty-c4681559-200.webp" alt="Hypoallergeen uitstappakket voor de grote hond – zonder kom" loading="lazy" decoding="async" width="40" height="40"><span>Hypoallergeen uitstappakket voor de grot</span></a><a href="../products/hypoallergeen-uitstappakket-voor-de-kleine-hond-zonder-kom.html" class="dd-item"><img class="dd-thumb" src="../images/varenakruti150g-pastikaveprova-hypoalergennipiskoty-89e9413d-200.webp" alt="Hypoallergeen uitstappakket voor de kleine hond – zonder kom" loading="lazy" decoding="async" width="40" height="40"><span>Hypoallergeen uitstappakket voor de klei</span></a><a href="../products/uitstappakket-voor-de-grote-hond-met-kom.html" class="dd-item"><img class="dd-thumb" src="../images/varenakruti650g-pastikakureci-susenemasovycvikove-kruti-ekol-75da8196-200.webp" alt="Uitstappakket voor de grote hond – met kom" loading="lazy" decoding="async" width="40" height="40"><span>Uitstappakket voor de grote hond – met k</span></a><a href="../products/uitstappakket-voor-de-kleine-hond-met-kom.html" class="dd-item"><img class="dd-thumb" src="../images/varenakruti150g-pastikakureci-susenemasovycvikove-kruti-ekol-063db0c7-200.webp" alt="Uitstappakket voor de kleine hond – met kom" loading="lazy" decoding="async" width="40" height="40"><span>Uitstappakket voor de kleine hond – met </span></a><a href="../products/uitstappakket-voor-de-grote-hond-zonder-kom.html" class="dd-item"><img class="dd-thumb" src="../images/varenakruti650g-pastikakureci-susenemasoprouzky-hovezi-c046be07-200.webp" alt="Uitstappakket voor de grote hond – zonder kom" loading="lazy" decoding="async" width="40" height="40"><span>Uitstappakket voor de grote hond – zonde</span></a><a href="../products/uitstappakket-voor-de-kleine-hond-zonder-kom.html" class="dd-item"><img class="dd-thumb" src="../images/varenakruti150g-pastikakureci-susenemasoprouzky-hovezi-e02f7842-200.webp" alt="Uitstappakket voor de kleine hond – zonder kom" loading="lazy" decoding="async" width="40" height="40"><span>Uitstappakket voor de kleine hond – zond</span></a><a href="../products/yoggies-catprobio-probiotische-mix-voor-katten-130-g.html" class="dd-item"><img class="dd-thumb" src="../images/catprobioweb1000x1000-6faf1cd3-200.webp" alt="Yoggies CatProBio, probiotische mix voor katten 130 g" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies CatProBio, probiotische mix voor</span></a><a href="../products/yoggies-dogprobio-probiotische-mix-voor-honden-130-g.html" class="dd-item"><img class="dd-thumb" src="../images/dogprobioweb1000x1000-7b61e257-200.webp" alt="Yoggies DogProBio, probiotische mix voor honden 130 g" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies DogProBio, probiotische mix voor</span></a></div></div></li><li class="nav-item" data-cat="voor_katten"><a href="../voor-katten.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Voor katten<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Voor katten"><div class="dropdown-inner"><a href="../products/48-kg-yoggies-brokken-voor-katten-met-kip-koudgeperst-met-probiotica-gratis-cade.html" class="dd-item"><img class="dd-thumb" src="../images/4-8-kg-granule-pro-kocky-s-kurecim-masem-konzerva-web-2ebcd544-200.webp" alt="4,8 kg Yoggies brokken voor katten met kip, koudgeperst met probiotica + GRATIS CADEAU" loading="lazy" decoding="async" width="40" height="40"><span>4,8 kg Yoggies brokken voor katten met k</span></a><a href="../products/yoggies-ragu-voor-katten-kalkoen-en-zalm-6-x-185-g---voordeelverpakking.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-ragu-kruta-losos-185g-6ks-web-4c655785-200.webp" alt="Yoggies RAGÚ voor katten, kalkoen en zalm 6 x 185 g - voordeelverpakking" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies RAGÚ voor katten, kalkoen en zal</span></a><a href="../products/yoggies-ragu-voor-gecastreerde-katten-kip-monoproteine-6-x-185-g---voordeelverpa.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-sterilised-kure-185g-6ks-web-96e4cf15-200.webp" alt="Yoggies RAGÚ voor gecastreerde katten, kip monoproteïne 6 x 185 g - voordeelverpakking" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies RAGÚ voor gecastreerde katten, k</span></a><a href="../products/yoggies-ragu-voor-gecastreerde-katten-rund-monoproteine-6-x-185-g---voordeelverp.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-sterilised-hovezi-185g-6ks-web-147e186b-2e1d-4cbd-bb-56944fdf-200.webp" alt="Yoggies RAGÚ voor gecastreerde katten, rund monoproteïne 6 x 185 g - voordeelverpakking" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies RAGÚ voor gecastreerde katten, r</span></a><a href="../products/yoggies-ragu-voor-katten-zalm-en-eend-6-x-185-g---voordeelverpakking.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-ragu-losos-kachna-185g-6-ks-web-c86a38a6-200.webp" alt="Yoggies RAGÚ voor katten, zalm en eend 6 x 185 g - voordeelverpakking" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies RAGÚ voor katten, zalm en eend 6</span></a><a href="../products/yoggies-ragu-voor-katten-kip-en-pompoen-6-x-185-g---voordeelverpakking.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-ragu-kure-dyne-185g-6ks-web-e3df68ed-200.webp" alt="Yoggies RAGÚ voor katten, kip en pompoen 6 x 185 g - voordeelverpakking" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies RAGÚ voor katten, kip en pompoen</span></a><a href="../products/yoggies-ecologische-kattenbakvulling-6-x-3-kg.html" class="dd-item"><img class="dd-thumb" src="../images/stelivoprokockyweb-7cb1f112-200.webp" alt="Yoggies ecologische kattenbakvulling 6 x 3 kg" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies ecologische kattenbakvulling 6 x</span></a><a href="../products/yoggies-ragu-voor-katten-kalkoen-en-zalm-24-x-185-g---voordeelverpakking.html" class="dd-item"><img class="dd-thumb" src="../images/ragu-krutaalososweb-1a0c531a-200.webp" alt="Yoggies RAGÚ voor katten, kalkoen en zalm 24 x 185 g - voordeelverpakking" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies RAGÚ voor katten, kalkoen en zal</span></a><a href="../products/yoggies-ragu-voor-gecastreerde-katten-rund-monoproteine-24-x-185-g---voordeelver.html" class="dd-item"><img class="dd-thumb" src="../images/ragu-hovezisterilisedweb-75085b67-200.webp" alt="Yoggies RAGÚ voor gecastreerde katten, rund monoproteïne 24 x 185 g - voordeelverpakking" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies RAGÚ voor gecastreerde katten, r</span></a><a href="../products/yoggies-ragu-voor-katten-zalm-en-eend-24-x-185---voordeelverpakking.html" class="dd-item"><img class="dd-thumb" src="../images/ragu-lososakachnaweb-6ad43ef1-200.webp" alt="Yoggies RAGÚ voor katten, zalm en eend 24 x 185 - voordeelverpakking" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies RAGÚ voor katten, zalm en eend 2</span></a></div></div></li><li class="nav-item" data-cat="yoghurt"><a href="../yoghurt.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Yoghurt<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Yoghurt"><div class="dropdown-inner"><a href="../products/yoggies-yoghurt-voor-honden-en-katten-150-g.html" class="dd-item"><img class="dd-thumb" src="../images/3070-6x150g-yoggies-jogurt-pro-psy-a-kocky-830a658d-3aa0-41a-7cbe91e9-200.webp" alt="Yoggies yoghurt voor honden en katten 150 g" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies yoghurt voor honden en katten 15</span></a><a href="../products/yoggies-yoghurt-voor-honden-en-katten-150-g---voordeelverpakking-6-of-12-stuks.html" class="dd-item"><img class="dd-thumb" src="../images/3070-6x150g-yoggies-jogurt-pro-psy-a-kocky-830a658d-3aa0-41a-7cbe91e9-200.webp" alt="Yoggies yoghurt voor honden en katten 150 g - voordeelverpakking 6 of 12 stuks" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies yoghurt voor honden en katten 15</span></a></div></div></li><li class="nav-item" data-cat="speelgoed"><a href="../speelgoed-accessoires.html" class="nav-link" aria-haspopup="true" aria-expanded="false">Speelgoed &amp; Accessoires<span class="nav-chevron" aria-hidden="true"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="dropdown" role="region" aria-label="Speelgoed &amp; Accessoires"><div class="dropdown-inner"><a href="../products/sodapup-sensorische-kom-kikker---paars.html" class="dd-item"><img class="dd-thumb" src="../images/sodapup-senzoricka-miska-zaba-fialova-20-x-20-x-2-3-cm-270b6-eabde1eb-200.webp" alt="SodaPup sensorische kom Kikker - paars" loading="lazy" decoding="async" width="40" height="40"><span>SodaPup sensorische kom Kikker - paars</span></a><a href="../products/anti-schrokkom-23cm-zonder-gezondheid-begint-in-de-kom-met-yoggies-logo.html" class="dd-item"><img class="dd-thumb" src="../images/3085-yoggies-miska-proti-hltani-17-cm-e292f842-0856-4cab-a48-48505ec6-200.webp" alt="Anti-schrokkom 23cm ZONDER &quot;Gezondheid begint in de kom&quot; met Yoggies-logo" loading="lazy" decoding="async" width="40" height="40"><span>Anti-schrokkom 23cm ZONDER &quot;Gezondheid b</span></a><a href="../products/sodapup-vleermuis-supersterk-nylon-kauwspeeltje-zwart-m.html" class="dd-item"><img class="dd-thumb" src="../images/3606-sodapup-netopyr-super-odolna-nylonova-zvykaci-hracka-ce-ef418869-200.webp" alt="SodaPup vleermuis, supersterk nylon kauwspeeltje – zwart M" loading="lazy" decoding="async" width="40" height="40"><span>SodaPup vleermuis, supersterk nylon kauw</span></a><a href="../products/sodapup-holdem---onderlegger-voor-kommen-met-zuignappen-blauw.html" class="dd-item"><img class="dd-thumb" src="../images/sodapup-podlozka-namisky-6548eb19-200.webp" alt="SodaPup Hold&#x27;em - Onderlegger voor kommen met zuignappen, blauw" loading="lazy" decoding="async" width="40" height="40"><span>SodaPup Hold&#x27;em - Onderlegger voor komme</span></a><a href="../products/sodapup-likkom-citrus-softie---oranje.html" class="dd-item"><img class="dd-thumb" src="../images/sodapuplizacimiskacitrussoftie-e40cd241-200.webp" alt="SodaPup likkom Citrus Softie - oranje" loading="lazy" decoding="async" width="40" height="40"><span>SodaPup likkom Citrus Softie - oranje</span></a><a href="../products/yoggies-ecologische-kattenbakvulling-6-x-3-kg.html" class="dd-item"><img class="dd-thumb" src="../images/stelivoprokockyweb-7cb1f112-200.webp" alt="Yoggies ecologische kattenbakvulling 6 x 3 kg" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies ecologische kattenbakvulling 6 x</span></a><a href="../products/ik-hond-voordat-u-een-hond-neemt---en-wat-er-daarna-allemaal-komt.html" class="dd-item"><img class="dd-thumb" src="../images/jaapesknihaweb-7775f2e7-200.webp" alt="IK &amp; HOND: Voordat u een hond neemt - en wat er daarna allemaal komt" loading="lazy" decoding="async" width="40" height="40"><span>IK &amp; HOND: Voordat u een hond neemt - en</span></a><a href="../products/yoggies-ecologische-kattenbakvulling-3-kg.html" class="dd-item"><img class="dd-thumb" src="../images/yoggies-stelivo-prokocky-3kg-2-webbezpozadi-e36cbb64-200.webp" alt="Yoggies ecologische kattenbakvulling 3 kg" loading="lazy" decoding="async" width="40" height="40"><span>Yoggies ecologische kattenbakvulling 3 k</span></a><a href="../products/lickimat-casper-cat-likmat.html" class="dd-item"><img class="dd-thumb" src="../images/2167-lickimat-casper-cat-lizaci-podlozka-1f9a00b1-8f90-4fb9--a3d4d303-200.webp" alt="LickiMat Casper Cat likmat" loading="lazy" decoding="async" width="40" height="40"><span>LickiMat Casper Cat likmat</span></a><a href="../products/petbuddy-gerecycleerde-hondenpoepzakjes-8-rollen-a-15-zakjes-groen-met-opdruk.html" class="dd-item"><img class="dd-thumb" src="../images/petbuddy-recyklovane-sacky-na-psi-exkrementy-8-roli-a-15-sac-ad36a021-200.webp" alt="PetBuddy gerecycleerde hondenpoepzakjes, 8 rollen / à 15 zakjes, groen met opdruk" loading="lazy" decoding="async" width="40" height="40"><span>PetBuddy gerecycleerde hondenpoepzakjes,</span></a></div></div></li>
+  </ul>
+</nav>
+
+<!-- PRODUCT PAGE START -->
+<main class="product-page">
+
+  <section class="product-hero">
+
+    <!-- LEFT: product image + thumbnails -->
+    <div class="ph-images">
+
+      <div class="ph-main-img" id="phMainImg"><img src="../images/yoggies-ragu-sterilised-hovezi-monoprotein-web-7919242d-600.webp" srcset="../images/yoggies-ragu-sterilised-hovezi-monoprotein-web-7919242d-600.webp 600w, ../images/yoggies-ragu-sterilised-hovezi-monoprotein-web-7919242d-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 600px" alt="Yoggies RAGÚ voor gecastreerde katten, rund monoproteïne 185 g" decoding="async" fetchpriority="high"></div>
+
+      <div class="ph-thumbs"><div class="ph-thumb  active" onclick="phSwap(this)"><img src="../images/yoggies-ragu-sterilised-hovezi-monoprotein-web-7919242d-200.webp" data-full="../images/yoggies-ragu-sterilised-hovezi-monoprotein-web-7919242d-600.webp" alt="Yoggies RAGÚ voor gecastreerde katten, rund monoproteïne 185 g — afbeelding 1" loading="lazy" decoding="async"></div><div class="ph-thumb" onclick="phSwap(this)"><img src="../images/185g-yoggies-ragout-voor-katten-rund-monoprotein-castrate-30-f32167e9-200.webp" data-full="../images/185g-yoggies-ragout-voor-katten-rund-monoprotein-castrate-30-f32167e9-600.webp" alt="Yoggies RAGÚ voor gecastreerde katten, rund monoproteïne 185 g — afbeelding 2" loading="lazy" decoding="async"></div></div>
+
+    </div>
+
+    <!-- RIGHT: info box -->
+    <div class="ph-info">
+
+      <!-- PRODUCT TITLE -->
+      <h1 class="ph-product-title">Yoggies RAGÚ voor gecastreerde katten, rund monoproteïne 185 g</h1>
+
+      <!-- BADGES -->
+      <div class="ph-badges"></div>
+
+      <!-- ORDER BUTTON -->
+      <a href="https://doglife.be/product/185g-yoggies-ragout-voor-katten-rund-monoprotein-castrate" class="ph-order-btn" target="_blank" rel="noopener">Bestel bij DogLife.be →</a>
+
+    </div>
+  </section>
+
+  <!-- Accordion details -->
+  <section class="product-accordions">
+
+    <details class="accordion">
+      <summary class="accordion-summary">Beschrijving</summary>
+      <div class="accordion-body">
+        <p>Castratie betekent niet het einde van gastronomische belevenissen, maar eerder het begin van een nieuw hoofdstuk waarin lichtheid in elke beweging de hoofdrol speelt. Om te vermijden dat uw roofdier iets van haar lenigheid verliest, heeft ze voer nodig dat verzadigt maar niet belast.</p>
+<p>Yoggies RAGÚ met rund monoproteïne bewijst dat ook functionele voeding een stevig feestmaal kan zijn. Een recept gebouwd op één vleessoort en een samenstelling 100 % zonder chemie brengt precies wat een (gecastreerde) jager voor haar welbevinden nodig heeft.</p>
+<p>De kracht van rund voor een rustige spijsvertering</p>
+<p>Eén vleessoort in de kom betekent minder zorgen voor de spijsvertering. Rund monoproteïne is een uitstekende keuze voor alle katten die op kwaliteit staan en de zachtste aanpak zonder overbodige toevoegingen verlangen.</p>
+<p>•</p>
+<p>Verzadiging zonder zwaarte – Dankzij toegevoegde vezels en een lagere energie-inhoud is uw kat tevreden zonder zich te overeten. De ideale manier om haar jagersfiguur te behouden en toch verzadigd te zijn na het eten.</p>
+<p>•</p>
+<p>Steun voor de urinewegen – De evenwichtige mineralenverhouding draagt bij aan het evenwicht van de urinewegen, zodat uw kat elke dag in alle rust kan genieten.</p>
+<p>•</p>
+<p>Een vacht als uit een reclame en een scherpe blik – Koudgeperste teunisbloemolie geeft de vacht een prachtige glans, terwijl taurine waakt over een goede hartwerking en over een blik waaraan geen vlieg ontsnapt.</p>
+<p>•</p>
+<p>Hulp bij het verbranden – L-carnitine werkt als een klein motortje dat de vetstofwisseling bevordert en vet omzet in energie voor het dagelijkse avontuur.</p>
+<p>Een smaak die zelfs de kieskeurigste kat doet spinnen</p>
+<p>Vergeet saaie diëten. In dit RAGÚ vindt u sappige stukjes rundvlees en orgaanvlees in een saus die zo verleidelijk geurt dat ze ook de kieskeurigste tongen naar de kom lokt. Geen granen, soja of suiker. Zuiver rund heeft immers geen maskering of smaakversterkers nodig.</p>
+<p>Van de ochtendstrekbeurt tot de jacht op speeltjes</p>
+<p>Het leven van een kat zit vol belangrijke opdrachten, en met de juiste voeding gaan ze allemaal vlotter van de poot. Met Yoggies RAGÚ gunt u uw roofdier vitaliteit in elke hap, zodat ze genoeg kracht heeft om de planken te verkennen en van een verdiende rust te genieten.</p>
+<p>De belangrijkste voordelen van Yoggies RAGÚ</p>
+<p>• Rund monoproteïne als enige eiwitbron.</p>
+<p>• Compleet voer voor gecastreerde roofdieren.</p>
+<p>• Verlaagde energie-inhoud en vezels voor een verzadigd gevoel en een slanke lijn.</p>
+<p>• Ondersteuning van gezonde urinewegen.</p>
+<p>• Teunisbloemolie voor een representatieve vacht en een gezonde huid.</p>
+<p>• Taurine voor een goede hartwerking en een scherpe blik.</p>
+<p>• L-carnitine ter ondersteuning van de vetstofwisseling.</p>
+<p>• 100% natuurlijke samenstelling zonder granen, soja, suiker en chemie.</p>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary class="accordion-summary">Ingrediënten &amp; Samenstelling</summary>
+      <div class="accordion-body">
+        <p>Zie de verpakking voor ingrediënteninformatie.</p>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary class="accordion-summary">Voedingsadvies &amp; Dosering</summary>
+      <div class="accordion-body">
+        <p>Raadpleeg de verpakking voor voedingsadvies.</p>
+      </div>
+    </details>
+
+    <details class="accordion">
+      <summary class="accordion-summary">Verzending &amp; Levering</summary>
+      <div class="accordion-body">
+        <p>Gratis verzending bij bestellingen boven € 49,00. Levertijd: 1–3 werkdagen.</p>
+      </div>
+    </details>
+
+  </section>
+
+</main>
+<!-- PRODUCT PAGE END -->
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <svg class="footer-logo-svg" viewBox="0 0 861.327 243.626" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(0 0.01)">
+        <path fill="#ffffff" transform="translate(-545.842 -23.366)" d="M1396.575,67.443h1.768a2.809,2.809,0,0,0,1.725-.377,1.213,1.213,0,0,0,.462-1,1.166,1.166,0,0,0-.225-.711,1.3,1.3,0,0,0-.613-.474,4.635,4.635,0,0,0-1.464-.152h-1.652v2.7Zm-1.452,5.066v-9h3.1a7.671,7.671,0,0,1,2.3.249,2.249,2.249,0,0,1,1.136.869,2.308,2.308,0,0,1,.419,1.318,2.388,2.388,0,0,1-.711,1.719,2.8,2.8,0,0,1-1.877.82,2.329,2.329,0,0,1,.765.48,10.131,10.131,0,0,1,1.336,1.786l1.1,1.762h-1.768l-.8-1.415A7.3,7.3,0,0,0,1398.6,69a1.861,1.861,0,0,0-1.16-.3h-.856v3.821h-1.458Zm3.675-11.614a7.149,7.149,0,0,0-3.438.905,6.453,6.453,0,0,0-2.612,2.588,6.955,6.955,0,0,0-.012,6.967,6.6,6.6,0,0,0,2.594,2.588,6.971,6.971,0,0,0,6.955,0,6.546,6.546,0,0,0,2.588-2.588,6.993,6.993,0,0,0-.024-6.967,6.415,6.415,0,0,0-2.612-2.588,7.157,7.157,0,0,0-3.426-.905Zm0-1.385a8.588,8.588,0,0,1,4.118,1.081,7.682,7.682,0,0,1,3.128,3.1,8.536,8.536,0,0,1,1.124,4.2,8.437,8.437,0,0,1-1.105,4.161,7.734,7.734,0,0,1-3.1,3.1,8.444,8.444,0,0,1-4.167,1.106,8.531,8.531,0,0,1-4.173-1.106,7.787,7.787,0,0,1-3.1-3.1,8.447,8.447,0,0,1-1.112-4.161,8.6,8.6,0,0,1,1.124-4.2,7.769,7.769,0,0,1,3.134-3.1,8.593,8.593,0,0,1,4.125-1.081Z" data-name="Path 7"></path>
+        <path fill="#ffffff" transform="translate(0 -35.509)" d="M39.956,219.463H58.823l-1.664,5.552c-4.72,15.258-5.825,18.593-8.6,22.475a12.7,12.7,0,0,1-7.216,5.272,35.046,35.046,0,0,1-10.265,1.112,36.851,36.851,0,0,1-12.489-1.664l-5.825,22.754c10.545,3.329,14.985,4.161,23.307,4.161,28.027,0,40.236-13.321,51.054-54.662L122.086,90.446H89.625L67.151,186.729l-.832,7.216V199.5H62.71v-5.552L61.6,186.729,34.963,90.44H0Z" data-name="Path 8"></path>
+        <path fill="#ffffff" transform="translate(-83.301 -33.538)" d="M246.048,155.341c0-28.579,9.986-44.949,28.3-44.949s28.859,16.091,28.859,45.5-9.986,45.229-28.027,45.229-29.132-16.091-29.132-45.782M212.2,157c0,42.173,24.418,69.088,61.872,69.088s62.984-27.468,62.984-70.473-23.586-70.2-61.319-70.2S212.19,112.888,212.19,157Z" data-name="Path 9"></path>
+        <path fill="#ffffff" transform="translate(-171.619 -34.256)" d="M499.858,109.445c14.426,0,23.586,9.713,23.586,25.251s-9.713,25.251-24.692,25.251-24.418-9.713-24.418-25.251,9.986-25.251,25.524-25.251m71.305-19.978c-3.049-.279-5.825-.553-8.322-.553-9.433,0-15.258,3.049-22.754,12.209-8.322-7.49-12.489-9.713-22.2-11.656a81.9,81.9,0,0,0-18.867-2.217c-34.4,0-57.438,19.419-57.438,48,0,12.209,4.72,23.86,12.762,31.355a65.039,65.039,0,0,0,8.048,6.1l-9.433,7.49c-7.216,5.825-11.656,11.377-11.656,15.258,0,2.217,1.944,7.769,4.72,13.321s5.825,9.713,8.881,11.65c2.5,1.944,6.657,2.5,16.37,2.5h2.776c6.1,0,11.1-.279,14.706-.279h15.817c13.874,0,18.034.832,22.754,3.329,3.888,2.217,5.552,5.272,5.552,11.1,0,12.209-11.656,18.314-34.4,18.314-20.531,0-32.187-6.937-32.187-18.867,0-4.993,1.112-7.216,4.44-8.881v-1.112H440.489c-2.776,6.384-3.329,9.433-3.329,14.153,0,23.586,21.643,37.18,58.823,37.18,45.229,0,68.536-15.538,68.536-45.5,0-24.971-14.153-34.963-49.669-34.963h-3.888l-24.971.553h-1.112c-8.881,0-13.041-1.944-13.041-6.657q0-4.164,4.993-8.322l3.608-3.049a90.607,90.607,0,0,0,18.034,1.664c34.963,0,56.879-17.482,56.879-45.782,0-8.322-1.112-11.93-4.993-20.258,4.44-1.944,5.825-2.5,9.433-2.5a30.943,30.943,0,0,1,8.6,1.385l2.776,1.112V89.461Z" data-name="Path 10"></path>
+        <path fill="#ffffff" transform="translate(-265.016 -34.256)" d="M737.762,109.445c14.426,0,23.586,9.713,23.586,25.251s-9.713,25.251-24.692,25.251-24.418-9.713-24.418-25.251,9.986-25.251,25.524-25.251m71.312-19.978c-3.049-.279-5.825-.553-8.322-.553-9.433,0-15.258,3.049-22.754,12.209-8.322-7.49-12.489-9.713-22.2-11.656a81.905,81.905,0,0,0-18.867-2.217c-34.4,0-57.438,19.419-57.438,48,0,12.209,4.72,23.86,12.762,31.355a65.04,65.04,0,0,0,8.048,6.1l-9.433,7.49c-7.216,5.825-11.656,11.377-11.656,15.258,0,2.217,1.944,7.769,4.72,13.321s5.825,9.713,8.881,11.65c2.5,1.944,6.657,2.5,16.37,2.5h2.776c6.1,0,11.1-.279,14.706-.279h15.817c13.874,0,18.034.832,22.754,3.329,3.881,2.217,5.552,5.272,5.552,11.1,0,12.209-11.656,18.314-34.4,18.314-20.531,0-32.187-6.937-32.187-18.867,0-4.993,1.112-7.216,4.44-8.881v-1.112H678.4c-2.776,6.384-3.329,9.433-3.329,14.153,0,23.586,21.643,37.18,58.823,37.18,45.229,0,68.536-15.538,68.536-45.5,0-24.971-14.153-34.963-49.669-34.963h-3.888l-24.971.553h-1.112c-8.881,0-13.041-1.944-13.041-6.657q0-4.164,4.993-8.322l3.608-3.049a90.607,90.607,0,0,0,18.034,1.664c34.963,0,56.879-17.482,56.879-45.782,0-8.322-1.112-11.93-4.993-20.258,4.44-1.944,5.825-2.5,9.433-2.5a30.943,30.943,0,0,1,8.6,1.385l2.776,1.112V89.461Z" data-name="Path 11"></path>
+        <path fill="#9ecc00" transform="translate(-361.437)" d="M920.68,17.751c0,10.265,8.322,17.2,20.258,17.2S961.2,28.017,961.2,17.472,953.147-.01,940.664-.01s-19.978,7.216-19.978,17.755" data-name="Path 12"></path>
+        <path fill="#ffffff" transform="translate(-364.126 -34.256)" d="M927.53,223.762h32.187V87.25L927.53,92.243Z" data-name="Path 13"></path>
+        <path fill="#ffffff" transform="translate(-397.962 -33.542)" d="M1100.843,141.192h-53.83c1.664-20.531,11.656-31.076,28.859-31.076s24.692,9.986,24.971,31.076M1050.621,164.5h82.962c.279-3.888.279-6.657.279-8.6,0-47.166-18.593-70.473-56.326-70.473s-63.816,27.468-63.816,71.032,23.586,69.368,63.263,69.368c14.153,0,29.132-3.329,40.23-8.6,2.5-1.385,6.1-3.329,10.818-6.384l-8.048-22.2c-10.824,5.552-15.538,7.49-23.027,8.881a64.258,64.258,0,0,1-12.762,1.112c-22.2,0-34.963-10.545-36.9-30.523l-.371-3.608h3.7Z" data-name="Path 14"></path>
+        <path fill="#ffffff" transform="translate(-483.893 -33.891)" d="M1232.61,211.741c11.93,7.769,17.2,9.986,28.859,12.489a85.242,85.242,0,0,0,18.593,2.217c32.461,0,52.718-17.482,52.718-44.949,0-21.363-11.93-33.3-40.788-40.789-14.985-3.888-19.146-5.552-22.2-8.048a11.241,11.241,0,0,1-3.888-8.322c0-8.048,7.216-12.209,21.922-12.209s24.139,3.049,34.963,10.265l6.657-23.586c-10.266-6.657-14.985-8.6-23.586-10.545a96.691,96.691,0,0,0-20.258-1.944c-32.461,0-51.886,15.538-51.886,41.9,0,10.545,3.881,19.978,10.545,25.524,6.1,4.993,15.817,9.433,30.523,13.594,20.258,5.825,25.251,9.433,25.251,18.314s-7.769,14.153-22.475,14.153a70.848,70.848,0,0,1-15.817-1.664c-9.154-1.944-13.594-3.881-23.307-10.824l-5.825,24.418Z" data-name="Path 15"></path>
+      </g>
+    </svg>
+      <p class="footer-tagline">Natuurlijk voer voor jouw trouwe viervoeter</p>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li><span class="footer-icon">📞</span><a href="tel:+32475344868">+32 (0)475 34 48 68</a></li>
+        <li><span class="footer-icon">✉️</span><a href="mailto:sales@doglife.be">sales@doglife.be</a></li>
+        <li><span class="footer-icon">📍</span><span>Leuvensesteenweg 277/a<br>3390 Tielt-Winge, België</span></li>
+        <li><span class="footer-icon">🕐</span><span>Ma – Vr: 10:00 – 19:00</span></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>Informatie</h4>
+      <ul>
+        <li><a href="https://doglife.be/over-ons/" target="_blank">Over ons</a></li>
+        <li><a href="https://doglife.be/faq/" target="_blank">Veelgestelde vragen</a></li>
+        <li><a href="https://doglife.be/blog/" target="_blank">Blog</a></li>
+        <li><a href="https://doglife.be/contact/" target="_blank">Contact</a></li>
+        <li><a href="https://doglife.be/privacy/" target="_blank">Privacybeleid</a></li>
+        <li><a href="https://doglife.be/algemene-voorwaarden/" target="_blank">Algemene voorwaarden</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-shop">
+      <h4>Winkel</h4>
+      <ul>
+        <li><a href="https://doglife.be/product-categorie/honden_24/korrels-honden_30/" target="_blank">Droogvoer honden</a></li>
+        <li><a href="https://doglife.be/product-categorie/honden_24/natvoer-honden-_145/" target="_blank">Natvoer honden</a></li>
+        <li><a href="https://doglife.be/product-categorie/honden_24/vers-vlees-honden_60/" target="_blank">BARF honden</a></li>
+        <li><a href="https://doglife.be/product-categorie/honden_24/snacks-honden-_138/" target="_blank">Snacks honden</a></li>
+        <li><a href="https://doglife.be/product-categorie/katten_27/" target="_blank">Alles voor katten</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Yoggies · Verkoop via <a href="https://doglife.be" target="_blank">DogLife.be</a></span>
+    <span>BE0806.558.562</span>
+  </div>
+</footer>
+  <script src="../hoofdpageproduct.js"></script>
+  <script src="../product.js"></script>
+<!-- YGS_NAV_JS_START --><script>
+(function yoggiesNavInit() {
+  var nav = document.querySelector('nav.main-nav');
+  if (!nav) return;
+
+  // ── Hamburger ────────────────────────────────────────────────
+  var list = nav.querySelector('.nav-list');
+  if (list && !nav.querySelector('.nav-hamburger')) {
+    var btn = document.createElement('button');
+    btn.className = 'nav-hamburger';
+    btn.setAttribute('aria-label', 'Menu openen');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = '<span></span><span></span><span></span>';
+    btn.addEventListener('click', function () {
+      var open = list.classList.toggle('is-open');
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    nav.insertBefore(btn, list);
+  }
+
+  // ── Mobile: click nav-link to toggle dropdown ────────────────
+  var isMobile = function () { return window.innerWidth <= 900; };
+  nav.querySelectorAll('.nav-item').forEach(function (item) {
+    var link = item.querySelector(':scope > a');
+    var dd   = item.querySelector(':scope > .dropdown');
+    if (!link || !dd) return;
+    link.addEventListener('click', function (e) {
+      if (!isMobile()) return;       // desktop: CSS hover handles it
+      e.preventDefault();
+      var wasOpen = item.classList.contains('nav-item--open');
+      // Close all others
+      nav.querySelectorAll('.nav-item--open').forEach(function (o) {
+        o.classList.remove('nav-item--open');
+        var a = o.querySelector(':scope > a');
+        if (a) a.setAttribute('aria-expanded', 'false');
+      });
+      item.classList.toggle('nav-item--open', !wasOpen);
+      link.setAttribute('aria-expanded', String(!wasOpen));
+    });
+  });
+
+  // ── Keyboard: Escape closes open dropdown ────────────────────
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      nav.querySelectorAll('.nav-item--open').forEach(function (o) {
+        o.classList.remove('nav-item--open');
+      });
+      if (list) list.classList.remove('is-open');
+    }
+  });
+
+  // ── Click outside closes menu ────────────────────────────────
+  document.addEventListener('click', function (e) {
+    if (!nav.contains(e.target)) {
+      nav.querySelectorAll('.nav-item--open').forEach(function (o) {
+        o.classList.remove('nav-item--open');
+      });
+      if (list) { list.classList.remove('is-open'); }
+      var btn2 = nav.querySelector('.nav-hamburger');
+      if (btn2) { btn2.classList.remove('is-open'); btn2.setAttribute('aria-expanded','false'); }
+    }
+  });
+})();
+</script><!-- YGS_NAV_JS_END -->
+<!-- YGS_SEARCH_JS_START --><script>
+(function yoggiesSearchInit() {
+  var bar = document.querySelector('.search-bar');
+  if (!bar) return;
+  var input = bar.querySelector('input');
+  var btn = bar.querySelector('button, .search-btn');
+  if (!input) return;
+
+  var atProduct = location.pathname.indexOf('/products/') >= 0;
+  var depth = atProduct ? '../' : '';
+
+  var results = document.createElement('div');
+  results.className = 'search-results';
+  bar.appendChild(results);
+
+  var index = null, loading = null;
+  function loadIndex() {
+    if (index) return Promise.resolve(index);
+    if (loading) return loading;
+    loading = fetch(depth + 'search-index.json')
+      .then(function(r) { return r.json(); })
+      .then(function(data) { index = data; return data; })
+      .catch(function() { index = []; return index; });
+    return loading;
+  }
+
+  function norm(s) {
+    return (s || '').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9 ]/g, ' ');
+  }
+
+  function search(q) {
+    if (!index) return [];
+    q = norm(q).trim();
+    if (!q) return [];
+    var words = q.split(/\s+/).filter(Boolean);
+    var scored = [];
+    for (var i = 0; i < index.length; i++) {
+      var it = index[i];
+      var n = it._n || (it._n = norm(it.name));
+      var c = it._c || (it._c = norm(it.cat || ''));
+      var score = 0;
+      var allMatch = true;
+      for (var w = 0; w < words.length; w++) {
+        var word = words[w];
+        var idx = n.indexOf(word);
+        if (idx >= 0) {
+          // Higher score if it's at start of name OR at a word boundary
+          score += idx === 0 ? 10 : (n.charAt(idx - 1) === ' ' ? 7 : 3);
+        } else if (c.indexOf(word) >= 0) {
+          score += 2;  // matches category
+        } else {
+          allMatch = false; break;
+        }
+      }
+      if (allMatch) scored.push({item: it, score: score});
+    }
+    scored.sort(function(a, b) { return b.score - a.score; });
+    var out = [];
+    for (var k = 0; k < scored.length && k < 10; k++) out.push(scored[k].item);
+    return out;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function(c) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function render(matches) {
+    if (!matches.length) {
+      results.innerHTML = '<div class="search-empty">Geen producten gevonden</div>';
+      results.style.display = 'block';
+      return;
+    }
+    var html = '';
+    for (var i = 0; i < matches.length; i++) {
+      var m = matches[i];
+      var catHtml = m.cat ? '<span class="search-result-cat">' + escapeHtml(m.cat) + '</span>' : '';
+      var href = depth + 'products/' + (m.url ? m.url : m.slug + '.html');
+      html += '<a class="search-result-item" href="' + escapeHtml(href) + '">'
+           +    '<div class="search-result-info">'
+           +      '<span class="search-result-name">' + escapeHtml(m.name) + '</span>'
+           +      catHtml
+           +    '</div>'
+           + '</a>';
+    }
+    results.innerHTML = html;
+    results.style.display = 'block';
+  }
+
+  function hide() { results.style.display = 'none'; }
+
+  function doSearch() {
+    var q = input.value.trim();
+    if (!q) { hide(); return; }
+    loadIndex().then(function() { render(search(q)); });
+  }
+
+  input.addEventListener('input', doSearch);
+  input.addEventListener('focus', function() { if (input.value.trim()) doSearch(); });
+
+  function submit() {
+    var matches = search(input.value);
+    if (matches.length) {
+      location.href = depth + 'products/' + matches[0].slug + '.html';
+    }
+  }
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); submit(); }
+    if (e.key === 'Escape') { hide(); input.blur(); }
+  });
+  if (btn) btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (input.value.trim()) submit();
+    else input.focus();
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!bar.contains(e.target)) hide();
+  });
+})();
+</script><!-- YGS_SEARCH_JS_END -->
+</body>
+</html>

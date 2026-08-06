@@ -1,35 +1,26 @@
-# legacy/ — superseded scripts
+# legacy/
 
-Everything in this folder is **superseded by `yoggies_pipeline.py`**, which is
-the only supported builder. These files are kept for reference and for the
-occasional archaeology question ("why is this markup like that?"). They are not
-part of the build and are not maintained.
+Superseded scripts and data files. Kept for reference only — do not run them.
 
-Do not run them against a live `site/` — they were written against older data
-shapes and will happily overwrite generated pages with stale markup.
+## Replaced builders
+`build_site.py`, `build_site_final.py`, `verify_and_build.py` were three
+overlapping forks of the same site builder. `yoggies_pipeline.py` in the
+project root is the only builder now.
 
-| File | What it was |
-|---|---|
-| `build_site.py` | First site generator, read `YOGGIES_FINAL_NL.xlsx`. |
-| `build_site_final.py` | Second generator, read `READY_FOR_BUILD_FINAL.xlsx`. Closest ancestor of the current pipeline. |
-| `verify_and_build.py` | Translation-cache verifier + Excel writer, run in a Linux sandbox. |
-| `merge_calculator.py` | One-off: patched the dosage calculator into `index.html`. |
-| `merge_extra_pages.py` | One-off: merged extra static pages into the site. |
-| `fix_home_categories.py` | One-off: rewrote the homepage category buttons. |
-| `replace_badge_icons.py` | One-off: swapped the product badge icon set. |
-| `replace_product_calculator.py` | One-off: replaced the calculator block on product pages. |
+## One-off patch scripts
+`fix_home_categories.py`, `merge_calculator.py`, `merge_extra_pages.py`,
+`replace_badge_icons.py`, `replace_product_calculator.py` patched files
+inside `site/`. That work is now done by the generator, so patching build
+output is no longer needed — and would be erased on the next build anyway.
 
-## Changes made when archiving
+## Superseded helpers
+`download_images.py` handled a handful of template images and rewrote built
+HTML. Replaced by `localize_images.py`, which is data-driven and covers all
+640+ images.
+`manual_variants.py`, `diagnose_variants.py`, `check_site.py`, `test_models.py`
+were diagnostic one-offs. `pipe/audit.py` replaces them.
 
-All of these hardcoded a path from one developer's machine
-(`C:\Users\AdibHAJHASAN\IdeaProjects\yoggies.be\site`) or a Linux sandbox
-(`/home/claude/...`) and could not run anywhere else. Each now derives its
-paths from its own location:
-
-```python
-ROOT = Path(__file__).resolve().parent.parent
-SITE = ROOT / 'site'
-```
-
-Template references were also repointed from `site/` to `templates/`, since the
-source templates no longer live in the output folder.
+## Old spreadsheets
+`READY_FOR_BUILD_NL.xlsx` and `YOGGIES_FINAL_NL.xlsx` were intermediate copies
+of the same catalogue. `READY_FOR_BUILD_FINAL.xlsx` in the root is the single
+source of truth.

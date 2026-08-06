@@ -2222,17 +2222,14 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
                   lambda _m: f'<div class="ph-badges">{badges}</div>',
                   page, count=1, flags=re.DOTALL)
 
-    # Shared contact-fallback HTML (used both as standalone and inside the variant toggle)
-    contact_html = (
-        '<div class="ph-contact-fallback">'
-        '<p class="ph-contact-note">Dit product is niet beschikbaar bij DogLife.be.<br>'
-        'Neem rechtstreeks contact op om dit product te bestellen:</p>'
-        '<div class="ph-contact-links">'
-        '<a href="tel:+32475344868" class="ph-contact-link">📞 +32 (0)475 34 48 68</a>'
-        '<a href="mailto:sales@doglife.be" class="ph-contact-link">✉️ sales@doglife.be</a>'
-        '</div>'
-        '</div>'
-    )
+    # Purchase block. yoggies.be is an information site, not a shop: either the
+    # product has a real DogLife product page and we show only the order button,
+    # or it has none and we show nothing at all. match_status is the single
+    # switch, so an order button and an "unavailable" notice can never both
+    # appear on the same page.
+    dl_status = str(p.get("match_status") or "").strip().upper()
+    dl_linked = (dl_status not in ("REVIEW", "NOT_ON_DOGLIFE")
+                 and _is_real_product_url(dl_url))
 
     variants = p.get("_variants") or []
     if variants and len(variants) >= 2:
@@ -2246,7 +2243,6 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
         first_url = (first.get("dl_url") or "").strip()
         first_has = _is_real_product_url(first_url)
         btn_style = "" if first_has else "display:none"
-        fb_style  = "display:none" if first_has else ""
         btn = (
             '<div class="ph-variant-row">'
             '<label class="ph-variant-label" for="ph-size-sel">Kies grootte:</label>'
@@ -2255,16 +2251,16 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
             f'<a id="ph-variant-btn" href="{html.escape(first_url) if first_has else "#"}" '
             f'class="ph-order-btn" target="_blank" rel="noopener" style="{btn_style}">'
             f'Bestel bij DogLife.be →</a>'
-            f'<div id="ph-variant-fallback" style="{fb_style}">{contact_html}</div>'
             '<script>(function(){'
             'var s=document.getElementById("ph-size-sel");'
             'var b=document.getElementById("ph-variant-btn");'
-            'var f=document.getElementById("ph-variant-fallback");'
-            'if(!s||!b||!f)return;'
+            'if(!s||!b)return;'
             'function sync(){'
             '  var u=s.value;'
-            '  if(u&&u.indexOf("http")===0){b.href=u;b.style.display="";f.style.display="none";}'
-            '  else{b.style.display="none";f.style.display="";}'
+            # No URL for this size means no purchase route, so the button is
+            # hidden outright rather than replaced by a notice.
+            '  if(u&&u.indexOf("http")===0){b.href=u;b.style.display="";}'
+            '  else{b.removeAttribute("href");b.style.display="none";}'
             '}'
             's.addEventListener("change",sync);'
             # Deep link: the retired per-size URLs redirect here with ?maat=,
@@ -2282,12 +2278,12 @@ def _render_product(p, slug, tmpl, by_cat=None, slugs=None):
             '}catch(e){}'
             '})();</script>'
         )
-    elif _is_real_product_url(dl_url):
+    elif dl_linked:
         btn = (f'<a href="{html.escape(dl_url)}" class="ph-order-btn" '
                f'target="_blank" rel="noopener">Bestel bij DogLife.be →</a>')
     else:
-        # Product not on DogLife — show contact info from footer
-        btn = contact_html
+        # Information-only product: no DogLife page, so no purchase block at all.
+        btn = ""
     # lambda, not a plain string: the replacement carries generated markup that
     # can contain backslashes (JS regexes) and \1-looking sequences, which
     # re.sub would otherwise try to interpret as escapes/group references.
@@ -2581,15 +2577,7 @@ _CALC_CSS = """
     .ph-variant-row{display:flex;align-items:center;gap:12px;margin:14px 0 12px;flex-wrap:wrap}
     .ph-variant-label{font-weight:800;font-size:14px;color:var(--brown);letter-spacing:.2px}
     .ph-variant-select{padding:10px 36px 10px 14px;border:2px solid var(--cream-deep);border-radius:10px;font-family:inherit;font-size:15px;font-weight:700;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%233c1e00' stroke-width='2' fill='none' stroke-linecap='round'/></svg>") no-repeat right 12px center;color:var(--brown);cursor:pointer;appearance:none;-webkit-appearance:none;min-width:120px}
-    .ph-variant-select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(125,196,0,.18)}
-
-    /* Contact fallback when product not available on DogLife */
-    .ph-contact-fallback{background:var(--cream,#f5f1e6);border:1px solid var(--cream-deep,#e8dcc0);border-radius:12px;padding:18px 20px;margin-top:12px}
-    .ph-contact-note{margin:0 0 14px;font-size:14px;line-height:1.55;color:var(--brown,#3c1e00);font-weight:600}
-    .ph-contact-links{display:flex;flex-wrap:wrap;gap:8px}
-    .ph-contact-link{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:var(--brown,#3c1e00);color:#fff !important;text-decoration:none;border-radius:10px;font-weight:700;font-size:13px;transition:background .15s}
-    .ph-contact-link:hover{background:#5c2e10}
-    @media(max-width:560px){.ph-contact-link{flex:1 1 100%;justify-content:center}}"""
+    .ph-variant-select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(125,196,0,.18)}"""
 
 # ── Search dropdown ────────────────────────────────────────────────────
 _SEARCH_MARK_S = "/* YGS_SEARCH_CSS_START */"
