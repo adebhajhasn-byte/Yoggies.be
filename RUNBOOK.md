@@ -29,7 +29,8 @@ yoggies.be/
 │   ├── doglife_matches.json    written by step 3
 │   ├── match_decisions.json    your y/n verdicts - always beat the scoring
 │   ├── review_matches.xlsx     uncertain matches - you decide
-│   └── doglife_unused.xlsx     DogLife products not on the site yet
+│   ├── doglife_unused.xlsx     DogLife products not on the site yet
+│   └── build_manifest.json     what the last build published; audit.py reads it
 │
 ├── READY_FOR_BUILD_FINAL.xlsx  the master file the site builder reads
 ├── READY_FOR_BUILD_NL.xlsx     build output of the site builder, not an input
@@ -56,14 +57,14 @@ by `legacy/build_site.py`.
 **One rule: never edit anything inside `site/`.** It is regenerated on every
 build and your changes will be erased. Fix the generator or the data instead.
 
-**`site/images/` is deliberately not versioned.** The 6,096 files there are
+**`site/images/` is deliberately not versioned.** The 6,104 files there are
 build output: `localize_images.py` rebuilds every one of them from
-`image_map.json`, which *is* in git. Keeping 157.7 MB of binaries in history
+`image_map.json`, which *is* in git. Keeping 157.8 MB of binaries in history
 would bloat every clone to buy nothing. After a fresh clone, run
 `python localize_images.py` before `python yoggies_pipeline.py` — downloads
 resume where they stopped, so an interrupted run is safe to repeat.
 
-Only 1,653 of those files are referenced by a page. The other 4,443 (134.8 MB)
+Only 1,662 of those files are referenced by a page. The other 4,442 (128.6 MB)
 are originals and `-200/-600/-1200.webp` derivatives belonging to products
 whose page was merged away or excluded. Harmless, and they cost nothing but
 disk — but if upload size matters, they are safe to prune: every page reference
@@ -232,52 +233,79 @@ rebuild.
 ## Current state — what audit.py reports today
 
 ```
-21 passed   2 warnings   0 failed
+23 passed   1 warnings   0 failed
 ```
 
 | | |
 |---|---|
-| Products | 526 |
-| Pages built | 647 html files — 471 real pages + 176 redirect stubs |
-| | 426 product pages, 27 breed pages, 9 category pages, 4 filter pages, 5 standalone (index, calculator, hondenatlas, over-yoggies, Dierenkliniek) |
-| | stubs: 152 retired size variants, 23 Czech breed URLs, 1 `home.html` |
-| Images | 6,096 local files (157.7 MB), 0 missing, 0 hotlinked |
-| Site folder | 193.5 MB total, 35.9 MB without `images/` |
+| Products | 526 rows → 430 product pages (56 size groups merged) |
+| Pages built | 657 html files — 475 real pages + 182 redirect stubs |
+| | 430 product pages, 27 breed pages, 9 category pages, 4 filter pages, 5 standalone (index, calculator, hondenatlas, over-yoggies, Dierenkliniek) |
+| | stubs: 152 retired size variants, 23 Czech breed URLs, 6 disambiguated group URLs, 1 `home.html` |
+| Images | 6,104 local files (157.8 MB), 0 missing, 0 hotlinked |
+| Site folder | 194.0 MB total, 36.2 MB without `images/` |
 | Translation | 2,566 blocks / 1,042 fields, 0 Czech left in names or descriptions |
-| DogLife | 213 linked, 202 information-only, 111 awaiting review |
+| DogLife | 223 linked, 303 information-only, 0 awaiting review |
 
 Every data and site check passes: no Czech text, no Kč, no URL collisions, no
 broken links, no missing meta descriptions or canonicals, no missing alt text,
-no empty descriptions, every referenced image present on disk.
+no empty descriptions, every referenced image present on disk, and every
+product row has a page of its own.
 
-`sitemap.xml` lists the 471 real pages and leaves every redirect stub out.
+`sitemap.xml` lists the 475 real pages and leaves every redirect stub out.
 
-### Two warnings, both decisions rather than defects
+### The one remaining warning
 
-**1. 111 uncertain DogLife matches** are waiting in
-`data/review_matches.xlsx`. Put `y`/`n` in the **keep** column and run
-`python pipe/3_match_doglife.py --apply-review`. Decisions already taken live
-in `data/match_decisions.json` and are never asked again.
-
-**2. 417 product pages show no call to action.** This is the old question of
-what the 202 products DogLife does not sell should display. Since yoggies.be
+**415 product pages show no call to action.** This is the old question of
+what the 303 products DogLife does not sell should display. Since yoggies.be
 is an information site and DogLife is the shop, showing no purchase block at
 all is cleaner than an apology — but that is your call, and the fix lives in
 the purchase block in `yoggies_pipeline.py` (around line 1550).
 
-### Known cosmetic issues
+### The DogLife review is closed
 
-**Four merged size groups share a page with an identically named product.**
-`_merge_size_variants()` renames a group to its base name ("Yoggies B.A.R.F.
-100% kip met probiotica"), and for four groups yoggies.cz *also* lists a
-separate sizeless product under exactly that name. Both rows resolve to the
-same slug, so 430 product rows write 426 files and the second row overwrites
-the first. No link breaks — every reference goes through the same slug table —
-but the search dropdown lists those four names twice pointing at one page, and
-the losing row's own description never appears. The fix is in `_build_html()`
-(`yoggies_pipeline.py` ~line 1360): key the slug de-duplication on the row, not
-on `name_nl`. Left alone deliberately — changing slugs at hand-over would move
-live URLs for no functional gain.
+All 111 uncertain pairs were judged and stored in `data/match_decisions.json`;
+`review_matches.xlsx` is empty and the audit check passes. **10 accepted,
+101 rejected.** The rule applied was: accept only when pack size *and*
+flavour/variant both match, checking the DogLife product page itself whenever
+the two titles alone were not conclusive.
+
+What the rejections were, in bulk: a different recipe under a similar name
+(VET Gastro Sensitive offered for lamsvlees/Veggie/Insect Derma), a different
+brand (LIZA, Fitmin, TRIXIE, Happy Dog), a different colour or design in the
+SodaPup likmat range (the DogLife pages carry no colour selector — green is
+its own product), MINI kibble pointed at the classic-size page (DogLife has
+*separate* `…-mini` pages for Ibérico and Kalkoen/Gierst), and every "5+1"
+multipack, because DogLife sells those cans singly.
+
+Two traps worth remembering: **LUPO BIOTIN** looks like a certain match on
+title but DogLife sells 400 g/800 g while ours is 180 g, and **Yoggies ACTIVE
+vlees van wild** is a €2,70 can, not the 2–15 kg kibble whose name it echoes.
+
+Decisions always beat the scoring, so re-running the matcher never re-opens
+them. If you disagree with one, edit the `keep` column and re-apply — or edit
+`data/match_decisions.json` directly.
+
+### How merged groups are named
+
+`_merge_size_variants()` gives a merged group the group's base name, e.g.
+"Yoggies B.A.R.F. 100% kip met probiotica". yoggies.cz also sells some of those
+products as one sizeless *combined listing* under exactly that name, and the
+two used to slugify to the same file: the group overwrote the standalone and
+four products had no page at all.
+
+Now, when a group's base name is already taken by a row that survives merging,
+the group gets a suffix naming the packs it covers — "… - 700 g en 1300 g" —
+the way the yoghurt multipack carries "6 of 12 stuks". **The standalone listing
+keeps the plain URL**; the group moves to the suffixed one, and its old
+`<base>-1.html` URL stays alive as a redirect stub. Six groups are affected:
+three B.A.R.F. menus, the kalkoen/kalfsvlees blikvoer and two gekookt menus.
+
+`audit.py` now compares `data/build_manifest.json` (what the build says it
+wrote) against the real pages on disk, so a slug that swallows a product page
+fails the audit instead of passing unnoticed.
+
+### Known cosmetic issue
 
 **Register slip on eight product pages.**
 Four paragraphs were already in the translation cache before the manual pass
@@ -300,7 +328,7 @@ internal link is relative, so the site also runs from a subdirectory or
 straight off disk.
 
 ```powershell
-# what you upload — 193.5 MB, 6,755 files
+# what you upload — 194.0 MB, 6,773 files
 site/
 ```
 
@@ -312,7 +340,7 @@ Two things to know before going live:
   domain is `BASE_URL` at `yoggies_pipeline.py:180` — change it and rebuild.
 - **Redirect stubs are `<meta http-equiv="refresh">`, not HTTP 301s.** They
   work on any host with no configuration. If your host supports real redirects,
-  the 176 stubs are the list to convert.
+  the 182 stubs are the list to convert.
 
 Nothing else needs deploying. `pipe/`, `data/`, the `.xlsx` files and the
 generator scripts are the workshop, not the product.

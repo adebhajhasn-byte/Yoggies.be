@@ -207,6 +207,26 @@ def audit_site() -> None:
 
     products = glob.glob(str(SITE / "products" / "*.html"))
     if products:
+        # A product row that shares a slug with another row loses its page
+        # silently: the file is simply written twice. Compare what the builder
+        # says it published against the real (non-redirect) pages on disk.
+        stubs = [p for p in products
+                 if 'http-equiv="refresh"' in Path(p).read_text(
+                     encoding="utf-8", errors="replace")]
+        real = len(products) - len(stubs)
+        manifest_path = ROOT / "data" / "build_manifest.json"
+        if manifest_path.exists():
+            import json
+            m = json.loads(manifest_path.read_text(encoding="utf-8"))
+            rows = m.get("product_rows", 0)
+            check("every product row has its own page", rows == real,
+                  f"{rows} product rows, {real} product pages"
+                  + ("" if rows == real else f" - {rows - real} overwritten"))
+        else:
+            check("every product row has its own page", False,
+                  "data/build_manifest.json missing - rebuild the site",
+                  warn_only=True)
+
         both = neither = 0
         for path in products:
             text = Path(path).read_text(encoding="utf-8", errors="replace")

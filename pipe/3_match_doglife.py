@@ -269,7 +269,9 @@ def main() -> int:
             url = decisions[handle]
             hit = shop.get(url) if url else None
             status = "MATCH_CONFIRMED" if hit else "NOT_ON_DOGLIFE"
-            stats["confirmed"] += 1
+            # A decided `n` is a decision too, but it is not a link - count it
+            # with the information-only products or the summary overstates them.
+            stats["confirmed" if hit else "none"] += 1
         else:
             aw, asz = word_tokens(name), size_tokens(name)
             best, best_score = None, 0.0

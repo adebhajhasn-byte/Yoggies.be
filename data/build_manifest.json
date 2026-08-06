@@ -1,0 +1,33 @@
+{
+ "product_rows": 430,
+ "product_pages": 430,
+ "variant_stubs": 152,
+ "legacy_stubs": 6,
+ "excluded_stubs": 0,
+ "renamed_groups": [
+  {
+   "base_name": "Yoggies B.A.R.F. Zalm, paard, kalkoen met probiotica",
+   "new_name": "Yoggies B.A.R.F. Zalm, paard, kalkoen met probiotica - 700 g en 1300 g"
+  },
+  {
+   "base_name": "Yoggies blikvoer kalkoen- en kalfsvlees met appel",
+   "new_name": "Yoggies blikvoer kalkoen- en kalfsvlees met appel - 400 g en 800 g"
+  },
+  {
+   "base_name": "Yoggies B.A.R.F. 100% kalkoen met probiotica",
+   "new_name": "Yoggies B.A.R.F. 100% kalkoen met probiotica - 700 g en 1300 g"
+  },
+  {
+   "base_name": "Yoggies B.A.R.F. 100% kip met probiotica",
+   "new_name": "Yoggies B.A.R.F. 100% kip met probiotica - 700 g en 1300 g"
+  },
+  {
+   "base_name": "Yoggies gekookt hondenvoer – kip met rijst",
+   "new_name": "Yoggies gekookt hondenvoer – kip met rijst - 150 g en 650 g"
+  },
+  {
+   "base_name": "Yoggies gekookt hondenvoer – zalm en witvis met chiazaad",
+   "new_name": "Yoggies gekookt hondenvoer – zalm en witvis met chiazaad - 150 g en 650 g"
+  }
+ ]
+}

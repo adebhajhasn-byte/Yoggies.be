@@ -490,13 +490,22 @@ def _size_to_grams(size_label):
     unit = m.group(2).lower()
     return int(qty * (1000 if unit in ("kg", "l") else 1))
 
+def _size_phrase(sizes):
+    """['700 g', '1300 g'] -> '700 g en 1300 g'."""
+    if len(sizes) == 1:
+        return sizes[0]
+    return ", ".join(sizes[:-1]) + " en " + sizes[-1]
+
+
 def _merge_size_variants(out_rows):
     """Merge products that are size variants of the same base product.
 
-    Returns (merged_rows, n_groups, retired) where `retired` lists the
+    Returns (merged_rows, n_groups, retired, renamed) where `retired` lists the
     per-size products that no longer get their own page:
     [{"old_name", "base_name", "size"}]. The caller turns those into redirect
     stubs so the old URLs keep working and stay reachable from search.
+    `renamed` lists the groups that had to be disambiguated (see below):
+    [{"base_name", "new_name"}].
     """
     by_base = defaultdict(list)
     for p in out_rows:
@@ -508,7 +517,27 @@ def _merge_size_variants(out_rows):
 
     real_groups = {k: v for k, v in by_base.items() if len(v) >= 2}
     if not real_groups:
-        return out_rows, 0, []
+        return out_rows, 0, [], []
+
+    # A merged group takes the group's base name as its own name. For four
+    # groups yoggies.cz ALSO sells a sizeless combined listing under exactly
+    # that name, so both rows slugified to the same file and the second one
+    # silently overwrote the first — four products with no page of their own.
+    # The standalone listing keeps the plain name; the group says which packs
+    # it covers, the way the yoghurt multipack carries "6 of 12 stuks".
+    grouped = {id(p) for grp in real_groups.values() for p, _, _, _ in grp}
+    kept_names = {str(p.get("name_nl") or "").strip().lower()
+                  for p in out_rows if id(p) not in grouped}
+
+    group_name, renamed = {}, []
+    for key, grp in real_groups.items():
+        sorted_grp = sorted(grp, key=lambda x: _size_to_grams(x[2]))
+        base = sorted_grp[0][3]
+        name = base
+        if base.lower() in kept_names:
+            name = f"{base} - {_size_phrase([s for _, _, s, _ in sorted_grp])}"
+            renamed.append({"base_name": base, "new_name": name})
+        group_name[key] = name
 
     seen = set()
     merged = []
@@ -525,7 +554,7 @@ def _merge_size_variants(out_rows):
             seen.add(key)
             sorted_grp = sorted(real_groups[key], key=lambda x: _size_to_grams(x[2]))
             canonical = dict(sorted_grp[0][0])
-            canonical["name_nl"] = sorted_grp[0][3]   # base name without size
+            canonical["name_nl"] = group_name[key]    # base name without size
             canonical["_variants"] = [
                 {"size": s, "dl_url": str(gp.get("doglife_url") or "").strip()}
                 for gp, _, s, _ in sorted_grp
@@ -537,13 +566,13 @@ def _merge_size_variants(out_rows):
             merged.append(p)
 
     # Every per-size name in a merged group loses its own page — including the
-    # smallest, whose page is now served under the base name.
+    # smallest, whose page is now served under the group name.
     retired = [
-        {"old_name": old_name, "base_name": base, "size": size}
-        for grp in real_groups.values()
-        for _gp, old_name, size, base in grp
+        {"old_name": old_name, "base_name": group_name[key], "size": size}
+        for key, grp in real_groups.items()
+        for _gp, old_name, size, _base in grp
     ]
-    return merged, len(real_groups), retired
+    return merged, len(real_groups), retired, renamed
 
 
 def _is_real_product_url(url):
@@ -1329,10 +1358,14 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         print(f"Excluded {len(excluded)} products priced in Czech crowns "
               f"(redirect → {EXCLUDE_REDIRECT}).")
 
-    out_rows, n_var_groups, retired_variants = _merge_size_variants(out_rows)
+    out_rows, n_var_groups, retired_variants, renamed_groups = \
+        _merge_size_variants(out_rows)
     if n_var_groups:
         print(f"Size variants: merged {n_var_groups} groups, "
               f"{len(retired_variants)} per-size pages become redirects.")
+    if renamed_groups:
+        print(f"Disambiguated {len(renamed_groups)} merged groups that clashed "
+              f"with a sizeless listing of the same name.")
     # ── Apply manual variant overrides (e.g. Brokken sizes from manual_variants.py) ──
     n_manual = _apply_manual_variants(out_rows)
     if n_manual:
@@ -1398,6 +1431,27 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
     if variant_links:
         print(f"Variant redirects: {len(variant_links)} stubs → parent pages.")
 
+    # ── Disambiguated groups → keep their old colliding URL alive ──
+    # Before the fix both rows landed on "<base>-1.html" and that is the URL
+    # search engines know. The group is what that page actually showed, so the
+    # stub points there; the standalone listing now owns the plain "<base>".
+    legacy_links = []
+    for rn in renamed_groups:
+        old_slug = f"{_slugify(rn['base_name'])}-1"
+        new_slug = slugs.get(rn["new_name"], _slugify(rn["new_name"]))
+        if f"{old_slug}.html" in written or old_slug == new_slug:
+            continue
+        (PROD_DIR / f"{old_slug}.html").write_text(
+            _redirect_stub(f"{new_slug}.html", f"{rn['base_name']} | Yoggies.be",
+                           f"products/{new_slug}.html",
+                           note=f"{rn['base_name']} staat nu op de productpagina "
+                                f"van {rn['new_name']}."),
+            encoding="utf-8")
+        written.add(f"{old_slug}.html")
+        legacy_links.append(old_slug)
+    if legacy_links:
+        print(f"Legacy redirects: {len(legacy_links)} disambiguated URLs kept alive.")
+
     # ── Excluded products → redirect to their category ──
     for p in excluded:
         ex_slug = _slugify(str(p.get("name_nl") or "product").strip())
@@ -1417,6 +1471,26 @@ def _build_html(hdrs, by_cat_outer=None, slugs_outer=None):
         f.unlink()
     if stale:
         print(f"Pruned {len(stale)} stale product pages no longer generated.")
+
+    # ── Manifest: what this build believes it published ──
+    # audit.py compares these numbers against the files actually on disk, so a
+    # slug collision that swallows a product page can never pass unnoticed
+    # again. Real pages must equal product rows; the rest are redirect stubs.
+    real_pages = sorted({f"{slugs.get(str(p.get('name_nl') or '').strip(), '')}.html"
+                         for p in out_rows} - {".html"})
+    manifest = {
+        "product_rows": len(out_rows),
+        "product_pages": len(real_pages),
+        "variant_stubs": len(variant_links),
+        "legacy_stubs": len(legacy_links),
+        "excluded_stubs": len(excluded),
+        "renamed_groups": renamed_groups,
+    }
+    import json as _mjson
+    Path("data").mkdir(exist_ok=True)
+    (Path("data") / "build_manifest.json").write_text(
+        _mjson.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"{len(out_rows)} product rows → {len(real_pages)} product pages.")
 
     # Write search index for the live site search dropdown
     import json as _json
