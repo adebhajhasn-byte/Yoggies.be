@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yoggies.be/Dierenkliniek.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://yoggies.be/barf.html</loc>
     <lastmod>2026-08-06</lastmod>
     <priority>0.6</priority>
@@ -22,6 +17,11 @@
   </url>
   <url>
     <loc>https://yoggies.be/calculator.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://yoggies.be/Dierenkliniek.html</loc>
     <lastmod>2026-08-06</lastmod>
     <priority>0.6</priority>
   </url>

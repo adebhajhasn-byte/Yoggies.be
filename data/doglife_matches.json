@@ -1,6 +1,6 @@
 {
  "200g-yoggies-klokani-konzerva-pro-psy-s-dyni": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/200g-yoggies-blik-kangoeroe-met-pompoen",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/04/200g_Yoggies_blik_Kangoeroe_met_pompoen-300x300.png",
   "doglife_title": "200g Yoggies blik Kangoeroe met pompoen",
@@ -161,7 +161,7 @@
   "doglife_price": ""
  },
  "yoggies-konzerva-kozi-s-bramborem-a-mrkvi": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -196,7 +196,7 @@
   "doglife_price": "34,00"
  },
  "yoggies-barf-za-studena-lisovana-priloha-k-syrovemu-masu-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -301,18 +301,18 @@
   "doglife_price": "14,80"
  },
  "5-1-yoggies-klokani-konzerva-s-dyni-a-topinamburem-400-g": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "4-8-kg-yoggies-granule-pro-kocky-s-kurecim-masem-lisovane-za-studena-s-probiotiky-darek-zdarma": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-cat-kip-korrels-proteine",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies korrels voor katten met kip, koudgeperst met probiotica",
+  "doglife_price": "5,80"
  },
  "sodapup-netopyr-super-odolna-nylonova-zvykaci-hracka-cerna-m": {
   "status": "NOT_ON_DOGLIFE",
@@ -322,11 +322,11 @@
   "doglife_price": ""
  },
  "20kg-yoggies-iberico-veprove-maso-s-jablky-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/iberico-met-appels-hypoallergeen",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies Ibérico varkensvlees met appels, koudgeperste korrels met probiotica",
+  "doglife_price": "37,10"
  },
  "yoggies-ragu-pro-kocky-kruta-a-losos-6-x-185-g-zvyhodnene-baleni": {
   "status": "NOT_ON_DOGLIFE",
@@ -378,7 +378,7 @@
   "doglife_price": ""
  },
  "yoggies-ekologicke-stelivo-pro-kocky-6-x-3-kg": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -455,25 +455,25 @@
   "doglife_price": ""
  },
  "400g-yoggies-klokani-konzerva-pro-psy-s-dyni": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "5-kg-yoggies-cat-basic-granule-pro-kocky-lisovane-za-studena-s-probiotiky-darek": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/yoggies-catbasic-koudgeperste-korrels",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "Cat Basic",
   "doglife_price": "9,50"
  },
  "4-8-yoggies-granule-pro-kocky-s-krocanim-masem-lisovane-za-studena-darek": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-cat-kalkoen-korrels-proteine",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/03/Yoggies_Kalkoen_proteine_voor_katten-300x300.png",
+  "doglife_title": "Yoggies korrels voor katten met kalkoenvlees, koudgeperst met probiotica",
+  "doglife_price": "6,20"
  },
  "yoggies-ekologicke-stelivo-pro-kocky-3kg": {
   "status": "REVIEW",
@@ -483,7 +483,7 @@
   "doglife_price": ""
  },
  "yoggies-ragu-pro-kocky-losos-a-kachna-185-g": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/185g-yoggies-ragout-voor-katten-kalkoen-zalm",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/04/185g_Yoggies_RAGOUT_voor_katten_Kalkoen__Zalm-300x300.jpg",
   "doglife_title": "185g Yoggies RAGOUT voor katten Kalkoen & Zalm",
@@ -497,14 +497,14 @@
   "doglife_price": "3,20"
  },
  "yoggies-ragu-pro-kastrovane-kocky-hovezi-monoprotein-185g": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/185g-yoggies-ragout-voor-katten-rund-monoprotein-castrate",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/04/185g_Yoggies_RAGOUT_voor_katten_Rund_MONOPROTEIN_castrate-300x300.jpg",
   "doglife_title": "185g Yoggies RAGOUT voor katten Rund MONOPROTEIN (castrate)",
   "doglife_price": "3,20"
  },
  "yoggies-ragu-pro-kastrovane-kocky-kureci-monoprotein-185g": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/185g-yoggies-ragout-voor-katten-kip-monoprotein-castrate",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/04/185g_Yoggies_RAGOUT_voor_katten_Kip_MONOPROTEIN_castrate-300x300.jpg",
   "doglife_title": "185g Yoggies RAGOUT voor katten Kip MONOPROTEIN (castrate)",
@@ -532,7 +532,7 @@
   "doglife_price": ""
  },
  "5-1-yoggies-klokani-konzerva-s-dyni-a-topinamburem-800-g": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/800g-yoggies-blik-kangoeroe-met-pompoen-copy",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "800g Yoggies blik Kangoeroe met pompoen",
@@ -644,7 +644,7 @@
   "doglife_price": ""
  },
  "800g-yoggies-klokani-konzerva-pro-psy-s-dyni": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/800g-yoggies-blik-kangoeroe-met-pompoen-copy",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "800g Yoggies blik Kangoeroe met pompoen",
@@ -679,14 +679,14 @@
   "doglife_price": ""
  },
  "5-1-yoggies-kruti-a-teleci-konzerva-s-jablky-800-g": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/800g-yoggies-blik-kalkoen-met-bataten",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "800g Yoggies blik kalkoen met bataten",
   "doglife_price": "6,20"
  },
  "5-1-yoggies-kruti-a-teleci-konzerva-s-jablky-400-g": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/400g-yoggies-blik-kalkoen-met-bataten",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "400g Yoggies blik kalkoen met bataten",
@@ -700,7 +700,7 @@
   "doglife_price": ""
  },
  "zeleny-psi-motylek-velikost-m-9-cm": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -770,7 +770,7 @@
   "doglife_price": ""
  },
  "1300g-yoggies-b-a-r-f-100-kralik-s-probiotiky-a-kloubni-vyzivou-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-100-konijn-yoggies-1300-g",
   "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/b_a_r_f__menu_100_konijn_-_yoggies_1300_gr_2629-300x300.jpg",
   "doglife_title": "1300g Yoggies BARF 100% Konijn met Probiotica Rauw Vlees voor Honden",
@@ -805,7 +805,7 @@
   "doglife_price": "24,20"
  },
  "1-800-g-12x150g-yoggies-b-a-r-f-hovezi-a-kruta-s-probiotiky-a-kloubni-vyzivou-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/1800-g-12x150g-yoggies-barf-rundvlees-en-kalkoen-met-probiotica-rauw-vlees-voor-honden",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "1800 g (12x150g) Yoggies BARF Rundvlees en Kalkoen met Probiotica Rauw Vlees voor Honden",
@@ -819,11 +819,11 @@
   "doglife_price": "4,80"
  },
  "10kg-yoggies-kureci-hovezi-maso-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/kip-en-rund-klassiek",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/yoggies_kip__rund_koudgeperste_korrels_met_probiotica_1527-300x300.png",
+  "doglife_title": "Yoggies Kip en Rund, koudgeperste korrels met probiotica",
+  "doglife_price": "33,20"
  },
  "10kg-yoggies-active-kachni-maso-zverina-minigranule-lisovane-za-studena-s-probiotiky": {
   "status": "REVIEW",
@@ -833,14 +833,14 @@
   "doglife_price": ""
  },
  "10kg-yoggies-active-kachni-maso-zverina-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/active-eend-en-hert",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_active_eend_en_hert_koudgeperste_korrels_met_probiotica_5401-300x300.png",
   "doglife_title": "Yoggies Active Eend en Hert, koudgeperste korrels met probiotica",
   "doglife_price": "14,80"
  },
  "10kg-yoggies-jehneci-maso-bila-ryba-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -854,39 +854,39 @@
   "doglife_price": ""
  },
  "10kg-yoggies-kureci-hovezi-maso-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/kip-en-rund-klassiek",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/yoggies_kip__rund_koudgeperste_korrels_met_probiotica_1527-300x300.png",
+  "doglife_title": "Yoggies Kip en Rund, koudgeperste korrels met probiotica",
+  "doglife_price": "33,20"
  },
  "10kg-yoggies-kruti-maso-jahly-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "10kg-yoggies-kruti-maso-jahly-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-kalkoenvlees-met-gierst-en-hennepolie-klassiek",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies Kalkoen met Gierst, koudgeperste korrels met probiotica Klassiek",
+  "doglife_price": "36,40"
  },
  "10kg-yoggies-kozi-maso-zelenina-hypoalergenni-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-geitenvlees-met-groenten",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_geitenvlees_en_groenten_hypoallergene_koudgeperste_korrels_met_probiotica_3204-300x300.png",
+  "doglife_title": "Yoggies Geitenvlees en groenten, hypoallergene koudgeperste korrels met probiotica",
+  "doglife_price": "19,00"
  },
  "10kg-yoggies-kozi-maso-zelenina-hypoalergenni-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-geitenvlees-met-groenten",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_geitenvlees_en_groenten_hypoallergene_koudgeperste_korrels_met_probiotica_3204-300x300.png",
+  "doglife_title": "Yoggies Geitenvlees en groenten, hypoallergene koudgeperste korrels met probiotica",
+  "doglife_price": "19,00"
  },
  "sodapup-honeypot-pup-xl-zluty": {
   "status": "NOT_ON_DOGLIFE",
@@ -917,7 +917,7 @@
   "doglife_price": ""
  },
  "sodapup-senzoricka-miska-slunecnice-zluta": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -938,7 +938,7 @@
   "doglife_price": ""
  },
  "sodapup-lizaci-podlozka-lotus-svetle-ruzova": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1183,7 +1183,7 @@
   "doglife_price": ""
  },
  "6-1-zdarma-7x-650g-yoggies-varena-potrava-pro-psy-losos-a-bila-ryba-s-chia-seminky": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1225,7 +1225,7 @@
   "doglife_price": ""
  },
  "6-1-zdarma-7x-150g-yoggies-varena-potrava-pro-psy-losos-a-bila-ryba-s-chia-seminky": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1267,28 +1267,28 @@
   "doglife_price": ""
  },
  "1000g-syrove-maso-kruti-stehna": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "1000g-syrove-maso-kruti-kridla": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "1000g-syrove-maso-kruti-zaludky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/vlees-voor-b-a-r-f-kalkoenmagen-1-kg-diepgevroren",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/06/Vlees_voor_B_A_R_F__-_Kalkoenmagen_1_kg_diepgevroren-300x300.jpg",
+  "doglife_title": "Vlees voor B.A.R.F. – Kalkoenmagen 1 kg (diepgevroren)",
+  "doglife_price": "6,40"
  },
  "700g-b-a-r-f-100-hovezi-menu-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/700-g-yoggies-barf-100-rundvlees-met-probiotica-rauw-vlees-voor-honden",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "700 g Yoggies BARF 100% rundvlees met probiotica Rauw vlees voor honden",
@@ -1309,7 +1309,7 @@
   "doglife_price": "4,50"
  },
  "yoggies-granule-basic-1200g-s-jehnecim-masem-a-treskou-pro-kocky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/yoggies-catbasic-koudgeperste-korrels",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "Cat Basic",
@@ -1323,21 +1323,21 @@
   "doglife_price": ""
  },
  "yoggies-latkova-cestovni-miska": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "800g-yoggies-konzerva-kruti-a-teleci-maso-s-jablky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/800g-yoggies-blik-kalkoen-met-bataten",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "800g Yoggies blik kalkoen met bataten",
   "doglife_price": "6,20"
  },
  "400g-yoggies-konzerva-kruti-a-teleci-maso-s-jablky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/400g-yoggies-blik-kalkoen-met-bataten",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "400g Yoggies blik kalkoen met bataten",
@@ -1379,7 +1379,7 @@
   "doglife_price": "2,40"
  },
  "yoggies-balicek-na-cestu-pro-kote": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1393,7 +1393,7 @@
   "doglife_price": ""
  },
  "sodapup-mandala-nylonova-senzoricka-miska-modra": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1456,35 +1456,35 @@
   "doglife_price": ""
  },
  "1-5kg-yoggies-b-a-r-f-hovezi-a-kruti-komplet-s-brusinkami-a-konopnym-olejem-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/6x250-g-b-a-r-f-rundvlees-en-kalkoen-compleet",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/03/250-g-yoggies-b-a-r-f-rund-en-kalkoen-met-hennepolie-veenbessen-gewrichtensupport-300x300.jpg",
+  "doglife_title": "1,5 kg (6x250gr) Yoggies BARF Rund en Kalkoen Compleet met Veenbessen en Hennepolie met Probiotica Rauw Voedsel voor Katten",
+  "doglife_price": "18,40"
  },
  "1-5kg-yoggies-b-a-r-f-pro-kocky-kureci-komplet-s-lososem-a-brusinkami": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/6x250-gr-b-a-r-f-kip-met-zalm",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/03/250-g-yoggies-b-a-r-f-kip-met-zalm-en-veenbessen-300x300.jpg",
+  "doglife_title": "1,5 kg (6x250gr)Yoggies BARF Kip en Zalm Compleet met Veenbessen met Probiotica Rauw Voedsel voor Katten",
+  "doglife_price": "15,20"
  },
  "1-5kg-yoggies-b-a-r-f-pro-kocky-100-kruti-komplet-s-pivovar-kvasnicemi-a-konopnym-olejem-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/6x250-gr-b-a-r-f-100-kalkoen-compleet",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/03/250-g-yoggies-b-a-r-f-100-kruti-kalkoen-biergiest-hennepolie-gewrichtensupport-300x300.jpg",
+  "doglife_title": "1,5 kg (6x250gr)Yoggies BARF 100% Kalkoen, compleet met biergist en hennepolie met probiotica Rauw voedsel voor katten",
+  "doglife_price": "17,20"
  },
  "12x85g-yoggies-misticka-pro-kocky-s-kurecim-masem-a-zele-omackou": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "12x85g-yoggies-misticka-pro-kocky-s-lososem-a-tunakem-v-lahodne-zele-omacce": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1512,32 +1512,32 @@
   "doglife_price": ""
  },
  "5-1-yoggies-kozi-konzerva-s-bramborem-a-mrkvi-400g": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "5-1-yoggies-kachni-konzerva-s-hruskou-a-jahlami-400g": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-eend-met-peer-en-gierst",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies blik Eend met peer en gierst",
+  "doglife_price": "3,45"
  },
  "5-1-yoggies-hovezi-konzerva-s-ostropestrcem-marianskym-400g": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-monoproteine-rund-met-mariadistel-400g",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "400g Yoggies blik rundvlees met mariadistel",
+  "doglife_price": "3,30"
  },
  "5-1-yoggies-kachni-konzerva-s-hruskou-a-jahlami-800g": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-eend-met-peer-en-gierst",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies blik Eend met peer en gierst",
+  "doglife_price": "3,45"
  },
  "5-1-yoggies-kozi-konzerva-s-bramborem-a-mrkvi-800g": {
   "status": "REVIEW",
@@ -1575,7 +1575,7 @@
   "doglife_price": ""
  },
  "termokrabice-na-b-a-r-f": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1589,7 +1589,7 @@
   "doglife_price": ""
  },
  "10kg-yoggies-vet-insect-derma-s-hmyzim-proteinem-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1603,7 +1603,7 @@
   "doglife_price": ""
  },
  "10kg-yoggies-vet-gastro-sensitive-s-krutim-masem-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1617,21 +1617,21 @@
   "doglife_price": ""
  },
  "10kg-yoggies-iberico-veprove-maso-s-jablky-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/iberico-met-appels-hypoallergeen",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies Ibérico varkensvlees met appels, koudgeperste korrels met probiotica",
+  "doglife_price": "37,10"
  },
  "20kg-hypoalergenni-granule-yoggies-s-kozim-masem-a-br-vlockami-lisovane-za-studena": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-geitenvlees-met-groenten",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_geitenvlees_en_groenten_hypoallergene_koudgeperste_korrels_met_probiotica_3204-300x300.png",
+  "doglife_title": "Yoggies Geitenvlees en groenten, hypoallergene koudgeperste korrels met probiotica",
+  "doglife_price": "19,00"
  },
  "20-kg-yoggies-active-kachna-a-zverina-granule-lisovane-za-studena": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/active-eend-en-hert",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_active_eend_en_hert_koudgeperste_korrels_met_probiotica_5401-300x300.png",
   "doglife_title": "Yoggies Active Eend en Hert, koudgeperste korrels met probiotica",
@@ -1645,11 +1645,11 @@
   "doglife_price": ""
  },
  "20kg-kureci-a-hovezi-maso-granule-lisovane-za-studena-yoggies": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/kip-en-rund-klassiek",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/yoggies_kip__rund_koudgeperste_korrels_met_probiotica_1527-300x300.png",
+  "doglife_title": "Yoggies Kip en Rund, koudgeperste korrels met probiotica",
+  "doglife_price": "33,20"
  },
  "5-1-yoggies-jehneci-konzerva-s-bramborem-a-karotkou-800g": {
   "status": "REVIEW",
@@ -1722,7 +1722,7 @@
   "doglife_price": ""
  },
  "sodapup-lizaci-podlozka-love-mala-18-x-13cm-cervena": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1750,7 +1750,7 @@
   "doglife_price": ""
  },
  "700g-b-a-r-f-100-kruti-menu-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/700-g-yoggies-barf-100-kalkoen-met-probiotica-rauw-vlees-voor-honden",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/700_g_Yoggies_BARF_100_kalkoen_met_probiotica_Rauw_vlees_voor_honden-300x300.jpg",
   "doglife_title": "700 g Yoggies BARF 100% kalkoen met probiotica Rauw vlees voor honden",
@@ -1764,11 +1764,11 @@
   "doglife_price": "34,20"
  },
  "700g-b-a-r-f-hovezi-maso-s-krutou-a-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/700-g-yoggies-barf-100-kalkoen-met-probiotica-rauw-vlees-voor-honden",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/700_g_Yoggies_BARF_100_kalkoen_met_probiotica_Rauw_vlees_voor_honden-300x300.jpg",
+  "doglife_title": "700 g Yoggies BARF 100% kalkoen met probiotica Rauw vlees voor honden",
+  "doglife_price": "4,30"
  },
  "300g-yoggies-kureci-maso-lisovane-z-studena": {
   "status": "MATCH_CONFIRMED",
@@ -1792,7 +1792,7 @@
   "doglife_price": "33,20"
  },
  "700g-b-a-r-f-100-kureci-menu-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/700-g-yoggies-barf-100-kip-met-probiotica-rauw-vlees-voor-honden",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/700_g_Yoggies_BARF_100_Kip_met_Probiotica_Rauw_Vlees_voor_Honden-300x300.jpg",
   "doglife_title": "700 g Yoggies BARF 100% Kip met Probiotica Rauw Vlees voor Honden",
@@ -1827,18 +1827,18 @@
   "doglife_price": "4,50"
  },
  "1-800-g-12x150g-yoggies-b-a-r-f-losos-a-kralik-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-100-konijn-yoggies-12x150g",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "1800 g (12x150g) Yoggies BARF 100% konijn met probiotica Rauw vlees voor honden",
   "doglife_price": "15,50"
  },
  "400g-yoggies-hovezi-konzerva-s-ostropestrcem-marianskym": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-monoproteine-rund-met-mariadistel-400g",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "400g Yoggies blik rundvlees met mariadistel",
+  "doglife_price": "3,30"
  },
  "sodapup-kvetinac-oranzovy": {
   "status": "NOT_ON_DOGLIFE",
@@ -1855,18 +1855,18 @@
   "doglife_price": ""
  },
  "150g-yoggies-varena-potrava-pro-psy-kureci-maso-s-ryzi": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "650g-yoggies-varena-potrava-pro-psy-kureci-maso-s-ryzi": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-650g-gekookt-hondenvoer-kip-met-rijst",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "650g Yoggies Gekookt Hondenvoer – Kip met Rijst",
+  "doglife_price": "6,40"
  },
  "soda-pup-senzoricka-miska-kvetina": {
   "status": "NOT_ON_DOGLIFE",
@@ -1904,7 +1904,7 @@
   "doglife_price": ""
  },
  "soda-pup-senzoricka-miska-rocni-obdobi": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -1918,32 +1918,32 @@
   "doglife_price": ""
  },
  "soda-pup-kulata-lizaci-podlozka-rajska-zahrada-zelena": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "soda-pup-lizaci-podlozka-podzim": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "150g-yoggies-varena-potrava-pro-psy-veprove-maso-s-ryzi": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "650g-yoggies-varena-potrava-pro-psy-veprove-maso-s-ryzi": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-650g-gekookt-hondenvoer-varkensvlees-met-rijst",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "650g Yoggies Gekookt Hondenvoer – Varken met Rijst",
+  "doglife_price": "6,90"
  },
  "yoggies-susene-veprove-maso-pro-psy-80g-pamlsek-pro-psy": {
   "status": "MATCH_CONFIRMED",
@@ -1988,7 +1988,7 @@
   "doglife_price": ""
  },
  "sodapup-senzoricka-miska-psi-na-baru-modra": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -2037,49 +2037,49 @@
   "doglife_price": ""
  },
  "sodapup-mandala-nylonova-senzoricka-miska-zluta": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "sodapup-mandala-nylonova-senzoricka-miska-fialova": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "sodapup-mandala-nylonova-senzoricka-miska-ruzova": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "sodapup-love-lizaci-podlozka-cervena-20-x-20cm": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "sodapup-lizaci-podlozka-zombie-20x20cm-oranzova": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "sodapup-lizaci-podlozka-zombie-20x20cm-cerna": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "sodapup-lizaci-podlozka-s-prisavkami-velryba-modra": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -2093,21 +2093,21 @@
   "doglife_price": ""
  },
  "sodapup-lizaci-podlozka-puzzle-20-x-20cm-ruzova": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "sodapup-lizaci-podlozka-puzzle-20-x-20cm-modra": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "sodapup-lizaci-podlozka-puzzle-20-x-20cm-zelena": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -2121,14 +2121,14 @@
   "doglife_price": ""
  },
  "sodapup-lizaci-podlozka-kosticky-20x20cm-fialova": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "sodapup-lizaci-podlozka-honey-zluta-20x20cm": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -2191,35 +2191,35 @@
   "doglife_price": "24,20"
  },
  "1-800-g-12x150g-yoggies-b-a-r-f-losos-kun-kruta-s-probiotiky-a-kloubni-vyzivou-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-zalm-paard-kalkoen-yoggies-12x150g",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "1800 g (12x150g) Yoggies BARF Zalm, paard, kalkoen met probiotica Rauw vlees voor honden",
   "doglife_price": "11,70"
  },
  "1-800-g-12x150g-yoggies-b-a-r-f-100-kure-s-probiotiky-a-kloubni-vyzivou-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-100-kip-yoggies-12x150g",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "1800 g (12x150g) Yoggies BARF 100% Kip met Probiotica Rauw Vlees voor Honden",
   "doglife_price": "11,70"
  },
  "1-800-g-12x150g-yoggies-b-a-r-f-100-kruta-s-probiotiky-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-100-kalkoen-yoggies-12x150g",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "1800 g (12x150g) Yoggies BARF 100% kalkoen met probiotica Rauw vlees voor honden",
   "doglife_price": "11,20"
  },
  "1-800-g-12x150g-yoggies-b-a-r-f-100-hovezi-s-probiotiky-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-100-rund-yoggies-12x150g",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "1800 g (12x150g) Yoggies BARF 100% rundvlees met probiotica Rauw vlees voor honden",
   "doglife_price": "13,20"
  },
  "1-800-g-12x150g-yoggies-b-a-r-f-100-kralik-s-probiotiky-a-kloubni-vyzivou-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-100-konijn-yoggies-12x150g",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "1800 g (12x150g) Yoggies BARF 100% konijn met probiotica Rauw vlees voor honden",
@@ -2268,53 +2268,53 @@
   "doglife_price": ""
  },
  "1300g-yoggies-b-a-r-f-losos-a-kralik-s-probiotiky-a-kloubni-vyzivou-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/1300g-yoggies-barf-zalm-konijn-met-probiotica-rauw-vlees-voor-honden",
   "doglife_image": "https://doglife.be/wp-content/uploads/2025/06/1300g_Yoggies_BARF_Zalm_konijn_met_probiotica_Rauw_vlees_voor_honden-300x300.jpg",
   "doglife_title": "1300g Yoggies BARF Zalm, konijn met probiotica Rauw vlees voor honden",
   "doglife_price": "8,80"
  },
  "1300g-yoggies-b-a-r-f-losos-kun-kruta-s-probiotiky-a-kloubni-vyzivou-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-zalm-paard-kalkoen-yoggies-1300-g",
   "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/b_a_r_f__menu_zalm_paard_kalkoen_-_yoggies_1300_g_0221-300x300.jpg",
   "doglife_title": "1300g Yoggies BARF Zalm, paard, kalkoen met probiotica Rauw vlees voor honden",
   "doglife_price": "7,90"
  },
  "1300g-yoggies-b-a-r-f-hovezi-a-kruta-s-probiotiky-a-kloubni-vyzivou-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/1300g-yoggies-barf-rundvlees-en-kalkoen-met-probiotica-rauw-vlees-voor-honden",
   "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/1300g_yoggies_barf_rundvlees_en_kalkoen_met_probiotica_rauw_vlees_voor_honden_3125-300x300.jpg",
   "doglife_title": "1300g Yoggies BARF Rundvlees en Kalkoen met Probiotica Rauw Vlees voor Honden",
   "doglife_price": "7,90"
  },
  "1300g-yoggies-b-a-r-f-100-kure-s-probiotiky-a-kloubni-vyzivou-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-100-kip-yoggies-1300-g",
   "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/b_a_r_f__menu_100_kip_-_yoggies_1300_g_4151-300x300.jpg",
   "doglife_title": "1300g Yoggies BARF 100% Kip met Probiotica Rauw Vlees voor Honden",
   "doglife_price": "7,40"
  },
  "1300g-yoggies-b-a-r-f-100-kruta-s-probiotiky-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-100-kalkoen-yoggies-1-300-g",
   "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/b_a_r_f__menu_100_kalkoen_-_yoggies_1300_g_3308-300x300.jpg",
   "doglife_title": "1300g Yoggies BARF 100% kalkoen met probiotica Rauw vlees voor honden",
   "doglife_price": "6,90"
  },
  "1300g-yoggies-b-a-r-f-100-hovezi-s-probiotiky-syrove-maso-pro-psy": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/b-a-r-f-menu-100-rund-yoggies-1-300-g",
   "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/b_a_r_f__menu_100_rund_-_yoggies_1300_g_4305-300x300.jpg",
   "doglife_title": "1300g Yoggies BARF 100% Rundvlees met probiotica Rauw vlees voor honden",
   "doglife_price": "8,40"
  },
  "800g-yoggies-kachni-konzerva-s-hruskou-a-jahlami": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-eend-met-peer-en-gierst",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies blik Eend met peer en gierst",
+  "doglife_price": "3,45"
  },
  "800g-yoggies-kozi-konzerva-s-bramborem-a-mrkvi": {
   "status": "REVIEW",
@@ -2324,18 +2324,18 @@
   "doglife_price": ""
  },
  "400g-yoggies-kozi-konzerva-s-bramborem-a-mrkvi": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "400g-yoggies-kachni-konzerva-s-hruskou-a-jahlami": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-eend-met-peer-en-gierst",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies blik Eend met peer en gierst",
+  "doglife_price": "3,45"
  },
  "20kg-yoggies-minigranule-iberico-veprove-maso-s-jablky-lisovane-za-studena-s-probiotiky": {
   "status": "REVIEW",
@@ -2345,32 +2345,32 @@
   "doglife_price": ""
  },
  "150g-yoggies-varena-potrava-pro-psy-losos-a-bila-ryba-s-chia-seminky-a-kloubni-vyzivou": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "650g-yoggies-varena-potrava-pro-psy-losos-a-bila-ryba-s-chia-seminky-a-kloubni-vyzivou": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-650g-gekookt-hondenvoer-zalm-en-witte-vis-met-chia",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "650g Yoggies Gekookt Hondenvoer – Zalm en Witte Vis met Chiazaad",
+  "doglife_price": "6,90"
  },
  "yoggies-varena-potrava-pro-psy-kruti-a-kralici-maso-s-dynovymi-seminky-a-kloubni-vyzivou": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "650g-yoggies-varena-potrava-pro-psy-kruti-a-kralici-maso-s-dynovymi-seminky-a-kloubni-vyzivou": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-gekookt-hondenvoer-kalkoen-en-konijnen-met-pompoenpitten",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "650g Yoggies Gekookt Hondenvoer – Kalkoen en Konijnen met Pompoenpitten",
+  "doglife_price": "7,40"
  },
  "5kg-yoggies-minigranule-iberico-veprove-maso-s-jablky-lisovane-za-studena-s-probiotiky": {
   "status": "REVIEW",
@@ -2387,35 +2387,35 @@
   "doglife_price": ""
  },
  "5kg-yoggies-iberico-veprove-maso-s-jablky-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/iberico-met-appels-hypoallergeen",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies Ibérico varkensvlees met appels, koudgeperste korrels met probiotica",
+  "doglife_price": "37,10"
  },
  "2kg-yoggies-iberico-veprove-maso-s-jablky-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/iberico-met-appels-hypoallergeen",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies Ibérico varkensvlees met appels, koudgeperste korrels met probiotica",
+  "doglife_price": "37,10"
  },
  "150g-yoggies-varena-potrava-pro-psy-kruti-maso-s-pohankou-a-kloubni-vyzivou": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "650g-yoggies-varena-potrava-pro-psy-kruti-maso-s-pohankou-a-kloubni-vyzivou": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-650g-gekookt-hondenvoer-kalkoen-met-boekweit",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "650g Yoggies Gekookt Hondenvoer – Kalkoen met Boekweit",
+  "doglife_price": "6,90"
  },
  "150g-yoggies-varena-potrava-pro-psy-hovezi-maso-s-quinoou-a-kloubni-vyzivou": {
-  "status": "REVIEW",
+  "status": "NOT_ON_DOGLIFE",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -2443,14 +2443,14 @@
   "doglife_price": ""
  },
  "plysova-hracka-pro-psy-mys-zelena": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "vzorky-granuli-yoggies-vet-pro-psy-velikost-mini-balicek-vzorku-3-druhu-granuli": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -2492,18 +2492,18 @@
   "doglife_price": ""
  },
  "10kg-yoggies-vet-veggie-bez-masa-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "5kg-yoggies-vet-veggie-bez-masa-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/vet-veggie-zonder-vlees-met-probiotica-5kg",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "5 kg Yoggies VET Veggie zonder vlees, koudgeperste korrels met probiotica",
+  "doglife_price": "34,00"
  },
  "2kg-yoggies-vet-veggie-bez-masa-minigranule-lisovane-za-studena-s-probiotiky": {
   "status": "REVIEW",
@@ -2520,7 +2520,7 @@
   "doglife_price": ""
  },
  "5kg-yoggies-vet-veggie-bez-masa-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/vet-veggie-zonder-vlees-met-probiotica-5kg",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "5 kg Yoggies VET Veggie zonder vlees, koudgeperste korrels met probiotica",
@@ -2534,56 +2534,56 @@
   "doglife_price": ""
  },
  "5kg-yoggies-vet-insect-derma-s-hmyzim-proteinem-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/vet-insect-derma-met-insecteneiwit-met-probiotica-5-kg",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "5 kg Yoggies VET Insect Derma met insectenproteïne, koudgeperste korrels met probiotica",
   "doglife_price": "45,69"
  },
  "2kg-yoggies-vet-insect-derma-s-hmyzim-proteinem-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
- },
- "5kg-yoggies-vet-insect-derma-s-hmyzim-proteinem-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "MATCH",
-  "doglife_url": "https://doglife.be/product/vet-insect-derma-met-insecteneiwit-met-probiotica-5-kg",
-  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
-  "doglife_title": "5 kg Yoggies VET Insect Derma met insectenproteïne, koudgeperste korrels met probiotica",
-  "doglife_price": "45,69"
- },
- "2kg-yoggies-vet-insect-derma-s-hmyzim-proteinem-granule-lisovane-za-studena-s-probiotiky": {
   "status": "MATCH",
   "doglife_url": "https://doglife.be/product/2-kg-yoggies-vet-insect-derma-met-insectenproteine-koudgeperste-mini-korrels-met-probiotica",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/2_kg_Yoggies_VET_Insect_Derma_met_insectenprotene_koudgeperste_MINI_korrels_met_probiotica-300x300.jpg",
   "doglife_title": "2 kg Yoggies VET Insect Derma met insectenproteïne, koudgeperste MINI korrels met probiotica",
   "doglife_price": "18,90"
  },
+ "5kg-yoggies-vet-insect-derma-s-hmyzim-proteinem-granule-lisovane-za-studena-s-probiotiky": {
+  "status": "MATCH_CONFIRMED",
+  "doglife_url": "https://doglife.be/product/vet-insect-derma-met-insecteneiwit-met-probiotica-5-kg",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "5 kg Yoggies VET Insect Derma met insectenproteïne, koudgeperste korrels met probiotica",
+  "doglife_price": "45,69"
+ },
+ "2kg-yoggies-vet-insect-derma-s-hmyzim-proteinem-granule-lisovane-za-studena-s-probiotiky": {
+  "status": "MATCH_CONFIRMED",
+  "doglife_url": "https://doglife.be/product/2-kg-yoggies-vet-insect-derma-met-insectenproteine-koudgeperste-mini-korrels-met-probiotica",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/2_kg_Yoggies_VET_Insect_Derma_met_insectenprotene_koudgeperste_MINI_korrels_met_probiotica-300x300.jpg",
+  "doglife_title": "2 kg Yoggies VET Insect Derma met insectenproteïne, koudgeperste MINI korrels met probiotica",
+  "doglife_price": "18,90"
+ },
  "5kg-yoggies-vet-gastro-sensitive-s-krutim-masem-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/vet-gastro-sensitive-met-kalkoen-en-probiotica-5-kg",
   "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/5_kg_yoggies_vet_gastro_sensitive_met_kalkoen_koudgeperste_korrels_met_probiotica_5408-300x300.jpg",
   "doglife_title": "5 kg Yoggies VET Gastro Sensitive met kalkoen, koudgeperste korrels met probiotica",
   "doglife_price": "49,40"
  },
  "2kg-yoggies-vet-gastro-sensitive-s-krutim-masem-minigranule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/2-kg-yoggies-vet-gastro-sensitive-met-kalkoenvlees-koudgeperste-mini-korrels-met-probiotica",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "2 kg Yoggies VET Gastro Sensitive met kalkoenvlees, koudgeperste  MINI korrels met probiotica",
+  "doglife_price": "19,70"
  },
  "5kg-yoggies-vet-gastro-sensitive-s-krutim-masem-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/vet-gastro-sensitive-met-kalkoen-en-probiotica-5-kg",
   "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/5_kg_yoggies_vet_gastro_sensitive_met_kalkoen_koudgeperste_korrels_met_probiotica_5408-300x300.jpg",
   "doglife_title": "5 kg Yoggies VET Gastro Sensitive met kalkoen, koudgeperste korrels met probiotica",
   "doglife_price": "49,40"
  },
  "2kg-yoggies-vet-gastro-sensitive-s-krutim-masem-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/2-kg-yoggies-vet-gastro-sensitive-met-kalkoenvlees-koudgeperste-mini-korrels-met-probiotica",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "2 kg Yoggies VET Gastro Sensitive met kalkoenvlees, koudgeperste  MINI korrels met probiotica",
@@ -2597,11 +2597,11 @@
   "doglife_price": "9,60"
  },
  "650g-yoggies-varena-potrava-pro-psy-hovezi-maso-s-quinoou-a-kloubni-vyzivou": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-650g-gekookt-hondenvoer-rundvlees-met-quinoa",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "650g Yoggies Gekookt Hondenvoer – Rundvlees met Quinoa",
+  "doglife_price": "7,40"
  },
  "pelisek-pro-psy-od-roxyho-80-x-70-cm": {
   "status": "NOT_ON_DOGLIFE",
@@ -2639,14 +2639,14 @@
   "doglife_price": ""
  },
  "5kg-yoggies-kozi-masozelenina-hypoalergenni-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-geitenvlees-met-groenten",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_geitenvlees_en_groenten_hypoallergene_koudgeperste_korrels_met_probiotica_3204-300x300.png",
+  "doglife_title": "Yoggies Geitenvlees en groenten, hypoallergene koudgeperste korrels met probiotica",
+  "doglife_price": "19,00"
  },
  "5kg-yoggies-active-kachni-masozverina-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/active-eend-en-hert",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_active_eend_en_hert_koudgeperste_korrels_met_probiotica_5401-300x300.png",
   "doglife_title": "Yoggies Active Eend en Hert, koudgeperste korrels met probiotica",
@@ -2737,7 +2737,7 @@
   "doglife_price": ""
  },
  "yoggies-multifunkcni-nakrcnik": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -2758,18 +2758,18 @@
   "doglife_price": ""
  },
  "sodapup-vceli-plastev-nylonova-senzoricka-miska-zluta": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "sodapup-mandala-nylonova-senzoricka-miska-zelena": {
-  "status": "NOT_ON_DOGLIFE",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/likmat-sodapup-mandala-nylon-zintuiglijke-kom-groen",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/03/likmat_-_sodapup_mandala_nylon_zintuiglijke_kom_-_groen_2609-300x300.jpg",
+  "doglife_title": "LIKMAT – SodaPup Mandala Nylon Zintuiglijke Kom – Groen",
+  "doglife_price": "21,30"
  },
  "sodapup-life-saver-plnici-hracka-cervena-10-8-cm-x-3-8-cm": {
   "status": "NOT_ON_DOGLIFE",
@@ -2856,11 +2856,11 @@
   "doglife_price": ""
  },
  "1kg-b-a-r-f-kureci-zaludky-syrove-maso-pro-psy-a-kocky": {
-  "status": "NOT_ON_DOGLIFE",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/vlees-voor-b-a-r-f-kippenmagen-1kg",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/03/vlees_voor_b_a_r_f__-_kippenmagen_1kg_2643-300x300.jpg",
+  "doglife_title": "Vlees voor B.A.R.F. – Kippenmagen 1kg (diepgevroren)",
+  "doglife_price": "4,38"
  },
  "lickimat-ufo-lizaci-miska": {
   "status": "NOT_ON_DOGLIFE",
@@ -2898,7 +2898,7 @@
   "doglife_price": ""
  },
  "lickimat-playdate-lizaci-podlozka-20-x-20-cm": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -2989,7 +2989,7 @@
   "doglife_price": "7,90"
  },
  "1-kg-b-a-r-f-kureci-stehna-a-orezy-syrove-maso-pro-psy-a-kocky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -3038,14 +3038,14 @@
   "doglife_price": "34,20"
  },
  "2kg-hypoalergenni-granule-yoggies-s-kozim-masem-a-br-vlockami-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-geitenvlees-met-groenten",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_geitenvlees_en_groenten_hypoallergene_koudgeperste_korrels_met_probiotica_3204-300x300.png",
+  "doglife_title": "Yoggies Geitenvlees en groenten, hypoallergene koudgeperste korrels met probiotica",
+  "doglife_price": "19,00"
  },
  "2-kg-yoggies-active-kachna-a-zverina-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/active-eend-en-hert",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_active_eend_en_hert_koudgeperste_korrels_met_probiotica_5401-300x300.png",
   "doglife_title": "Yoggies Active Eend en Hert, koudgeperste korrels met probiotica",
@@ -3059,14 +3059,14 @@
   "doglife_price": ""
  },
  "2kg-kureci-a-hovezi-maso-granule-lisovane-za-studena-s-probiotiky-yoggies": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/kip-en-rund-klassiek",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/yoggies_kip__rund_koudgeperste_korrels_met_probiotica_1527-300x300.png",
+  "doglife_title": "Yoggies Kip en Rund, koudgeperste korrels met probiotica",
+  "doglife_price": "33,20"
  },
  "15-kg-minigranule-monoproteinove-yoggies-s-krutim-masem-a-jahly-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -3087,32 +3087,32 @@
   "doglife_price": ""
  },
  "20-kg-monoproteinove-granule-yoggies-s-krutim-masem-a-jahly-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-kalkoenvlees-met-gierst-en-hennepolie-klassiek",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies Kalkoen met Gierst, koudgeperste korrels met probiotica Klassiek",
+  "doglife_price": "36,40"
  },
  "15-kg-monoproteinove-granule-yoggies-s-krutim-masem-a-jahly-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-kalkoenvlees-met-gierst-en-hennepolie-klassiek",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies Kalkoen met Gierst, koudgeperste korrels met probiotica Klassiek",
+  "doglife_price": "36,40"
  },
  "2kg-yoggies-kruti-masojahly-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-kalkoenvlees-met-gierst-en-hennepolie-klassiek",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies Kalkoen met Gierst, koudgeperste korrels met probiotica Klassiek",
+  "doglife_price": "36,40"
  },
  "5-kg-monoproteinove-granule-yoggies-s-krutim-masem-a-jahly-lisovane-za-studena-s-probiotiky": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-kalkoenvlees-met-gierst-en-hennepolie-klassiek",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies Kalkoen met Gierst, koudgeperste korrels met probiotica Klassiek",
+  "doglife_price": "36,40"
  },
  "fit-spalik-yoggies-pro-psy-120g-lisovany-za-studena-zdravy-pamlsek-pro-cisteni-zubu": {
   "status": "MATCH_CONFIRMED",
@@ -3136,11 +3136,11 @@
   "doglife_price": "3,80"
  },
  "2kg-minigranule-hypoalergenni-yoggies-s-kozim-masem-a-br-vlockami-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-geitenvlees-met-groenten",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_geitenvlees_en_groenten_hypoallergene_koudgeperste_korrels_met_probiotica_3204-300x300.png",
+  "doglife_title": "Yoggies Geitenvlees en groenten, hypoallergene koudgeperste korrels met probiotica",
+  "doglife_price": "19,00"
  },
  "kniha-o-dusi-lesa-daniela-kralova": {
   "status": "NOT_ON_DOGLIFE",
@@ -3171,11 +3171,11 @@
   "doglife_price": ""
  },
  "2-kg-minigranule-kureci-a-hovezi-maso-minigranule-lisovane-za-studena-s-probiotiky-yoggies": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/kip-en-rund-klassiek",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/yoggies_kip__rund_koudgeperste_korrels_met_probiotica_1527-300x300.png",
+  "doglife_title": "Yoggies Kip en Rund, koudgeperste korrels met probiotica",
+  "doglife_price": "33,20"
  },
  "325-g-verm-x-pamlsek-a-prirodni-prostredek-na-podporu-bezchemickeho-odcerveni-psa": {
   "status": "NOT_ON_DOGLIFE",
@@ -3185,7 +3185,7 @@
   "doglife_price": ""
  },
  "2-kg-minigranule-yoggies-jehneci-a-bila-ryba-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -3199,7 +3199,7 @@
   "doglife_price": ""
  },
  "olej-lupoomega-3-6-9-premium-500-ml": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/lupo-premium-wildfish-oil-500-ml",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "LUPO Premium Wildfish Oil 500 ml",
@@ -3213,11 +3213,11 @@
   "doglife_price": ""
  },
  "5-kg-minigranule-hypoalergenni-yoggies-s-kozim-masem-a-br-vlockami-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-geitenvlees-met-groenten",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_geitenvlees_en_groenten_hypoallergene_koudgeperste_korrels_met_probiotica_3204-300x300.png",
+  "doglife_title": "Yoggies Geitenvlees en groenten, hypoallergene koudgeperste korrels met probiotica",
+  "doglife_price": "19,00"
  },
  "5-kg-jehneci-a-bila-ryba-granule-lisovane-za-studena-s-probiotiky-yoggies": {
   "status": "REVIEW",
@@ -3227,18 +3227,18 @@
   "doglife_price": ""
  },
  "5-kg-minigranule-kureci-a-hovezi-maso-minigranule-lisovane-za-studena-s-probiotiky-yoggies": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/kip-en-rund-klassiek",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/yoggies_kip__rund_koudgeperste_korrels_met_probiotica_1527-300x300.png",
+  "doglife_title": "Yoggies Kip en Rund, koudgeperste korrels met probiotica",
+  "doglife_price": "33,20"
  },
  "5-kg-kureci-a-hovezi-maso-granule-lisovane-za-studena-s-probiotiky-yoggies": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/kip-en-rund-klassiek",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/yoggies_kip__rund_koudgeperste_korrels_met_probiotica_1527-300x300.png",
+  "doglife_title": "Yoggies Kip en Rund, koudgeperste korrels met probiotica",
+  "doglife_price": "33,20"
  },
  "5-kg-minigranule-yoggies-active-kachna-a-zverina-granule-lisovane-za-studena-s-probiotiky": {
   "status": "REVIEW",
@@ -3276,7 +3276,7 @@
   "doglife_price": ""
  },
  "5kg-minigranule-yoggies-jehneci-a-bila-ryba-granule-lisovane-za-studena-s-probiotiky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -3290,32 +3290,32 @@
   "doglife_price": "14,40"
  },
  "yoggies-granule-s-krocanim-masem-pro-kocky-lisovane-za-studena-s-probiotiky-1200g": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-cat-kalkoen-korrels-proteine",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/03/Yoggies_Kalkoen_proteine_voor_katten-300x300.png",
+  "doglife_title": "Yoggies korrels voor katten met kalkoenvlees, koudgeperst met probiotica",
+  "doglife_price": "6,20"
  },
  "yoggies-granule-s-krocanim-masem-pro-kocky-lisovane-za-studena-s-probiotiky-400g": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-cat-kalkoen-korrels-proteine",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/03/Yoggies_Kalkoen_proteine_voor_katten-300x300.png",
+  "doglife_title": "Yoggies korrels voor katten met kalkoenvlees, koudgeperst met probiotica",
+  "doglife_price": "6,20"
  },
  "yoggies-granule-s-kurecim-masem-pro-kocky-lisovane-za-studena-s-probiotiky-1200g": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-cat-kip-korrels-proteine",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies korrels voor katten met kip, koudgeperst met probiotica",
+  "doglife_price": "5,80"
  },
  "yoggies-granule-s-kurecim-masem-pro-kocky-lisovane-za-studena-s-probiotiky-400g": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/yoggies-cat-kip-korrels-proteine",
+  "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
+  "doglife_title": "Yoggies korrels voor katten met kip, koudgeperst met probiotica",
+  "doglife_price": "5,80"
  },
  "800g-luposan-gelenk40-tabletky-na-posileni-kloubu-a-vazu": {
   "status": "NOT_ON_DOGLIFE",
@@ -3402,7 +3402,7 @@
   "doglife_price": ""
  },
  "olej-lupoomega-3-6-9-premium-250-ml": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/lupo-premium-wildfish-oil-250-ml",
   "doglife_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E",
   "doglife_title": "LUPO Premium Wildfish Oil 250 ml",
@@ -3451,18 +3451,18 @@
   "doglife_price": "19,60"
  },
  "15kg-minigranule-hypoalergenni-yoggies-s-kozim-masem-a-br-vlockami-lisovane-za-studena": {
-  "status": "NOT_ON_DOGLIFE",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-geitenvlees-met-groenten",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_geitenvlees_en_groenten_hypoallergene_koudgeperste_korrels_met_probiotica_3204-300x300.png",
+  "doglife_title": "Yoggies Geitenvlees en groenten, hypoallergene koudgeperste korrels met probiotica",
+  "doglife_price": "19,00"
  },
  "15kg-hypoalergenni-granule-yoggies-s-kozim-masem-a-br-vlockami-lisovane-za-studena": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/hypoalergeen-geitenvlees-met-groenten",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_geitenvlees_en_groenten_hypoallergene_koudgeperste_korrels_met_probiotica_3204-300x300.png",
+  "doglife_title": "Yoggies Geitenvlees en groenten, hypoallergene koudgeperste korrels met probiotica",
+  "doglife_price": "19,00"
  },
  "yoggies-lneny-olej-pro-psy-a-kocky-500-ml": {
   "status": "MATCH_CONFIRMED",
@@ -3535,14 +3535,14 @@
   "doglife_price": "4,10"
  },
  "85g-yoggies-misticky-s-kurecim-masem-a-zele-omackou-pro-kocky": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
   "doglife_price": ""
  },
  "yoggies-misticky-pro-kocky-s-tunakem-a-lososem-v-zele-omacce-85g": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -3591,7 +3591,7 @@
   "doglife_price": ""
  },
  "500g-luposan-moorliquid-susena-raselina-pro-podporu-zdraveho-zazivani": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -3640,14 +3640,14 @@
   "doglife_price": ""
  },
  "15-kg-yoggies-active-kachna-a-zverina-granule-lisovane-za-studena": {
-  "status": "MATCH",
+  "status": "MATCH_CONFIRMED",
   "doglife_url": "https://doglife.be/product/active-eend-en-hert",
   "doglife_image": "https://doglife.be/wp-content/uploads/2026/01/yoggies_active_eend_en_hert_koudgeperste_korrels_met_probiotica_5401-300x300.png",
   "doglife_title": "Yoggies Active Eend en Hert, koudgeperste korrels met probiotica",
   "doglife_price": "14,80"
  },
  "15kg-minigranule-yoggies-jehneci-a-bila-ryba-granule-lisovane-za-studena": {
-  "status": "NOT_ON_DOGLIFE",
+  "status": "REVIEW",
   "doglife_url": "",
   "doglife_image": "",
   "doglife_title": "",
@@ -3661,18 +3661,18 @@
   "doglife_price": ""
  },
  "15-kg-minigranule-kureci-a-hovezi-maso-minigranule-lisovane-za-studena-yoggies": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/kip-en-rund-klassiek",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/yoggies_kip__rund_koudgeperste_korrels_met_probiotica_1527-300x300.png",
+  "doglife_title": "Yoggies Kip en Rund, koudgeperste korrels met probiotica",
+  "doglife_price": "33,20"
  },
  "15kg-kureci-a-hovezi-maso-granule-lisovane-za-studena-yoggies": {
-  "status": "REVIEW",
-  "doglife_url": "",
-  "doglife_image": "",
-  "doglife_title": "",
-  "doglife_price": ""
+  "status": "MATCH",
+  "doglife_url": "https://doglife.be/product/kip-en-rund-klassiek",
+  "doglife_image": "https://doglife.be/wp-content/uploads/2025/04/yoggies_kip__rund_koudgeperste_korrels_met_probiotica_1527-300x300.png",
+  "doglife_title": "Yoggies Kip en Rund, koudgeperste korrels met probiotica",
+  "doglife_price": "33,20"
  },
  "60g-verm-x-pamlsek-a-prirodni-prostredek-na-pravidelne-bezchemicke-odcerveni-kocky": {
   "status": "NOT_ON_DOGLIFE",
