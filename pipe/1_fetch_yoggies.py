@@ -15,6 +15,8 @@ Output
 Usage
     python pipe/1_fetch_yoggies.py
     python pipe/1_fetch_yoggies.py --refresh      # ignore existing files
+    python pipe/1_fetch_yoggies.py --from-raw     # re-extract from the saved raw
+                                                  # response, no download
 """
 
 from __future__ import annotations
@@ -51,16 +53,31 @@ HEADERS = {
 TAG_RE = re.compile(r"<[^>]+>")
 WS_RE = re.compile(r"[ \t\r\f\v]+")
 
+# Elements whose CONTENTS are code, not prose. Stripping only their tags leaves
+# the stylesheet or the script body behind as "text", which is how 111 product
+# descriptions ended up opening with ".yoggies-section { max-width: 1100px; ... }".
+# An unclosed tag is treated as running to the end of the document rather than
+# being ignored - leaking the whole tail is safer than leaking code.
+CODE_ELEMENT_RE = re.compile(
+    r"(?is)<\s*(style|script|noscript)\b[^>]*>.*?(?:<\s*/\s*\1\s*>|$)"
+)
+COMMENT_RE = re.compile(r"(?s)<!--.*?(?:-->|$)")
+
 
 def html_to_text(html: str) -> str:
     """Flatten Shopify's body_html into readable plain text.
 
     Block-level tags become newlines so paragraph structure survives; the
     translation step needs those boundaries to keep sentences intact.
+
+    <style>, <script> and <noscript> are removed element AND contents first,
+    together with HTML comments, so no CSS or JavaScript can survive as text.
     """
     if not html:
         return ""
-    text = re.sub(r"(?i)<br\s*/?>", "\n", html)
+    text = CODE_ELEMENT_RE.sub("\n", html)
+    text = COMMENT_RE.sub(" ", text)
+    text = re.sub(r"(?i)<br\s*/?>", "\n", text)
     text = re.sub(r"(?i)</(p|div|li|h[1-6]|tr)>", "\n", text)
     text = re.sub(r"(?i)<li[^>]*>", "• ", text)
     text = TAG_RE.sub(" ", text)
@@ -121,30 +138,41 @@ def normalise(product: dict) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--refresh", action="store_true")
+    ap.add_argument("--from-raw", action="store_true",
+                    help="re-normalise data/yoggies_raw.json instead of downloading "
+                         "(use after changing html_to_text)")
     args = ap.parse_args()
 
     DATA.mkdir(parents=True, exist_ok=True)
 
-    if OUT.exists() and not args.refresh:
+    if OUT.exists() and not (args.refresh or args.from_raw):
         existing = json.loads(OUT.read_text(encoding="utf-8"))
         print(f"{OUT.name} already has {len(existing)} products. Use --refresh to re-download.")
         return 0
 
     raw: list[dict] = []
-    for page in range(1, MAX_PAGES + 1):
-        batch = fetch_page(page)
-        print(f"  page {page}: {len(batch)} products")
-        if not batch:
-            break
-        raw.extend(batch)
-        if len(batch) < PAGE_SIZE:
-            break
-        time.sleep(0.5)
+    if args.from_raw:
+        # The API response is kept verbatim precisely so extraction can be redone
+        # without hitting yoggies.cz again.
+        if not RAW.exists():
+            sys.exit(f"{RAW.name} not found. Run without --from-raw to download it.")
+        raw = json.loads(RAW.read_text(encoding="utf-8"))
+        print(f"  re-normalising {len(raw)} products from {RAW.name} (no download)")
+    else:
+        for page in range(1, MAX_PAGES + 1):
+            batch = fetch_page(page)
+            print(f"  page {page}: {len(batch)} products")
+            if not batch:
+                break
+            raw.extend(batch)
+            if len(batch) < PAGE_SIZE:
+                break
+            time.sleep(0.5)
 
-    if not raw:
-        sys.exit("Nothing downloaded. Check your internet connection and try again.")
+        if not raw:
+            sys.exit("Nothing downloaded. Check your internet connection and try again.")
 
-    RAW.write_text(json.dumps(raw, ensure_ascii=False, indent=1), encoding="utf-8")
+        RAW.write_text(json.dumps(raw, ensure_ascii=False, indent=1), encoding="utf-8")
 
     catalogue = [normalise(p) for p in raw]
     # A handle is unique per shop, so it is a safe deduplication key.

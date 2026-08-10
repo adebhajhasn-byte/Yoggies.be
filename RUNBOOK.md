@@ -93,6 +93,16 @@ Pulls all products from yoggies.cz through Shopify's own JSON endpoint —
 complete Czech descriptions, every image, every size variant, product types
 and tags. Expect around **526 products**.
 
+`data/yoggies_raw.json` keeps the API response verbatim, so extraction can be
+redone without touching the network:
+
+```powershell
+python pipe/1_fetch_yoggies.py --from-raw
+```
+
+Use that after any change to `html_to_text()` — it rebuilds
+`data/yoggies_catalogue.json` from the saved response and downloads nothing.
+
 ### 2. Translate
 ```powershell
 python pipe/2_translate.py
@@ -158,9 +168,12 @@ through a chat interface. The two scripts that make that safe are
 any new product text.
 
 **That work is finished.** All 23 batches are exported and all 23 `done_` files
-are imported; `data/cache/translations.json` holds 4,323 entries and a build
+are imported; `data/cache/translations.json` holds 4,367 entries and a build
 today reports `missing=0`. You only re-enter this loop when new Czech text
 arrives from yoggies.cz.
+
+(4,323 of those came from the batches; the other 44 are the CSS-cleaned
+descriptions re-keyed in place — see "The stylesheet leak" below.)
 
 **1. Export what is missing.**
 ```powershell
@@ -217,7 +230,14 @@ completes when the last one lands.
 - keep `Yoggies`, `BARF`, `VET Gastro Sensitive`, `Ibérico` exactly
 - **brokken**, never *granulaat*; **MINIbrokken**, never *MINIgranule*
 - keep every number and weight; drop the `Kč` symbol but keep the amount
-- CSS blocks pass through unchanged apart from their Czech comments
+- **no CSS or JavaScript should reach you at all.** It used to: `html_to_text()`
+  stripped `<style>` tags but kept the stylesheet between them, so 111
+  descriptions arrived as `.yoggies-section { max-width: 1100px; … }` and were
+  dutifully "translated" comment by comment. The extractor now removes
+  `<style>`, `<script>`, `<noscript>` and HTML comments element *and* contents,
+  and `audit.py` FAILs if any description or page still shows code as text. If a
+  batch ever hands you a stylesheet again, that is a bug upstream — say so
+  rather than translating it.
 
 ### Writing a description by hand
 
@@ -233,7 +253,7 @@ rebuild.
 ## Current state — what audit.py reports today
 
 ```
-23 passed   1 warnings   0 failed
+25 passed   1 warnings   0 failed
 ```
 
 | | |
@@ -249,10 +269,36 @@ rebuild.
 
 Every data and site check passes: no Czech text, no Kč, no URL collisions, no
 broken links, no missing meta descriptions or canonicals, no missing alt text,
-no empty descriptions, every referenced image present on disk, and every
-product row has a page of its own.
+no empty descriptions, no CSS or JavaScript rendered as prose, every referenced
+image present on disk, and every product row has a page of its own.
 
 `sitemap.xml` lists the 475 real pages and leaves every redirect stub out.
+
+### The stylesheet leak, and how the Dutch survived it
+
+`html_to_text()` flattened `<style>` by stripping the tag and keeping what was
+between it and `</style>`. **111 of 526 descriptions** therefore began with the
+product page's stylesheet, and 64 built pages rendered it as body copy — the
+first card on `voor-katten.html` opened with `.yoggies-section { max-width:
+1100px; … }`. The extractor now drops `<style>`, `<script>`, `<noscript>` and
+HTML comments with their contents before any tag flattening happens.
+
+Re-extracting the Czech was free (`--from-raw`). The Dutch was the problem: the
+translation cache is keyed on `sha256` of the **whole** description, so cleaning
+the Czech invalidated all 111 keys and a re-translation would have meant 111 API
+calls against a budget that does not exist. It was recovered instead, because
+`description_cz` and `description_nl` have **identical non-blank line counts**
+for every affected product (rule 4 of the translator brief — preserve the
+paragraph layout). The CSS lines were located in the Czech and dropped at the
+same line positions in the Dutch; each result was checked three ways (the kept
+Czech lines must reproduce the cleaned Czech exactly, the Dutch must contain no
+code afterwards, and the line counts must still agree) before it was written
+back to both caches. All 111 passed, `2_translate.py` then reported
+`translated : 0`, and no translation work was lost or repaid for.
+
+That line-for-line correspondence is worth remembering: it is what makes any
+future surgery on the Czech recoverable on the Dutch side without paying for it
+twice.
 
 ### The one remaining warning
 

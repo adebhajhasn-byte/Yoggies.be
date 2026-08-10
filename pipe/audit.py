@@ -55,6 +55,18 @@ ALLOWED = re.compile(
     re.IGNORECASE,
 )
 
+# Code that leaked into prose. 111 descriptions once opened with
+# ".yoggies-section { max-width: 1100px; ... }" because html_to_text() stripped
+# <style> tags but kept the stylesheet between them. Each alternative is a shape
+# prose does not have: a declaration block, an at-rule, a JS function or a var.
+CSS_JS = re.compile(
+    r"\{[^{}]*[A-Za-z-]+\s*:\s*[^{};]+[;}]"
+    r"|@(?:media|import|font-face|keyframes|supports)\b"
+    r"|\bfunction\s*\("
+    r"|\bvar\s+\w+\s*=",
+    re.IGNORECASE,
+)
+
 results: list[tuple[str, str, str]] = []
 VERBOSE = False
 
@@ -106,6 +118,17 @@ def audit_data() -> None:
     empty_desc = [r for r in data if not str(col(r, "description_nl") or "").strip()]
     check("every product has a description", not empty_desc, f"{len(empty_desc)} empty")
 
+    code_desc = [r for r in data
+                 for field in ("description_nl", "description_cz")
+                 if CSS_JS.search(str(col(r, field) or ""))]
+    code_desc = list({id(r): r for r in code_desc}.values())
+    check("no CSS or JavaScript in descriptions", not code_desc,
+          f"{len(code_desc)} of {total} contain stylesheet or script text")
+    if VERBOSE and code_desc:
+        for r in code_desc[:10]:
+            snippet = " ".join(str(col(r, "description_nl") or "").split())[:60]
+            print(f"          - {str(col(r,'name_nl'))[:46]}  |  {snippet}")
+
     no_img = [r for r in data if not col(r, "image_main")]
     check("every product has a main image", not no_img, f"{len(no_img)} missing")
 
@@ -148,10 +171,11 @@ def audit_site() -> None:
     if not pages:
         return
 
-    no_desc = no_canon = onclick = czech_visible = 0
+    no_desc = no_canon = onclick = czech_visible = code_visible = 0
     noalt = imgs = 0
     hotlinks: Counter = Counter()
     broken: Counter = Counter()
+    code_pages: list[str] = []
 
     for path in pages:
         text = Path(path).read_text(encoding="utf-8", errors="replace")
@@ -168,6 +192,11 @@ def audit_site() -> None:
                          text, flags=re.S)
         if CZECH.search(ALLOWED.sub("", visible)):
             czech_visible += 1
+        # Real <style>/<script> blocks are stripped above, so a hit here is a
+        # stylesheet that arrived as description text and is rendering as prose.
+        if CSS_JS.search(html.unescape(visible)):
+            code_visible += 1
+            code_pages.append(os.path.basename(path))
 
         for tag in re.findall(r"<img[^>]*>", text):
             imgs += 1
@@ -201,6 +230,11 @@ def audit_site() -> None:
             print(f"          - {v}x  {k}")
     check("no Czech text visible on pages", czech_visible == 0,
           f"{czech_visible} pages show Czech")
+    check("no CSS or JavaScript visible on pages", code_visible == 0,
+          f"{code_visible} pages render code as text")
+    if VERBOSE and code_pages:
+        for name in code_pages[:10]:
+            print(f"          - {name}")
 
     for required in ("sitemap.xml", "robots.txt"):
         check(f"{required} generated", (SITE / required).exists())
