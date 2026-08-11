@@ -388,6 +388,38 @@ eight product pages (both Chlorella sizes, both Mineralen sizes, three RAGÚ
 kalkoen/zalm variants, the rice-flake bijgerecht). Harmless, but worth
 retranslating when convenient.
 
+### The floating contact widget
+
+A round green button sits bottom-right on all **475 real pages** (redirect stubs
+are skipped — they are gone before anyone could click). It opens a panel with
+Naam, a topic dropdown, a message box and two buttons: WhatsApp and E-mail.
+Both are client-side only — no backend, no database, no third party. WhatsApp
+opens `wa.me/<digits>?text=…`, E-mail opens a `mailto:` with the topic as
+subject. The page title and URL are appended to every message, so you can see
+what the visitor was looking at.
+
+**It does not store the phone number or the e-mail address.** The script reads
+them out of the page's own `<footer>` at runtime — the `tel:` and `mailto:`
+hrefs — so the footer stays the single source of truth. Change the footer and
+the widget follows without touching `yoggies_pipeline.py`.
+
+It reads the `tel:` **href**, not the visible text, on purpose: `+32 (0)475 34
+48 68` strips to `320475344868`, and that trunk zero is not dialable. The href
+`tel:+32475344868` gives the `32475344868` wa.me needs. `(0)` is stripped
+defensively in case the pretty form ever lands in the href.
+
+Lives in `_CONTACT_WIDGET` / `_inject_contact_widget()` next to
+`_content_fixups`, injected by the post-build sweep so every page type gets it
+in one place. Injection removes any existing copy first, including its trailing
+newline — the static pages (index, calculator, hondenatlas, Dierenkliniek) are
+edited in place rather than regenerated, so without that it would stack a
+little more onto every page on every rebuild.
+
+The button hides itself whenever the footer or a `.ph-order-btn` scrolls into
+view, so it never sits on top of the footer links or the Bestel button on a
+phone. Escape and an outside click close it; it is a non-modal popover, so
+tabbing out closes it rather than trapping focus.
+
 ---
 
 ## How to deploy
