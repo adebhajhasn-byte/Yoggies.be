@@ -265,7 +265,7 @@ rebuild.
 | Images | 6,104 local files (157.8 MB), 0 missing, 0 hotlinked |
 | Site folder | 194.0 MB total, 36.2 MB without `images/` |
 | Translation | 2,566 blocks / 1,042 fields, 0 Czech left in names or descriptions |
-| DogLife | 220 linked, 306 information-only, 0 awaiting review |
+| DogLife | 216 linked, 310 information-only, 0 awaiting review |
 
 Every data and site check passes: no Czech text, no Kč, no URL collisions, no
 broken links, no missing meta descriptions or canonicals, no missing alt text,
@@ -302,8 +302,8 @@ twice.
 
 ### The one remaining warning
 
-**416 product pages show no call to action.** This is the old question of
-what the 306 products DogLife does not sell should display. Since yoggies.be
+**419 product pages show no call to action.** This is the old question of
+what the 310 products DogLife does not sell should display. Since yoggies.be
 is an information site and DogLife is the shop, showing no purchase block at
 all is cleaner than an apology — but that is your call, and the fix lives in
 the purchase block in `yoggies_pipeline.py` (around line 1550).
@@ -337,9 +337,23 @@ have no link, because DogLife does not sell those. Worth knowing that a high
 score is not proof: if you spot another, put the right URL (or `null`) in
 `data/match_decisions.json` and re-run the matcher.
 
-Six multipack products still carry an auto-match to a single-can page
-(kangoeroe, eend, rund mariadistel). The flavour is right and the pack size is
-not; left as they are, since the customer does land on the right product.
+**The four "5+1" multipacks that pointed at a single can are now unlinked.**
+Two eend (400 g and 800 g, both aimed at the same sizeless eend page), one rund
+mariadistel 400 g and one kangoeroe 800 g. A multipack that sends the buyer to
+a single tin is wrong however right the flavour is, so all four are `null` in
+`data/match_decisions.json` and are information-only, like the other 40 bundles.
+No "5+1", "6+1", "voordeelverpakking", "24 x 185 g" or Proefbox product carries
+a purchase link now — DogLife sells none of them.
+
+Multipack→multipack matches were left alone and are correct: the 12x150 g
+B.A.R.F. menus, the 6x250 g B.A.R.F. tubs and Fit blokjes 2x47 g all point at
+the matching DogLife pack size.
+
+**Still open, and not a pack-size problem:** rows 85 and 86 — "gedroogde
+kauwsnacks – Konijnenoren met vacht 4 st." and "– Bullenpees 5 st." — are both
+matched to `fit-beentje-voor-honden-118-g`, which is neither rabbit ears nor
+bull pizzle. That looks like two wrong matches to a different product, but it
+is a judgement call about what DogLife actually stocks, so it was left for you.
 
 Decisions always beat the scoring, so re-running the matcher never re-opens
 them. If you disagree with one, edit the `keep` column and re-apply — or edit
