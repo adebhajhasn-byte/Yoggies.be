@@ -834,9 +834,26 @@
   msg.addEventListener('input',sync);
   sync();
 
+  // Where the button sits when it is NOT tucked. Measured from the CSS rather
+  // than getBoundingClientRect() because the tucked state applies a transform,
+  // and feeding that shifted rect back in makes the button flap in and out.
+  function fabBox(){
+    var cs=getComputedStyle(root),
+        r=innerWidth-(parseFloat(cs.right)||0),
+        b=innerHeight-(parseFloat(cs.bottom)||0);
+    return {left:r-fab.offsetWidth,right:r,top:b-fab.offsetHeight,bottom:b};
+  }
+  function covers(el){
+    // Only what actually collides matters. Merely being on screen is not
+    // enough: on a desktop product page the Bestel button is visible for most
+    // of the scroll, and hiding the widget for all of it would be wrong.
+    var a=fabBox(),b=el.getBoundingClientRect();
+    if(b.width===0&&b.height===0)return false;
+    return b.right>a.left-8&&b.left<a.right+8&&b.bottom>a.top-8&&b.top<a.bottom+8;
+  }
   function tuck(){
     // Never sit on top of the footer links or the Bestel button.
-    var hit=watch.some(function(el){return el._ycSeen;});
+    var hit=watch.some(function(el){return el._ycSeen&&covers(el);});
     root.classList.toggle('yc-tucked',hit&&panel.hidden);
   }
   var watch=[foot].concat(Array.prototype.slice.call(document.querySelectorAll('.ph-order-btn')));
@@ -846,12 +863,29 @@
       tuck();
     },{threshold:0});
     watch.forEach(function(el){io.observe(el);});
+  }else{
+    watch.forEach(function(el){el._ycSeen=true;});
   }
+  // Intersection alone never fires while an element slides past the button, so
+  // the overlap has to be re-checked on scroll.
+  var queued=false;
+  function requeue(){
+    if(queued)return;
+    queued=true;
+    requestAnimationFrame(function(){queued=false;tuck();});
+  }
+  addEventListener('scroll',requeue,{passive:true});
+  addEventListener('resize',requeue);
+  tuck();
 
   function open(){
     panel.hidden=false;fab.setAttribute('aria-expanded','true');
     root.classList.remove('yc-tucked');
-    sync();name.focus();
+    sync();
+    // preventScroll, or focusing the field scrolls the panel and clips its
+    // own heading out of view on a short viewport.
+    try{name.focus({preventScroll:true});}catch(e){name.focus();}
+    panel.scrollTop=0;
   }
   function close(refocus){
     panel.hidden=true;fab.setAttribute('aria-expanded','false');
