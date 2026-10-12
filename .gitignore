@@ -3,10 +3,10 @@ __pycache__/
 .idea/
 *.pyc
 
-# Build output that is regenerated, not authored. localize_images.py rebuilds
-# every file here from image_map.json, so versioning ~157 MB of binaries buys
-# nothing.
-site/images/
+# site/images/ IS versioned on purpose. Netlify deploys straight from this
+# repository, so the images must be here or the live site has none. It also
+# removes the dependency on yoggies.cz staying online: localize_images.py can
+# only rebuild these files while their source URLs still resolve.
 
 # 4_build_master.py timestamps a backup on every run; git is the history.
 READY_FOR_BUILD_FINAL.backup-*.xlsx
