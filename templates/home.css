@@ -83,6 +83,11 @@ header {
   border: none; outline: none; background: transparent;
   font-family: 'Nunito', sans-serif;
   font-size: 14px; color: var(--text); width: 100%;
+  /* A flex item defaults to min-width:auto, which refuses to shrink below the
+     input's intrinsic size. Inside the 160px search bar on phones that pushed
+     the search button past the viewport and gave product pages a 28px
+     horizontal scroll. */
+  min-width: 0;
 }
 .search-bar input::placeholder { color: var(--text-muted); }
 
