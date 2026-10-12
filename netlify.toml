@@ -1,0 +1,16 @@
+# Netlify deploys the pre-built static site in site/. There is no build step:
+# yoggies_pipeline.py is run locally and its output is committed.
+[build]
+  publish = "site"
+  command = ""
+
+# Images, CSS and JS are content-addressed or rarely change; let browsers keep them.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
